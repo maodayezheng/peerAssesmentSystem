@@ -1,8 +1,14 @@
-
+	<?php
+			session_start();
+			if(!$_SESSION['auth']){
+				header('location:login.php');
+			}
+			?>
 	<?php
 			include("header.php"); 
 			include("navbar.php")
 			?>
+
 			
 			  <div class="container">
 

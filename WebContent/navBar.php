@@ -27,7 +27,7 @@
 		      <ul class="nav navbar-nav navbar-right">
 		      	<li><a href="#">Report</a></li>
 		      	<li><a href="#">FAQ</a></li>
-		        <li><a href="loginSignup.php">LogOut</a></li>
+		        <li><a href="PHP/logout.php">LogOut</a></li>
 		      </ul>
 		    </div><!-- /.navbar-collapse -->
 		  </div><!-- /.container-fluid -->
