@@ -4,7 +4,7 @@
 			include("navbar.php")
 			?>
 
-<form class="form-horizontal" action='newAccount.php' method="POST">
+<form class="form-horizontal" action='PHP/newAccount.php' method="POST">
 	<div class="container-fluid">
 		<section class="container">
 			<div class="container-page">
@@ -47,7 +47,7 @@
 					<p>Acceptance of an order by us is dependent on our suppliers
 						ability to provide the product. (Paragraph 13.5.6)</p>
 
-					<input href="loginSignup.php" type="submit" name="submit"
+					<input href="" type="submit" name="submit"
 						value="Send" class="btn btn-primary"></input>
 				</div>
 			</div>

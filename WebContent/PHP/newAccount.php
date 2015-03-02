@@ -19,7 +19,7 @@ $conn = new mysqli($servername,$username,$password,$dbname,$port);
 if ($conn->query($sql)===true) {
 	// output data of each row
 	echo "Selection complete";
-	header('location: login.php');
+	header('location: ../login.php');
 } else {
 	echo "Error:". $sql."<br>". $conn -> error;
 }
