@@ -16,6 +16,21 @@
 							class="form-control" id="" value="">
 					</div>
 
+					<div class="form-group col-lg-12">
+						<label>First Name</label> <input type="" name="fname"
+							class="form-control" id="" value="">
+					</div>
+
+					<div class="form-group col-lg-12">
+						<label>Last Name</label> <input type="" name="lname"
+							class="form-control" id="" value="">
+					</div>
+
+					<div class="form-group col-lg-12">
+						<label>Sex</label> <input type="" name="sex"
+							class="form-control" id="" value="">
+					</div>
+
 					<div class="form-group col-lg-8">
 						<label>Password</label> <input type="password" name="password"
 							class="form-control" id="" value="">
@@ -47,8 +62,8 @@
 					<p>Acceptance of an order by us is dependent on our suppliers
 						ability to provide the product. (Paragraph 13.5.6)</p>
 
-					<input href="" type="submit" name="submit"
-						value="Send" class="btn btn-primary"></input>
+					<input href="" type="submit" name="submit" value="Send"
+						class="btn btn-primary"></input>
 				</div>
 			</div>
 		</section>
