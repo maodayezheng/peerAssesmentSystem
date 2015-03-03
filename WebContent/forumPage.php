@@ -29,6 +29,8 @@
 			</table>
 			<a href="#postForum" data-toggle="modal" data-target="#postForum"
 				class="btn btn-primary btn-bg pull-right">Post</a>
+				
+				<form action="PHP/submitForum.php" method="POST" role="form">
 
 			<div class="modal fade" id="postForum" tabindex="-1" role="dialog"
 				aria-labelledby="postForum" aria-hidden="true">
@@ -44,8 +46,8 @@
 									<h4>
 										<b>Title:</b>
 									</h4>
-									<textarea name="titleForum" id="titleForum" max="50" rows="1"
-										cols="50" placeholder="Title:"></textarea>
+									<input name="titleForum" id="titleForum" max="50" rows="1"
+										cols="50" placeholder="Title:"></input>
 									<br>
 								</div>
 
@@ -53,8 +55,8 @@
 									<h4>
 										<b>Content:</b>
 									</h4>
-									<textarea name="contentForum" id="contentForum" max="10000"
-										rows="5" cols="50" placeholder="Write your post here"></textarea>
+									<input name="contentForum" id="contentForum" max="10000"
+										rows="5" cols="50" placeholder="Write your post here"></input>
 									<br>
 								</div>
 							</div>
@@ -62,12 +64,13 @@
 						<div class="modal-footer">
 							<button type="button" class="btn btn-default"
 								data-dismiss="modal">Close</button>
-							<button type="button" class="btn btn-success"
-								data-dismiss="modal" onclick="submitReport()">Submit</button>
+							<button type="submit" class="btn btn-success"
+								>Submit</button>
 						</div>
 					</div>
 				</div>
 			</div>
+			</form>
 		</div>
 	</div>
 </div>
