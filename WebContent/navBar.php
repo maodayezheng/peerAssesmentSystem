@@ -26,7 +26,7 @@
 		      </ul>
 		      <ul class="nav navbar-nav navbar-right">
 		      	<li><a href="#">Report</a></li>
-		      	<li><a href="#">FAQ</a></li>
+		      	<li><a href="forumPage.php">Forum</a></li>
 		        <li><a href="PHP/logout.php">LogOut</a></li>
 		      </ul>
 		    </div><!-- /.navbar-collapse -->
