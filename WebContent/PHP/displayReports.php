@@ -2,7 +2,7 @@
 
 require_once ('DBConnection.php');
 
-$sql = "SELECT * FROM reportbody";
+$sql = "SELECT * FROM reportbody WHERE ROWNUM =1";
 
 $result = $conn -> query($sql);
 
