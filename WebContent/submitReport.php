@@ -23,35 +23,35 @@
 					<div class="form-group">
 						<label for="description" class="col-sm-3 control-label">Abstract</label>
 						<div class="col-sm-9">
-							<input type="text" class="form-control" id="description"
-								name="description">
+							<input type="text" class="form-control" id=""
+								name="">
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="amount" class="col-sm-3 control-label">Intro</label>
 						<div class="col-sm-9">
-							<input type="number" class="form-control" id="amount"
+							<input type="text" class="form-control" id="amount"
 								name="amount">
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="amount" class="col-sm-3 control-label">Main</label>
 						<div class="col-sm-9">
-							<input type="number" class="form-control" id="amount"
+							<input type="text" class="form-control" id="amount"
 								name="amount">
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="amount" class="col-sm-3 control-label">Discussion</label>
 						<div class="col-sm-9">
-							<input type="number" class="form-control" id="amount"
+							<input type="text" class="form-control" id="amount"
 								name="amount">
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="amount" class="col-sm-3 control-label">Summary</label>
 						<div class="col-sm-9">
-							<input type="number" class="form-control" id="amount"
+							<input type="text" class="form-control" id="amount"
 								name="amount">
 						</div>
 					</div>
