@@ -1,9 +1,9 @@
 .caption {
-    height: 250px;
+    height: 100%;
     overflow: auto;
+
 }
 
-
-.custom-btn-header {
-    font-size: 200px;
+.thumbnail {
+    min-width: 100px;
 }

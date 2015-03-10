@@ -36,7 +36,7 @@
 	<!-- Page Features -->
 	<div class="row text-center">
 
-		<div class="col-md-3 col-sm-6 hero-feature">
+		<div class="col-md-6 col-sm-6 hero-feature">
 			<div class="thumbnail">
 
 				<div class="caption">
@@ -50,8 +50,21 @@
 			</div>
 		</div>
 
+        <div class="col-md-6 col-sm-6 hero-feature">
+            <div class="thumbnail">
+                <div class="caption">
+                    <p>
+                        <a id="visit_the_forum" class="btn btn-primary" onclick="Navigator.prototype.navigate(this.id)">
+                            Visit the Forum
+                        </a>
+                    </p>
+                    <p> Create, browse and search threads in your exclusive group forum. </p>
 
-        <div class="col-md-3 col-sm-6 hero-feature">
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-sm-6 hero-feature">
             <div class="thumbnail">
                 <div class="caption">
                     <p>
@@ -59,31 +72,17 @@
                             View Results and Ranking
                         </a>
                     </p>
-                    <p>View assessments on your report made by other groups. </p>
-                    <p>View the ranking of your aggregated mark within the aggregated marks for all groups.</p>
-                    <p>View the aggregated assessment grades received by each group that provided a mark for your report. </p>
-
+                    <p>View assessments fn your report made by other groups. </p>
+                    <p>View aggregated marks for your group and the others who assessed your report.</p>
                 </div>
             </div>
         </div>
 
-		<div class="col-md-3 col-sm-6 hero-feature">
-			<div class="thumbnail">
-				<div class="caption">
-                    <p>
-                        <a id="visit_the_forum" class="btn btn-primary" onclick="Navigator.prototype.navigate(this.id)">
-                            Visit the Forum
-                        </a>
-                    </p>
-					<p> Create, browse and search threads in your exclusive group forum. </p>
-
-				</div>
-			</div>
-		</div>
 
 
 
-		<div class="col-md-3 col-sm-6 hero-feature">
+
+		<div class="col-md-6 col-sm-6 hero-feature">
 			<div class="thumbnail">
 				<div class="caption">
                     <p>
@@ -91,7 +90,7 @@
                             Conduct a Peerwise Assessment
                         </a>
                     </p>
-					<p>Browse group reports which your group has been allocated to review. </p>
+					<p>Browse reports which your group has been allocated to review. </p>
                     <p>Submit your group's comments and grading on the reports assigned to you. </p>
 
 				</div>
