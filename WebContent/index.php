@@ -72,7 +72,7 @@
                             View Results and Ranking
                         </a>
                     </p>
-                    <p>View assessments fn your report made by other groups. </p>
+                    <p>View assessments of your report made by other groups. </p>
                     <p>View aggregated marks for your group and the others who assessed your report.</p>
                 </div>
             </div>
