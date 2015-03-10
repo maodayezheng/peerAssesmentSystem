@@ -22,7 +22,7 @@ if($result ->num_rows >0){
 			echo "<b>Intro:</b> $intro"."<br>";
 			echo "<b>Main:</b> $main"."<br>";
 			echo "<b>Discussion:</b> $discussion"."<br>";
-			echo "<b>Summary:</b> $summary"."<br>";
+			echo "<b>Summary:</b> $summary"."<br><br>"; 
 		
 	};
 
