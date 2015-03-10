@@ -1,3 +1,4 @@
+
 <!DOCTYPE HTML>
 <html lang="en">
 <head>
@@ -11,9 +12,39 @@
 <script src="libs/jquery/jquery-ui-1.11.2.min.js"></script>
 <script src="libs/bootstrap/bootstrap.min.js"></script>
 
+<?php
+
+    // E.g. If you are including this file from index.php, the variable would be
+    // equal to 'index'
+    $file_including_header = basename($_SERVER["REQUEST_URI"], ".php");
+
+    switch($file_including_header)
+    {
+        // List references to specific js files to include for each individual page
+        // here.
+        case 'index':
+            echo '<script src="JavaScript/index.js"></script>';
+            break;
+        default: //do nothing in default case
+            break;
+    }
+
+?>
+
+
+
+
+
+
+
 <link href= "libs/jquery/jquery-ui-1.11.2.min.css" rel="stylesheet" type="text/css">
 <link href="libs/bootstrap/bootstrap.min.css" rel="stylesheet" type="text/css">
-<link href="CSS/standard.css" rel="stylesheet" type="text/css">
+<link href="CSS/standard.css" rel="stylesheet" type="text/css" />
+
+
+
+
 
 </head>
 <body>
+
