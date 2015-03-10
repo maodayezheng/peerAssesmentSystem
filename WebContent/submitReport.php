@@ -17,6 +17,12 @@
             <form action="PHP/submitFreeTextReport.php" method="POST" role="form">
             <div class="panel panel-default">
                 <div class="panel-body form-horizontal payment-form">
+                <div class="form-group">
+                        <label for="concept" class="col-sm-3 control-label">Group Number</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="groupNumber" name="groupNumber" maxlength="2" size="4">
+                        </div>
+                    </div>
                     <div class="form-group">
                         <label for="concept" class="col-sm-3 control-label">Title</label>
                         <div class="col-sm-9">
