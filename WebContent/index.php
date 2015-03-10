@@ -42,7 +42,7 @@
 				<div class="caption">
                     <p>
                         <a id="submit_group_report" class="btn btn-primary" onclick="Navigator.prototype.navigate(this.id)">
-                            Submit Group Report
+                            Submit / View Group Report
                         </a>
                     </p>
 					<p>Upload a free text or XML report for your group. </p>
