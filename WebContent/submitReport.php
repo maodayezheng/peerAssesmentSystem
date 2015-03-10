@@ -5,67 +5,107 @@
 
 <div class="container">
 	<div class="row">
-		<div class="col-sm-12">
-			<legend>Mr. Bakshi:</legend>
-		</div>
-		<!-- panel preview -->
-		<div class="col-sm-9">
-			<h4>Submit Report:</h4>
-			<div class="panel panel-default">
-				<div class="panel-body form-horizontal payment-form">
-					<div class="form-group">
-						<label for="concept" class="col-sm-3 control-label">Title</label>
-						<div class="col-sm-9">
-							<input type="text" class="form-control" id="concept"
-								name="concept">
-						</div>
-					</div>
-					<div class="form-group">
-						<label for="description" class="col-sm-3 control-label">Abstract</label>
-						<div class="col-sm-9">
-							<input type="text" class="form-control" id=""
-								name="">
-						</div>
-					</div>
-					<div class="form-group">
-						<label for="amount" class="col-sm-3 control-label">Intro</label>
-						<div class="col-sm-9">
-							<input type="text" class="form-control" id="amount"
-								name="amount">
-						</div>
-					</div>
-					<div class="form-group">
-						<label for="amount" class="col-sm-3 control-label">Main</label>
-						<div class="col-sm-9">
-							<input type="text" class="form-control" id="amount"
-								name="amount">
-						</div>
-					</div>
-					<div class="form-group">
-						<label for="amount" class="col-sm-3 control-label">Discussion</label>
-						<div class="col-sm-9">
-							<input type="text" class="form-control" id="amount"
-								name="amount">
-						</div>
-					</div>
-					<div class="form-group">
-						<label for="amount" class="col-sm-3 control-label">Summary</label>
-						<div class="col-sm-9">
-							<input type="text" class="form-control" id="amount"
-								name="amount">
-						</div>
-					</div>
-
-					<div class="form-group">
-						<div class="col-sm-12 text-right">
-							<button type="button" class="btn btn-sucess preview-add-button">
-								<span class="glyphicon glyphicon-plus"></span> Submit
-							</button>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		</div>
-		</div>
+        <div class="col-sm-12">
+            <legend>Mr. Eric Cartman:</legend>
+        </div>
+        <!-- panel preview -->
+        <div class="col-sm-5">
+            <h4>Submit report:</h4>
+            <form action="PHP/submitFreeTextReport.php" method="POST" role="form">
+            <div class="panel panel-default">
+                <div class="panel-body form-horizontal payment-form">
+                    <div class="form-group">
+                        <label for="concept" class="col-sm-3 control-label">Title</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="titleReport" name="titleReport">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="description" class="col-sm-3 control-label">Abstract</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="abstractReport" name="abstractReport">
+                        </div>
+                    </div> 
+                    <div class="form-group">
+                        <label for="amount" class="col-sm-3 control-label">Intro</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="introReport" name="introReport">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="amount" class="col-sm-3 control-label">Main</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="mainReport" name="mainReport">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="amount" class="col-sm-3 control-label">Discussion</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="discussionReport" name="discussionReport">
+                        </div>
+                    </div>
+                   <div class="form-group">
+                        <label for="amount" class="col-sm-3 control-label">Summary</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="summaryReport" name="summaryReport">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <div class="col-sm-12 text-right">
+                            <button type="submit" class="btn btn-success preview-add-button">
+                                <span class="glyphicon glyphicon-plus"></span> Submit
+                            </button>
+                            
+                        </div>
+                    </div>
+                   
+                </div>
+            </div>  
+             </form>  
+            
+            
+            
+            
+            
+            
+            
+            
+            
+                    
+        </div> <!-- / panel preview -->
+        <div class="col-sm-7">
+            <h4>Preview:</h4>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="table-responsive">
+                        <table class="table preview-table">
+                            <thead>
+                                <tr>
+                                    <th>Concept</th>
+                                    <th>Description</th>
+                                    <th>Amount</th>
+                                    <th>Status</th>
+                                    <th>Date</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody> <!-- preview content goes here-->
+                        </table>
+                    </div>                            
+                </div>
+            </div>
+            <div class="row text-right">
+                <div class="col-xs-12">
+                    <h4>Total: <strong><span class="preview-total"></span></strong></h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <hr style="border:1px dashed #dddddd;">
+                    <button type="button" class="btn btn-primary btn-block">Submit all and finish</button>
+                </div>                
+            </div>
+        </div>
+	</div>
+</div>
 </html>
