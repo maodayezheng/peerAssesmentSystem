@@ -55,7 +55,9 @@
             <div class="thumbnail">
                 <div class="caption">
                     <p>
-                        <a href="#" class="btn btn-primary">View Results and Ranking</a>
+                        <a id="view_results_and_ranking" class="btn btn-primary" onclick="Navigator.prototype.navigate(this.id)">
+                            View Results and Ranking
+                        </a>
                     </p>
                     <p>View assessments on your report made by other groups. </p>
                     <p>View the ranking of your aggregated mark within the aggregated marks for all groups.</p>
@@ -69,7 +71,9 @@
 			<div class="thumbnail">
 				<div class="caption">
                     <p>
-                        <a href="#" class="btn btn-primary">Visit the Forum</a>
+                        <a id="visit_the_forum" class="btn btn-primary" onclick="Navigator.prototype.navigate(this.id)">
+                            Visit the Forum
+                        </a>
                     </p>
 					<p> Create, browse and search threads in your exclusive group forum. </p>
 
@@ -83,7 +87,9 @@
 			<div class="thumbnail">
 				<div class="caption">
                     <p>
-                        <a href="#" class="btn btn-primary">Conduct a Peerwise Assessment</a>
+                        <a id="conduct_a_peerwise_assessment" class="btn btn-primary" onclick="Navigator.prototype.navigate(this.id)">
+                            Conduct a Peerwise Assessment
+                        </a>
                     </p>
 					<p>Browse group reports which your group has been allocated to review. </p>
                     <p>Submit your group's comments and grading on the reports assigned to you. </p>
