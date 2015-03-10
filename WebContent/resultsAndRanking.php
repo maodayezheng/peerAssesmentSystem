@@ -6,7 +6,10 @@
 ?>
 
 <div class="container">
-    <div role="tabpanel">
+    <div role="tabpanel" class="panel panel-primary">
+
+        <div class="panel-heading">View Assessments and Ranking</div>
+        <br />
 
           <!-- Nav tabs -->
           <ul class="nav nav-tabs" role="tablist">
