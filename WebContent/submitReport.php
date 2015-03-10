@@ -2,6 +2,9 @@
 	include ("header.php");
 	include ("navbar.php");
 	?>
+	<?php 
+	
+	?>
 
 <div class="container">
 	<div class="row">
@@ -75,18 +78,18 @@
                     
         </div> <!-- / panel preview -->
         <div class="col-sm-7">
-            <h4>Preview:</h4>
+            <h4>Preview Report:</h4>
             <div class="row">
                 <div class="col-xs-12">
                     <div class="table-responsive">
                         <table class="table preview-table">
                             <thead>
                                 <tr>
-                                    <th>Concept</th>
-                                    <th>Description</th>
-                                    <th>Amount</th>
-                                    <th>Status</th>
-                                    <th>Date</th>
+                                    <th>Abstract</th>
+                                    <th>Intro</th>
+                                    <th>Main</th>
+                                    <th>Discussion</th>
+                                    <th>Summary</th>
                                 </tr>
                             </thead>
                             <tbody></tbody> <!-- preview content goes here-->
@@ -94,15 +97,10 @@
                     </div>                            
                 </div>
             </div>
-            <div class="row text-right">
-                <div class="col-xs-12">
-                    <h4>Total: <strong><span class="preview-total"></span></strong></h4>
-                </div>
-            </div>
             <div class="row">
                 <div class="col-xs-12">
                     <hr style="border:1px dashed #dddddd;">
-                    <button type="button" class="btn btn-primary btn-block">Submit all and finish</button>
+                    <button type="button" class="btn-danger btn-primary btn-block">Remove Submission</button>
                 </div>                
             </div>
         </div>
