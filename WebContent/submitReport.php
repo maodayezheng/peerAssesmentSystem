@@ -3,20 +3,7 @@
 	include ("navbar.php");
 	?>
 	<?php 
-// 	//require_once ('PHP/DBConnection.php');
-// 	//Connect to db
-// 	$mysqli = new $MySQLi('eu-cdbr-azure-west-b.cloudapp.net','b41c1a25cb18b9','67705167');
-	
-// 	$reslutSet = $mysqli->query("SELECT * FROM reportbody");
-	
-// 	//count returned rows
-// 	if($resultSet->num_rows !=0){
-// 		echo "found";
-// 	} else {
-// 		echo "no results";
-// 	}
-	
-// 	?>
+	?>
 
 <div class="container">
 	<div class="row">
@@ -165,9 +152,16 @@
                             	};
                             
                             	}
+                            	echo '<button  href="#gradeReport1" data-toggle="modal" data-target="#gradeReport1"
+								class="btn btn-success">Grade</button>
+                        		<form action="" method="POST" role="form">';
+                            	require_once ('PHP/gradeReportPopup.php');
+                            	echo '</form>';
+                            	
+                            	//from here write SQL code to insert the selected grade into grade table
+                            	 
                             ?>
-                                
-                        
+                     
                     </div>
                 </div>
             </li>
@@ -182,6 +176,44 @@
                     <hr></hr>
                     <div class="container">
                         <div class="fluid-row">
+                        
+                        <?php 
+                            require_once ('PHP/DBConnection.php');
+                            $sql = "SELECT Report, title,abstract,introduction,main,discussion,summary 
+										FROM peersystem.reportbody 
+										WHERE Report=2;";
+                            
+                            $result = $conn -> query($sql);
+                            
+                            if($result ->num_rows >0){
+                            
+                            	//Goes through each row in table
+                            	while($row = $result ->fetch_assoc()){
+                            		//$reportBody = $row["ReportBody"];
+                            		$title = $row["title"];
+                            		$abstract = $row["abstract"];
+                            		$intro = $row["introduction"];
+                            		$main = $row["main"];
+                            		$discussion = $row["discussion"];
+                            		$summary = $row["summary"];
+                            
+                            		echo "<b>Title:</b> $title"."<br>";
+                            		echo "<b>Intro:</b> $intro"."<br>";
+                            		echo "<b>Main:</b> $main"."<br>";
+                            		echo "<b>Discussion:</b> $discussion"."<br>";
+                            		echo "<b>Summary:</b> $summary"."<br><br>";
+                            
+                            	};
+                            
+                            	}
+                            	
+                            	echo '<button  href="#gradeReport1" data-toggle="modal" data-target="#gradeReport1"
+								class="btn btn-success">Grade</button>
+                        		<form action="PHP/submitGrade.php" method="POST" role="form">';
+                            	require_once ('PHP/gradeReportPopup.php');
+
+			?>
+	<!-- MODAL --><!-- MODAL --><!-- MODAL --><!-- MODAL --><!-- MODAL --><!-- MODAL --><!-- MODAL --><!-- MODAL --><!-- MODAL --><!-- MODAL -->
                          
                         </div>
                     </div>

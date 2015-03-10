@@ -1,6 +1,14 @@
 <?php
 require_once ('DBConnection.php');
-// $conn = new mysqli($servername,$username,$password,$dbname,$port);
+
+//check the session information
+session_start();
+if (isset ( $_SESSION ["peergroup"] )) {
+	$group = $_SESSION ["peergroup"];
+}
+if (isset ( $_SESSION ["userName"] )) {
+	$user = $_SESSION ["userName"];
+}
 
 $groupNumber = $_POST ['groupNumber'];
 $title = $_POST ['titleReport'];
