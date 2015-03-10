@@ -18,7 +18,7 @@ if (mysqli_num_rows ( $result ) == 1) {
 	setcookie("userName",$data["userName"],time()+(60*60*24));
 	setcookie("peergroup",$data["peergroup"],time()+(60*60*24));
 	}else{
-	 header ( 'location: ../forumPage.php' );
+	 header ( 'location: ../index.php' );
 	}
 } else {
 	echo "incorrect username / password";
