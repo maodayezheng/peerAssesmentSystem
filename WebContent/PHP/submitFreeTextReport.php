@@ -10,7 +10,7 @@ $main = $_POST ['mainReport'];
 $discussion = $_POST ['discussionReport'];
 $summary = $_POST ['summaryReport'];
 
-$sql = "INSERT INTO reportbody (report,ReportBody,title,author,introduction,main,discussion,summary) VALUES ('$groupNumber','$title','Eric','$abstract','$intro','$main','$discussion','$summary')";
+$sql = "INSERT INTO reportbody (report,ReportBody,title,author,abstract,introduction,main,discussion,summary) VALUES ('$groupNumber','NULL','$title','ERIC','$abstract','$intro','$main','$discussion','$summary')";
 
 if ($conn->query ( $sql ) === true) {
 	// output data of each row

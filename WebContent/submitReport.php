@@ -3,8 +3,20 @@
 	include ("navbar.php");
 	?>
 	<?php 
+// 	//require_once ('PHP/DBConnection.php');
+// 	//Connect to db
+// 	$mysqli = new $MySQLi('eu-cdbr-azure-west-b.cloudapp.net','b41c1a25cb18b9','67705167');
 	
-	?>
+// 	$reslutSet = $mysqli->query("SELECT * FROM reportbody");
+	
+// 	//count returned rows
+// 	if($resultSet->num_rows !=0){
+// 		echo "found";
+// 	} else {
+// 		echo "no results";
+// 	}
+	
+// 	?>
 
 <div class="container">
 	<div class="row">
@@ -76,7 +88,9 @@
             
             
             
-            
+
+				
+				
             
             
             
@@ -103,6 +117,7 @@
                     </div>                            
                 </div>
             </div>
+            <?php include ("PHP/displayReports.php")?>
             <div class="row">
                 <div class="col-xs-12">
                     <hr style="border:1px dashed #dddddd;">
