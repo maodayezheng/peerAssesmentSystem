@@ -23,6 +23,7 @@
         // List references to specific JS/CSS files to include for each individual page here.
         case 'index':
             echo '<script src="JavaScript/index.js"></script>';
+            echo '<script src="JavaScript/Navigator.js"></script>';
             echo '<link href="CSS/index.css" rel="stylesheet" type="text/css" />';
             break;
         default: //do nothing in default case

@@ -10,7 +10,8 @@ Navigator.prototype.navigate = function(origin)
 
     switch(origin)
     {
-        case "": break;
+        case "submit_group_report": nextPage = "submitReport.php";
+            break;
         default: break;
     }
 

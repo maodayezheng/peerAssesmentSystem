@@ -41,7 +41,9 @@
 
 				<div class="caption">
                     <p>
-                        <a href="submitReport.php" class="btn btn-primary">Submit Group Report</a>
+                        <a id="submit_group_report" class="btn btn-primary" onclick="Navigator.prototype.navigate(this.id)">
+                            Submit Group Report
+                        </a>
                     </p>
 					<p>Upload a free text or XML report for your group. </p>
 				</div>
