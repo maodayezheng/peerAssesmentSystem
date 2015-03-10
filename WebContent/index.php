@@ -43,7 +43,7 @@
 					<h3>Submit Group Report</h3>
 					<p>Upload a free text or XML report for your group. </p>
 					<p>
-						<a href="#" class="btn btn-primary">Submit Report</a>
+						<a href="submitReport.php" class="btn btn-primary">Submit Report</a>
 					</p>
 				</div>
 			</div>
