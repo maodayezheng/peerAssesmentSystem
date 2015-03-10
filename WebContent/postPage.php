@@ -9,19 +9,20 @@
 				<thead>
 					<tr>
 						<th colspan="2">Title</th>
+						<th>Content</th>
 						<th>Author</th>
 						<th>Date</th>
 
 					</tr>
 				</thead>
 				<tbody>
-				<?php include ("PHP/ForumTable.php")?>
+				<?php include ("PHP/posts.php")?>
 				</tbody>
 			</table>
 			<a href="#postForum" data-toggle="modal" data-target="#postForum"
 				class="btn btn-primary btn-bg pull-right">Post</a>
 				
-				<form action="PHP/submitForum.php" method="POST" role="form">
+				<form action="PHP/submitPost.php" method="POST" role="form">
 
 			<div class="modal fade" id="postForum" tabindex="-1" role="dialog"
 				aria-labelledby="postForum" aria-hidden="true">
