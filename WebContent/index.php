@@ -101,16 +101,11 @@
 	</div>
 	<!-- /.row -->
 
-	<hr>
 
-	<!-- Footer -->
-	<footer>
-		<div class="row">
-			<div class="col-lg-12">
-				<p>Copyright &copy; Peer Systems 2015</p>
-			</div>
-		</div>
-	</footer>
+
+    <?php
+    include ("footer.php");
+    ?>
 
 </div>
 </html>
