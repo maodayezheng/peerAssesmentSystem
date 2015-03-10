@@ -20,8 +20,20 @@
 
           <!-- Tab panes -->
           <div class="tab-content">
-            <div role="tabpanel" class="tab-pane active" id="assessment_results">Text on assessment_results</div>
-            <div role="tabpanel" class="tab-pane" id="ranking">Text on ranking</div>
+            <div role="tabpanel" class="tab-pane active" id="assessment_results">
+
+                <?php
+                    include("pageSnippets/resultsAndRanking/assessmentResultsTab.php");
+                ?>
+
+
+            </div>
+            <div role="tabpanel" class="tab-pane" id="ranking">
+                <p> INSERT DYNAMICALLY GENERATED TABLE WHICH SHOWS THE AGGREGATED MARK OF THE GROUP AS
+                    WELL AS THE AGGREGATED MARK OF THE GROUPS WHICH MARKED THE REPORT.
+                    The group's own grade should have a row of a different colour to easily identify it.
+                </p>
+            </div>
           </div>
 
     </div>
