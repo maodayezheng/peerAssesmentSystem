@@ -10,9 +10,9 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="libs/jquery/jquery-2.1.1.min.js"></script>
 <script src="libs/jquery/jquery-ui-1.11.2.min.js"></script>
-<script src="libs/bootstrap/bootstrap.min.js"></script>
+<script src="libs/bootstrap/bootstrap.min.js"></script><script src="JavaScript/Navigator.js"></script>
 
-<?php
+    <?php
 
     // E.g. If you are including this file from index.php, the variable would be
     // equal to 'index'
@@ -23,7 +23,6 @@
         // List references to specific JS/CSS files to include for each individual page here.
         case 'index':
             echo '<script src="JavaScript/index.js"></script>';
-            echo '<script src="JavaScript/Navigator.js"></script>';
             echo '<link href="CSS/index.css" rel="stylesheet" type="text/css" />';
             break;
         default: //do nothing in default case
