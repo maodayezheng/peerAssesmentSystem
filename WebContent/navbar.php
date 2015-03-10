@@ -8,7 +8,11 @@
 		        <span class="icon-bar"></span>
 		        <span class="icon-bar"></span>
 		      </button>
-		       <a href="index.php"><img src="http://exchangedownloads.smarttech.com/public/content/54/5400f810-8120-41d4-acee-0d0175f72e6c/previews/medium/0019.png"  alt="Mountain View" style="width:50px;height:50px" ></a>
+		       <a href="index.php">
+                   <img src="img/logo.png" alt="PeerSystem Logo" style="height: 50px"/>
+                   <!-- <img src="img/letter-p.png"  alt="Mountain View" style="width:50px;height:50px" >
+                   <img src="img/letter-s.png"  alt="Mountain View" style="width:50px;height:50px" > -->
+               </a>
 		    </div>
 
 		    <!-- Collect the nav links, forms, and other content for toggling -->
