@@ -26,7 +26,7 @@
                         <form style = "padding-left:350px;" class="navbar-form navbar-left" role = "search" >
                         <div class="form-group" >
                            <div class="input-group" >
-                      <input type = "text" class="form-control" aria - label = "..." placeholder = "Search" >
+                      <input type = "text" class="form-control" aria - label = "..." placeholder = "Search Forum" >
 
 
                         </div >
