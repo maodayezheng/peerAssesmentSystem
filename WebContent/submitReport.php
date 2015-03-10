@@ -182,7 +182,7 @@
                     <hr></hr>
                     <div class="container">
                         <div class="fluid-row">
-                            <?php include ("PHP/displayReports.php")?>
+                         
                         </div>
                     </div>
                 </div>
