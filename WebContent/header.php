@@ -25,6 +25,10 @@
             echo '<script src="JavaScript/index.js"></script>';
             echo '<link href="CSS/index.css" rel="stylesheet" type="text/css" />';
             break;
+        case 'resultsAndRanking':
+            echo '<script src="JavaScript/resultsAndRanking.js"></script>';
+            echo '<link href="CSS/resultsAndRanking.css" rel="stylesheet" type="text/css" />';
+            break;
         default: //do nothing in default case
             break;
     }
