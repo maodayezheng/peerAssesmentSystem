@@ -10,16 +10,17 @@
 <link href="/WebContent/CSS/standard.css" rel="stylesheet">
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<script src="libs/jquery/jquery-2.1.1.min.js"></script>
-<script src="libs/jquery/jquery-ui-1.11.2.min.js"></script>
-<script src="libs/bootstrap/bootstrap.min.js"></script><script src="JavaScript/Navigator.js"></script>
+<script src="/WebContent/libs/jquery/jquery-2.1.1.min.js"></script>
+<script src="/WebContent/libs/jquery/jquery-ui-1.11.2.min.js"></script>
+<script src="/WebContent/libs/bootstrap/bootstrap.min.js"></script>
+<script src="/WebContent/JavaScript/Navigator.js"></script>
 
     <?php
 
     // E.g. If you are including this file from index.php, the variable would be
     // equal to 'index'
     $file_including_header = basename($_SERVER["REQUEST_URI"], ".php");
-
+    echo "The file is: {$file_including_header}";
     switch($file_including_header)
     {
         // List references to specific JS/CSS files to include for each individual page here.
@@ -37,18 +38,8 @@
 
 ?>
 
-
-
-
-
-
-
 <link href= "libs/jquery/jquery-ui-1.11.2.min.css" rel="stylesheet" type="text/css">
 <link href="libs/bootstrap/bootstrap.min.css" rel="stylesheet" type="text/css">
-<link href="CSS/standard.css" rel="stylesheet" type="text/css" />
-
-
-
 
 
 </head>
