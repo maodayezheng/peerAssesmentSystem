@@ -4,23 +4,23 @@ include ("navbar.php");
 ?>
 <div class="container">
 	<div class="row">
-<div class="panel panel-default">
-<div class="panel-heading">
-<h3 class="panel-title">Select a group below to view their report</h3>
-</div>
-<ul class="list-group">
-<li class="list-group-item">
-<div class="row toggle" id="dropdown-detail-1"
-		data-toggle="detail-1">
-		<div class="col-xs-10">Group 1</div>
-		<div class="col-xs-2">
-		<i class="fa fa-chevron-down pull-right"></i>
-		</div>
-		</div>
-		<div id="detail-1">
-		<hr></hr>
-		<div class="container">
-		<div class="fluid-row">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title">Select a group below to view their report</h3>
+			</div>
+			<ul class="list-group">
+				<li class="list-group-item">
+					<div class="row toggle" id="dropdown-detail-1"
+						data-toggle="detail-1">
+						<div class="col-xs-10">Group 1</div>
+						<div class="col-xs-2">
+							<i class="fa fa-chevron-down pull-right"></i>
+						</div>
+					</div>
+					<div id="detail-1">
+						<hr></hr>
+						<div class="container">
+							<div class="fluid-row">
 
 		<?php
 		require_once ('PHP/DBConnection.php');
@@ -57,28 +57,26 @@ if($result ->num_rows >0){
 			<form action="PHP/submitGrade.php" method="POST" role="form">';
 	require_once ('PHP/gradeReportPopup.php');
 	echo '</form>';
-	 
-	//from here write SQL code to insert the selected grade into grade table
-               
-               
-			?>
+			
+			// from here write SQL code to insert the selected grade into grade table
+		?>
                      
                     </div>
-							</div>
-					
-					</li>
-					<li class="list-group-item">
-						<div class="row toggle" id="dropdown-detail-2"
-							data-toggle="detail-2">
-							<div class="col-xs-10">Group 2</div>
-							<div class="col-xs-2">
-								<i class="fa fa-chevron-down pull-right"></i>
-							</div>
 						</div>
-						<div id="detail-2">
-							<hr></hr>
-							<div class="container">
-								<div class="fluid-row">
+				
+				</li>
+				<li class="list-group-item">
+					<div class="row toggle" id="dropdown-detail-2"
+						data-toggle="detail-2">
+						<div class="col-xs-10">Group 2</div>
+						<div class="col-xs-2">
+							<i class="fa fa-chevron-down pull-right"></i>
+						</div>
+					</div>
+					<div id="detail-2">
+						<hr></hr>
+						<div class="container">
+							<div class="fluid-row">
                         
                         <?php 
                             require_once ('PHP/DBConnection.php');
@@ -118,36 +116,38 @@ if($result ->num_rows >0){
 
 			?>
 	<!-- MODAL -->
-									<!-- MODAL -->
-									<!-- MODAL -->
-									<!-- MODAL -->
-									<!-- MODAL -->
-									<!-- MODAL -->
-									<!-- MODAL -->
-									<!-- MODAL -->
-									<!-- MODAL -->
-									<!-- MODAL -->
+								<!-- MODAL -->
+								<!-- MODAL -->
+								<!-- MODAL -->
+								<!-- MODAL -->
+								<!-- MODAL -->
+								<!-- MODAL -->
+								<!-- MODAL -->
+								<!-- MODAL -->
+								<!-- MODAL -->
 
-								</div>
 							</div>
 						</div>
-					</li>
-					<li class="list-group-item">
-						<div class="row toggle" id="dropdown-detail-3"
-							data-toggle="detail-3">
-							<div class="col-xs-10">Group 3</div>
-							<div class="col-xs-2">
-								<i class="fa fa-chevron-down pull-right"></i>
-							</div>
+					</div>
+				</li>
+				<li class="list-group-item">
+					<div class="row toggle" id="dropdown-detail-3"
+						data-toggle="detail-3">
+						<div class="col-xs-10">Group 3</div>
+						<div class="col-xs-2">
+							<i class="fa fa-chevron-down pull-right"></i>
 						</div>
-						<div id="detail-3">
-							<hr></hr>
+					</div>
+					<div id="detail-3">
+						<hr></hr>
 
-						</div>
-					</li>
-				</ul>
-			</div></div></div>
-						<script>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+<script>
 $(document).ready(function() {
     $('[id^=detail-]').hide();
     $('.toggle').click(function() {
@@ -157,4 +157,4 @@ $(document).ready(function() {
     });
 });
 	</script>
-			</html>
+</html>
