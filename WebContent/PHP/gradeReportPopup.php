@@ -18,7 +18,7 @@
 						<h4>
 							<b>Grade:</b>
 						</h4>
-						<input type="number" name="grade" id="grade"
+						<input type="number" name="reportGrade" id="reportGrade"
 							placeholder="0% - 100%"></input> <br>
 					</div>
 				</div>
@@ -30,3 +30,4 @@
 		</div>
 	</div>
 </div>
+
