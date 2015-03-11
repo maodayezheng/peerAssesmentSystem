@@ -1,7 +1,7 @@
 /**
  * This module encapsulates the navigation of the website.
  */
-alert('in navigator');
+
 function Navigator() {}
 
 Navigator.prototype.navigate = function(origin)

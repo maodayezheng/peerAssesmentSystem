@@ -6,6 +6,7 @@
         require_once $class.'.php';
     });
 
-
+    // Contains functionality which may be useful in other scripts.
+    require_once "functions.php";
 
 ?>
