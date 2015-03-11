@@ -7,9 +7,13 @@
 
 <div class="container">
 	<div class="row">
-        <div class="col-sm-12">
-            <legend>Mr. Eric Cartman:</legend>
-        </div>
+		<?
+	session_start();
+echo '<div class="col-sm-12">
+            <legend> Group: '.$_SESSION['peergroup'].'</legend>
+        </div>' ;
+?>
+        
         <!-- panel preview -->
         <div class="col-sm-5">
             <h4>Submit report:</h4>
@@ -154,12 +158,13 @@
                             	}
                             	echo '<button  href="#gradeReport1" data-toggle="modal" data-target="#gradeReport1"
 								class="btn btn-success">Grade</button>
-                        		<form action="" method="POST" role="form">';
+                        		<form action="PHP/submitGrade.php" method="POST" role="form">';
                             	require_once ('PHP/gradeReportPopup.php');
                             	echo '</form>';
                             	
                             	//from here write SQL code to insert the selected grade into grade table
-                            	 
+                            	
+                            	
                             ?>
                      
                     </div>
@@ -207,10 +212,11 @@
                             
                             	}
                             	
-                            	echo '<button  href="#gradeReport1" data-toggle="modal" data-target="#gradeReport1"
-								class="btn btn-success">Grade</button>
-                        		<form action="PHP/submitGrade.php" method="POST" role="form">';
-                            	require_once ('PHP/gradeReportPopup.php');
+//                             	echo '<button  href="#gradeReport1" data-toggle="modal" data-target="#gradeReport1"
+// 								class="btn btn-success">Grade</button>
+//                         		<form action="PHP/submitGrade.php" method="POST" role="form">';
+//                             	require_once ('PHP/gradeReportPopup.php');
+//                             	echo '</form>';
 
 			?>
 	<!-- MODAL --><!-- MODAL --><!-- MODAL --><!-- MODAL --><!-- MODAL --><!-- MODAL --><!-- MODAL --><!-- MODAL --><!-- MODAL --><!-- MODAL -->
