@@ -5,8 +5,12 @@
 	}*/
 	?>
 	<?php
-	include ("header.php");
-	include ("navbar.php")?>
+        require_once $_SERVER['DOCUMENT_ROOT'].'/WebContent/PHP/init.php';
+        include ( new Path('/WebContent/header.php') );
+        include ( new Path('/WebContent/navbar.php') );
+
+
+    ?>
 
 
 <div class="container">

@@ -1,12 +1,11 @@
- <?php
-// //check user is logged in
-// session_start();
+<?php
 
-// require 'DBConnection.php';
-// require 'users.php'; //functions taht relate to users
-// require 'general.php';
+    /** Class auto-loader. Source code must be in same directory as this file. */
+    spl_autoload_register(function($class)
+    {
+        require_once $class.'.php';
+    });
 
-// //store errors in an array that can be displayed to user
 
-// $errors = array();
-// ?>
+
+?>

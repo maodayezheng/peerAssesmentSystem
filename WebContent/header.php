@@ -1,4 +1,3 @@
-
 <!DOCTYPE HTML>
 <html lang="en">
 <head>
@@ -12,8 +11,8 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="/WebContent/libs/jquery/jquery-2.1.1.min.js"></script>
 <script src="/WebContent/libs/jquery/jquery-ui-1.11.2.min.js"></script>
-<script src="/WebContent/libs/bootstrap/bootstrap.min.js"></script>
-<script src="/WebContent/JavaScript/Navigator.js"></script>
+<script src="/WebContent/libs/bootstrap/bootstrap.min.js")  ></script>
+<script src="/peerAssesmentSystem/WebContent/JavaScript/Navigator.js")          ></script>
 
     <?php
 
