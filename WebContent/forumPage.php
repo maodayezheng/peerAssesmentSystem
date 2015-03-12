@@ -35,8 +35,8 @@
             <!-- Pop up box when creating a new thread -->
 			<a href="#postForum" data-toggle="modal" data-target="#postForum"
 				class="btn btn-primary btn-bg pull-right">Create New Thread</a>
-				
-				<form action="PHP/submitForum.php" method="POST" role="form">
+
+			<form action="pageSnippets/forum/createNewThread.php" method="POST" role="form">
 
 			<div class="modal fade" id="postForum" tabindex="-1" role="dialog"
 				aria-labelledby="postForum" aria-hidden="true">
