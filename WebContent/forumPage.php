@@ -1,5 +1,5 @@
 <?php
-	require ("PHP/init.php");
+	require_once ("PHP/init.php");
     include ("header.php");
 	include ("navbar.php")
 ?>
@@ -33,13 +33,13 @@
 
 
             <!-- Pop up box when creating a new thread -->
-			<a href="#postForum" data-toggle="modal" data-target="#postForum"
-				class="btn btn-primary btn-bg pull-right">Create New Thread</a>
+			<a href="#postForum" data-toggle="modal" data-target="#postForum" class="btn btn-primary btn-bg pull-right">
+                Create New Thread
+            </a>
 
 			<form action="pageSnippets/forum/createNewThread.php" method="POST" role="form">
 
-			<div class="modal fade" id="postForum" tabindex="-1" role="dialog"
-				aria-labelledby="postForum" aria-hidden="true">
+			<div class="modal fade" id="postForum" tabindex="-1" role="dialog" aria-labelledby="postForum" aria-hidden="true">
 				<div class="modal-dialog">
 					<div class="modal-content">
 						<div class="modal-header">
@@ -53,7 +53,7 @@
 										<b>Thread Title:</b>
 									</h4>
 									<input name="title" id="title" max="50" rows="1"
-										cols="50" placeholder="Title:">
+										cols="50" placeholder="Title:" style="width: 100%;">
 									<br>
 								</div>
 
@@ -61,8 +61,8 @@
 									<h4>
 										<b>Content:</b>
 									</h4>
-									<input name="content" id="content" max="10000"
-										rows="5" cols="50" placeholder="Write your post here">
+									<textarea name="content" id="content" max="10000" rows="5" cols="50"
+                                           placeholder="Write your post here" style="height: 500px; width: 100%;"></textarea>
 									<br>
 								</div>
 							</div>
