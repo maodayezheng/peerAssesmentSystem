@@ -54,9 +54,9 @@ if($result ->num_rows >0){
 	}
 	echo '<button  href="#gradeReport1" data-toggle="modal" data-target="#gradeReport1"
 	class="btn btn-success">Grade</button>
-			<form action="PHP/submitGrade.php" method="POST" role="form">';
+			';
 	require_once ('PHP/gradeReportPopup.php');
-	echo '</form>';
+
 			
 			// from here write SQL code to insert the selected grade into grade table
 		?>
@@ -115,16 +115,7 @@ if($result ->num_rows >0){
 //                             	echo '</form>';
 
 			?>
-	<!-- MODAL -->
-								<!-- MODAL -->
-								<!-- MODAL -->
-								<!-- MODAL -->
-								<!-- MODAL -->
-								<!-- MODAL -->
-								<!-- MODAL -->
-								<!-- MODAL -->
-								<!-- MODAL -->
-								<!-- MODAL -->
+
 
 							</div>
 						</div>
