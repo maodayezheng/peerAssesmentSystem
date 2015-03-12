@@ -28,28 +28,34 @@
               </tr>';
     } else
     {
-    //if($result ->num_rows >0)
-    //{
+
         while ($row = $result->fetch_assoc())
         {
-            $threadID   = $row["threadID"];     // Will form a clickable link to display all of thread posts.
-            $title      = $row["threadTitle"];
-            $date       = $row["dateTimeCreated"];
-            $author     = $row["threadAuthor"];
+            $threadVariables = array
+            (
+                "threadID"  => $row["threadID"],
+                "threadTitle"     => $row["threadTitle"],
+                "threadDate"      => $row["dateTimeCreated"],
+                "threadAuthor"    => $row["threadAuthor"]
+            );
 
-            include("viewThread.php");
-            echo "<br /> After including viewthread";
             echo '<tr>
-                <td colspan="2">
-                    <a href="postPage.php?id=$threadID" target="_blank">' .$title.
-                    '</a>
-                </td>
-              <td>' . $author . '</td>'
-              .'<td>' . $date . '</td>
-         </tr>';
+                    <td>';
+                    includefile("viewThread.php", $threadVariables);
+            echo    '</tr>';
 
         }
     }
 //<a href="javascript:window.open('some.html', 'yourWindowName', 'width=200,height=150');">Test</a>
+
+/*
+ * includeFile allows you to pass the file you would like to include and an array of variables
+ * you would like the file included to have access to. This is because includes have function scope.
+ */
+function includeFile($file, $variables)
+{
+    include($file);
+}
+
 
 ?>

@@ -19,9 +19,7 @@
             <table class="table table-striped table-hover">
 				<thead>
 					<tr>
-						<th colspan="2">Thread Title</th>
-						<th>Author</th>
-						<th>Date</th>
+						<th>Forum Threads</th>
 					</tr>
 				</thead>
 				<tbody>
