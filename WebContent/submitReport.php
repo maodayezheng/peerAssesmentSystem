@@ -19,7 +19,7 @@
 			<h4>Submit report:</h4>
 			<form action="PHP/submitFreeTextReport.php" method="POST" role="form">
 				<div class="panel panel-default">
-					<div class="panel-body form-horizontal payment-form">
+					<div class="panel-body form-horizontal">
 						<div class="form-group">
 							<label for="concept" class="col-sm-3 control-label">Group Number</label>
 							<div class="col-sm-9">
@@ -28,47 +28,16 @@
 							</div>
 						</div>
 						<div class="form-group">
-							<label for="concept" class="col-sm-3 control-label">Title</label>
+							<label for="concept" class="col-sm-3 control-label">Paste Report</label>
 							<div class="col-sm-9">
-								<input type="text" class="form-control" id="titleReport"
-									name="titleReport">
+
+								<textarea rows="4" cols="30" type="text" class="form-control"
+									id="pasteReport" name="pasteReport"></textarea>
 							</div>
 						</div>
-						<div class="form-group">
-							<label for="description" class="col-sm-3 control-label">Abstract</label>
-							<div class="col-sm-9">
-								<input type="text" class="form-control" id="abstractReport"
-									name="abstractReport">
-							</div>
-						</div>
-						<div class="form-group">
-							<label for="amount" class="col-sm-3 control-label">Intro</label>
-							<div class="col-sm-9">
-								<input type="text" class="form-control" id="introReport"
-									name="introReport">
-							</div>
-						</div>
-						<div class="form-group">
-							<label for="amount" class="col-sm-3 control-label">Main</label>
-							<div class="col-sm-9">
-								<input type="text" class="form-control" id="mainReport"
-									name="mainReport">
-							</div>
-						</div>
-						<div class="form-group">
-							<label for="amount" class="col-sm-3 control-label">Discussion</label>
-							<div class="col-sm-9">
-								<input type="text" class="form-control" id="discussionReport"
-									name="discussionReport">
-							</div>
-						</div>
-						<div class="form-group">
-							<label for="amount" class="col-sm-3 control-label">Summary</label>
-							<div class="col-sm-9">
-								<input type="text" class="form-control" id="summaryReport"
-									name="summaryReport">
-							</div>
-						</div>
+
+
+
 
 						<div class="form-group">
 							<div class="col-sm-12 text-right">
@@ -84,13 +53,24 @@
 			</form>
 
 
+		</div>
 
+		<div class="col-sm-5">
+			<h4>Submit report:</h4>
 
+			<div class="panel panel-default">
+				<div class="panel-body form-horizontal">
+					<div class="form-group">
+						Select a file to upload: <br />
+						<form action="/php/file_uploader.php" method="post"
+							enctype="multipart/form-data">
+							<input type="file" name="file" size="50" /> <br /> <input
+								type="submit" value="Upload File" />
+						</form>
+					</div>
 
-
-
-
-
+				</div>
+			</div>
 
 
 
