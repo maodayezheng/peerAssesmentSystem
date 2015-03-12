@@ -11,14 +11,10 @@ if (isset ( $_SESSION ["userName"] )) {
 }
 
 $groupNumber = $_POST ['groupNumber'];
-$title = $_POST ['titleReport'];
-$abstract = $_POST ['abstractReport'];
-$intro = $_POST ['introReport'];
-$main = $_POST ['mainReport'];
-$discussion = $_POST ['discussionReport'];
-$summary = $_POST ['summaryReport'];
+$pasteReport = $_POST ['pasteReport'];
 
-$sql = "INSERT INTO reportbody (report,ReportBody,title,author,abstract,introduction,main,discussion,summary) VALUES ('$groupNumber','NULL','$title','ERIC','$abstract','$intro','$main','$discussion','$summary')";
+
+$sql = "INSERT INTO reportbody (report,ReportContent,author) VALUES ('$groupNumber','$pasteReport','ERIC')";
 
 if ($conn->query ( $sql ) === true) {
 	// output data of each row
