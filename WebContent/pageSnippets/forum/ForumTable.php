@@ -1,6 +1,6 @@
 <?php
-require_once ('DBConnection.php');
-session_start();
+
+
 if(isset($_SESSION["peergroup"])){
 	$group = $_SESSION["peergroup"];
 }
@@ -8,8 +8,10 @@ $sql = "SELECT * FROM forum where `group` ='$group'";
 
 $result = $conn -> query($sql);
 
-if($result ->num_rows >0){
-	while($row = $result ->fetch_assoc()){
+if($result ->num_rows >0)
+{
+	while($row = $result ->fetch_assoc())
+    {
 		 $title = $row["forumTitle"];
 		 $date = $row["date"];
 		 $author = $row["author"];

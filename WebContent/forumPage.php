@@ -1,25 +1,40 @@
-	<?php
-	include ("header.php");
-	include ("navbar.php")?>
+<?php
+	require ("PHP/init.php");
+    include ("header.php");
+	include ("navbar.php")
+?>
+
+
 <div class="container" style="margin-top: 60px">
-	<div class="panel panel-primary">
-		<div class="panel-heading">Forum Page</div>
-		<div class="panel-body">
-			<table class="table table-striped table-hover">
+    <div class="panel panel-primary">
+		<div class="panel-heading">
+            <?php
+                echo "Group {$groupNumber}'s Discussion Forum";
+            ?>
+        </div>
+
+        <div class="panel-body">
+
+            <!-- Table containing each thread for the group. -->
+            <table class="table table-striped table-hover">
 				<thead>
 					<tr>
-						<th colspan="2">Title</th>
+						<th colspan="2">Thread Title</th>
 						<th>Author</th>
 						<th>Date</th>
-
 					</tr>
 				</thead>
 				<tbody>
-				<?php include ("PHP/ForumTable.php")?>
+				    <?php include ("pageSnippets/forum/ForumTable.php")?>
 				</tbody>
 			</table>
+
+
+
+
+
 			<a href="#postForum" data-toggle="modal" data-target="#postForum"
-				class="btn btn-primary btn-bg pull-right">Post</a>
+				class="btn btn-primary btn-bg pull-right">Create New Thread</a>
 				
 				<form action="PHP/submitForum.php" method="POST" role="form">
 
@@ -35,7 +50,7 @@
 
 								<div>
 									<h4>
-										<b>Title:</b>
+										<b>Thread Title:</b>
 									</h4>
 									<input name="title" id="title" max="50" rows="1"
 										cols="50" placeholder="Title:"></input>
