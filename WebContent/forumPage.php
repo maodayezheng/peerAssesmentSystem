@@ -9,7 +9,7 @@
     <div class="panel panel-primary">
 		<div class="panel-heading">
             <?php
-                echo "Group {$groupNumber}'s Discussion Forum";
+                echo "Welcome {$userName} to Group {$groupNumber}'s Discussion Forum";
             ?>
         </div>
 
@@ -32,7 +32,7 @@
 
 
 
-
+            <!-- Pop up box when creating a new thread -->
 			<a href="#postForum" data-toggle="modal" data-target="#postForum"
 				class="btn btn-primary btn-bg pull-right">Create New Thread</a>
 				
@@ -53,7 +53,7 @@
 										<b>Thread Title:</b>
 									</h4>
 									<input name="title" id="title" max="50" rows="1"
-										cols="50" placeholder="Title:"></input>
+										cols="50" placeholder="Title:">
 									<br>
 								</div>
 
@@ -62,7 +62,7 @@
 										<b>Content:</b>
 									</h4>
 									<input name="content" id="content" max="10000"
-										rows="5" cols="50" placeholder="Write your post here"></input>
+										rows="5" cols="50" placeholder="Write your post here">
 									<br>
 								</div>
 							</div>

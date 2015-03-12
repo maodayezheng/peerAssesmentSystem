@@ -9,8 +9,8 @@
         header ( 'location:login.php' );
     } else //Otherwise they are logged in so define variables for easy access in other scripts.
     {
-        $groupNumber = $_SESSION["peergroup"];
-        echo "your peergroup $groupNumber";
+        $userName       = $_SESSION["userName"];
+        $groupNumber    = $_SESSION["peergroup"];
     }
 
 
