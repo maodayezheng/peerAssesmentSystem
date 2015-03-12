@@ -6,22 +6,22 @@ include ("navbar.php");
 <div class="container-fluid well span6">
 	<div class="row-fluid">
         <div class="span2" >
-		    <img align="middle" class= "img-circular" src="http://sandman.com.au/wp-content/uploads/2013/02/placeholder-photo.png" height="150" width="150">
+		    <img align="middle" class= "img-circular" src="http://vignette2.wikia.nocookie.net/southpark/images/f/f5/1008_cartman_bigger.jpg/revision/latest?cb=20100602173322" height="150" width="150">
         </div><br>
         
                   <table class="table table-user-information">
                     <tbody>
                       <tr>
-                        <td>Name:</td>
-                        <td>John Smith</td>
+                        <td>First Name:</td>
+                        <td>Eric</td>
                       </tr>
                        <tr>
-                        <td>Username:</td>
-                        <td>JSmith</td>
+                        <td>Last Name:</td>
+                        <td>Cartman</td>
                       </tr>
                       <tr>
                         <td>User Status:</td>
-                        <td>Commercial</td>
+                        <td>Student</td>
                       </tr>
                       <tr>
                         <td>Date of Birth</td>
@@ -34,16 +34,14 @@ include ("navbar.php");
                         <td>Male</td>
                       </tr>
                         <tr>
-                        <td>Home Address</td>
-                        <td>45 Aston Way, London, UK</td>
+                        <td>ID</td>
+                        <td>12345678</td>
                       </tr>
                       <tr>
-                        <td>Email</td>
-                        <td><a href="mailto:info@support.com">info@tool.com</a></td>
+                        <td>Group</td>
+                        <td>1</td>
                       </tr>
-                        <td>Phone Number</td>
-                        <td>123-4567-890(Landline)<br><br>555-4567-890(Mobile)
-                        </td>
+                        
                            
                       </tr>
                      
@@ -58,7 +56,6 @@ include ("navbar.php");
                 </a>
                 <ul class="dropdown-menu">
                     <li><a href="#"><span class="icon-wrench"></span> Edit Info</a></li>
-                    <li><a href="#"><span class="icon-trash"></span> Change User Status</a></li>
                 </ul>
             </div>
         </div>

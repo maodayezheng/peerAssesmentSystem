@@ -38,7 +38,7 @@
 
 
 		      <ul class="nav navbar-nav navbar-right">
-		      	<li><a href="#">Profile</a></li>
+		      	<li><a href="profilePage.php">Profile</a></li>
 		        <li><a href="PHP/logout.php">LogOut</a></li>
 		      </ul>
 		    </div><!-- /.navbar-collapse -->
