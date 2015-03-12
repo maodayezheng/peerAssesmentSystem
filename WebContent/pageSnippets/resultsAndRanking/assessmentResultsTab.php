@@ -45,6 +45,21 @@
             				echo "<b>Content Grade:</b> $Assesment"."<br>";
             				echo "<b>Delivery Grade:</b> $Assesment1"."<br>";
             				echo "<b>Style Grade:</b> $Assesment2"."<br><br>";
+            				
+            				$totalGrade = ($Assesment+$Assesment1+$Assesment2)/3;
+            				
+            				function displayGrade($totalGrade){
+            					if ($totalGrade > 69){
+            						echo "<legend>Well done you got a distinction: ".$totalGrade."%</legend>";
+            					} else if ($totalGrade > 59 && $totalGrade < 70){
+            						echo "You got a Merit: ".$totalGrade;
+            					} else if ($totalGrade > 49 && $totalGrade < 60){
+            						echo "You got a Pass: ".$totalGrade;
+            					} else{
+            						echo "Fail";
+            					}
+            				}
+            				echo displayGrade($totalGrade);          				
             
             	};
             
