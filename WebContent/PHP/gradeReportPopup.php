@@ -9,16 +9,16 @@
 				<div class="panel-body"></div>
 				<div class="form-group col-lg-4">
 					<label>Content</label> <input type="text" name=""
-						class="form-control" id="reportComment" value="">
+						class="form-control" id="reportComment" value="" placeholder="comment">
 				</div>
 
 				<div class="form-group col-lg-4">
 					<label>Style</label> <input type="text" name=""
-						class="form-control" id="" value="">
+						class="form-control" id="" value="" placeholder="comment">
 				</div>
 				<div class="form-group col-lg-4">
 					<label>Delivery</label> <input type="text" name=""
-						class="form-control" id="" value="" >
+						class="form-control" id="" value="" placeholder="comment">
 				</div>
 				<div>
 					
@@ -30,11 +30,11 @@
 
 					<div class="form-group col-lg-4">
 						<label>Grade Style</label> <input type="number" name=""
-							class="form-control" id="" value="" placeholder="0% - 100%">
+							class="form-control" id="reportComment1" value="" placeholder="0% - 100%">
 					</div>
 					<div class="form-group col-lg-4">
 						<label>Grade Delivery</label> <input type="number" name=""
-							class="form-control" id="" value="" placeholder="0% - 100%">
+							class="form-control" id="reportComment" value="" placeholder="0% - 100%">
 					</div>
 					<br>
 					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
