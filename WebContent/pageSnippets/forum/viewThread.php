@@ -16,6 +16,11 @@
  *
  */
 
+function includeFile($file, $variables)
+{
+    include($file);
+}
+
 ?>
 
 <div class="panel-group" id="accordion">
@@ -44,7 +49,7 @@
                     <thead>
                     <tr>
                         <th colspan="2" style="text-align: center; font-size: 20px; width: 20%">
-                            <?php include("pageSnippets/forum/createNewPostButton.html"); ?>
+                            <?php include("pageSnippets/forum/createNewPost.php"); ?>
                         </th>
                     </tr>
                     </thead>
@@ -91,7 +96,6 @@
                  </tr>";
         }
     }
-
 ?>
 
 
