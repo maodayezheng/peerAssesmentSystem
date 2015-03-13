@@ -24,6 +24,7 @@
                                               placeholder="Write your post here" style="height: 350px; width: 100%;">
                                         <?php echo "The threadID:". $threadID; ?>
                                     </textarea>
+                                    <input type="hidden" name="threadID" value="<?php echo $threadID; ?>"
                             <br>
                         </div>
                     </div>

@@ -10,7 +10,7 @@
     $groupNumber    = $_SESSION["peergroup"];
     $threadTitle    = $_POST ['title'];
     $content        = $_POST ['content'];
-    $date           = date("Y-m-d h:i:s");
+    $date           = date("Y-m-d H:i:s");
 
     // Insert the new thread into the forumThreads table.
     $insertThreadSQL = "INSERT INTO forumthreads (peergroup, threadTitle, threadAuthor, dateTimeCreated)

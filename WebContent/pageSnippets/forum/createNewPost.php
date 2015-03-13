@@ -1,18 +1,24 @@
-
 <!-- PHP Code to add the post to the thread -->
 <?php
-echo "<script> alert('You are in the create new post script'); </script>";
+    session_start();
+    require_once('../../PHP/DBConnection.php');
 
-/*    $threadIDForForumPost = $variablesPassedToInclude["threadID"];
+    $threadID = $_POST["threadID"];
+
+
     // Now insert the content in the forumposts table.
-    if($threadIDForForumPost)
+    if($threadID)
     {
         $userName       = $_SESSION["userName"];
         $content        = $_POST ['content'];
-        $date           = date("Y-m-d h:i:s");
+        $date           = date("Y-m-d H:i:s");
+
 
         $insertPostSQL = "INSERT INTO forumposts (threadID, author, date, content)
-                               VALUES ('$threadIDForForumPost', '$userName', '$date', '$content')";
+                               VALUES ('$threadID', '$userName', '$date', '$content')";
+
+
+        echo "<script> alert('The current SQL is $insertPostSQL'); </script>";
 
         if($conn->query($insertPostSQL) === true)
         {
@@ -24,6 +30,6 @@ echo "<script> alert('You are in the create new post script'); </script>";
             header('location: ../../forumPage.php');
         }
 
-}*/
+    }
 
 ?>
