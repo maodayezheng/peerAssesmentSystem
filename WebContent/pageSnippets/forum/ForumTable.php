@@ -7,6 +7,18 @@
  * There should also be an option to 'add to thread' where the user can make another post in the thread.
  */
 
+
+    /** This function is called in a while loop to dynamically generate HTML for each thread.
+     *  The $includeThreadVariables array contains the dynamic content for each thread.
+     *  include($file) has function scope, so using this defined function instead of
+     *  simply using 'include' allows an array of variables to be accessed in the included script.
+     */
+    function includeThread($file, $includeThreadVariables) { include($file); }
+
+    /** This function is called to dynamically create the new post button.
+     *  The $includeNewPostButtonVariables array contains the dynamic content (the threadID). */
+    function includeNewPostButton($file, $includeNewPostButtonVariables) { include($file); }
+
     $userName       = $_SESSION["userName"];
     $groupNumber    = $_SESSION["peergroup"];
 
@@ -39,7 +51,9 @@
 
             echo '<tr>
                     <td colspan="2">';
-                    includefile("viewThread.php", $threadVariables);
+
+                        includeThread("viewThread.php", $threadVariables);
+
             echo   '</td>
                 </tr>';
 
@@ -47,14 +61,7 @@
     }
 
 
-/*
- * includeFile allows you to pass the file you would like to include and an array of variables
- * you would like the file included to have access to. This is because includes have function scope.
- */
-function includeFile($file, $variablesPassedToInclude)
-{
-    include($file);
-}
+
 
 
 ?>

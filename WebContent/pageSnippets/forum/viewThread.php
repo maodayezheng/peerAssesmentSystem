@@ -4,38 +4,25 @@
  *      A single thread contains all of the posts in an order from oldest to newest.
  *      It also contains the option to add another post.
  *
- * It is intended to be included in a file using the following function:
- *      function includeFile($file, $variables) { include($file); }
- * By using the includeFile defined as above we can pass an array of variables ($variables)
- * which this script has access to (such as the threadTitle, author etc.).
- *
- * This is possible because the built-in include() function has function scope.
- *
  * "threadID", "threadTitle", "threadDate", "threadAuthor" are the keys available in the
- * $variables associative array which is passed to this script.
+ * $includeThreadVariables associative array which is passed to this script.
  *
  */
 
-    // $newPostVariables is passed to the includeFile function as the second argument later in this script.
-    // This is because the threadID is needed to dynamically generate content delegated to that script.
-    $newPostVariables = array
-    (
-        "threadID" => $variablesPassedToInclude["threadID"]
-    );
 ?>
 
 <div class="panel-group" id="accordion">
     <!-- Panel 1 -->
-    <div class="panel panel-default" id="panel<?php echo $variablesPassedToInclude["threadID"]; ?>">
+    <div class="panel panel-default" id="panel<?php echo $includeThreadVariables["threadID"]; ?>">
         <div class="panel-heading">
             <h4 class="panel-title">
-                <a data-toggle="collapse" data-target="#collapse<?php echo $variablesPassedToInclude["threadID"]; ?>"
-                   href="#<?php echo $variablesPassedToInclude["threadID"]; ?>" class="collapsed">
-                    <?php echo $variablesPassedToInclude["threadTitle"]; ?>
+                <a data-toggle="collapse" data-target="#collapse<?php echo $includeThreadVariables["threadID"]; ?>"
+                   href="#<?php echo $includeThreadVariables["threadID"]; ?>" class="collapsed">
+                    <?php echo $includeThreadVariables["threadTitle"]; ?>
                 </a>
             </h4>
         </div>
-        <div id="collapse<?php echo $variablesPassedToInclude["threadID"]; ?>" class="panel-collapse collapse">
+        <div id="collapse<?php echo $includeThreadVariables["threadID"]; ?>" class="panel-collapse collapse">
             <div class="panel-body">
 
                 <style type="text/css">
@@ -50,7 +37,12 @@
                     <thead>
                     <tr>
                         <th colspan="2" style="text-align: center; font-size: 20px; width: 20%">
-                            <?php includeFile("pageSnippets/forum/createNewPost.php", $newPostVariables); ?>
+                            <?php
+                                // The threadID is needed by the createNewPost.php file so it is stored in an array.
+                                $newPostButtonVariables = array( "threadID" => $includeThreadVariables["threadID"] );
+                                includeNewPostButton("pageSnippets/forum/createNewPostButton.php", $newPostButtonVariables);
+
+                            ?>
                         </th>
                     </tr>
                     </thead>
@@ -61,7 +53,7 @@
 
 
     // Run query to get all of the posts made in this thread.
-    $getAllPostsInThreadSQL = 'SELECT * FROM forumposts WHERE threadID='.$variablesPassedToInclude["threadID"]."
+    $getAllPostsInThreadSQL = 'SELECT * FROM forumposts WHERE threadID='.$includeThreadVariables["threadID"]."
                                ORDER BY `date` ASC";
 
     $result = $conn -> query($getAllPostsInThreadSQL);
