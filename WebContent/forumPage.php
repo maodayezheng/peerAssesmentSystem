@@ -15,11 +15,64 @@
 
         <div class="panel-body">
 
+            <!-- Pop up box when creating a new thread -->
+            <a href="#postForum" data-toggle="modal" data-target="#postForum" class="btn btn-primary btn-bg pull-left">
+                Create New Thread
+            </a>
+
+            <form action="pageSnippets/forum/createNewThread.php" method="POST" role="form">
+
+                <div class="modal fade" id="postForum" tabindex="-1" role="dialog" aria-labelledby="postForum" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title" id="myModalLabel">Create A New Thread </h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="panel-body">
+
+                                    <div>
+                                        <h4>
+                                            <b>Thread Title:</b>
+                                        </h4>
+                                        <input name="title" id="title" max="50" rows="1"
+                                               cols="50" placeholder="Title:" style="width: 100%;">
+                                        <br>
+                                    </div>
+
+                                    <div>
+                                        <h4>
+                                            <b>Content:</b>
+                                        </h4>
+									<textarea name="content" id="content" max="10000" rows="5" cols="50"
+                                              placeholder="Write your post here" style="height: 350px; width: 100%;"></textarea>
+                                        <br>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default"
+                                        data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-success"
+                                    >Submit</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+
+
+
             <!-- Table containing each thread for the group. -->
             <table class="table table-striped table-hover">
 				<thead>
 					<tr>
-						<th>Forum Threads</th>
+						<th style="text-align: center; font-size: 20px; ">
+                            Forum Threads</th>
+                        <th>
+
+                        </th>
 					</tr>
 				</thead>
 				<tbody>
@@ -30,51 +83,7 @@
 
 
 
-            <!-- Pop up box when creating a new thread -->
-			<a href="#postForum" data-toggle="modal" data-target="#postForum" class="btn btn-primary btn-bg pull-right">
-                Create New Thread
-            </a>
 
-			<form action="pageSnippets/forum/createNewThread.php" method="POST" role="form">
-
-			<div class="modal fade" id="postForum" tabindex="-1" role="dialog" aria-labelledby="postForum" aria-hidden="true">
-				<div class="modal-dialog">
-					<div class="modal-content">
-						<div class="modal-header">
-							<h4 class="modal-title" id="myModalLabel">Post to Forum</h4>
-						</div>
-						<div class="modal-body">
-							<div class="panel-body">
-
-								<div>
-									<h4>
-										<b>Thread Title:</b>
-									</h4>
-									<input name="title" id="title" max="50" rows="1"
-										cols="50" placeholder="Title:" style="width: 100%;">
-									<br>
-								</div>
-
-								<div>
-									<h4>
-										<b>Content:</b>
-									</h4>
-									<textarea name="content" id="content" max="10000" rows="5" cols="50"
-                                           placeholder="Write your post here" style="height: 500px; width: 100%;"></textarea>
-									<br>
-								</div>
-							</div>
-						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-default"
-								data-dismiss="modal">Close</button>
-							<button type="submit" class="btn btn-success"
-								>Submit</button>
-						</div>
-					</div>
-				</div>
-			</div>
-			</form>
 		</div>
 	</div>
 </div>
