@@ -16,25 +16,26 @@
  *
  */
 
-function includeFile($file, $variables)
-{
-    include($file);
-}
-
+    // $newPostVariables is passed to the includeFile function as the second argument later in this script.
+    // This is because the threadID is needed to dynamically generate content delegated to that script.
+    $newPostVariables = array
+    (
+        "threadID" => $variablesPassedToInclude["threadID"]
+    );
 ?>
 
 <div class="panel-group" id="accordion">
     <!-- Panel 1 -->
-    <div class="panel panel-default" id="panel<?php echo $variables["threadID"]; ?>">
+    <div class="panel panel-default" id="panel<?php echo $variablesPassedToInclude["threadID"]; ?>">
         <div class="panel-heading">
             <h4 class="panel-title">
-                <a data-toggle="collapse" data-target="#collapse<?php echo $variables["threadID"]; ?>"
-                   href="#<?php echo $variables["threadID"]; ?>" class="collapsed">
-                    <?php echo $variables["threadTitle"]; ?>
+                <a data-toggle="collapse" data-target="#collapse<?php echo $variablesPassedToInclude["threadID"]; ?>"
+                   href="#<?php echo $variablesPassedToInclude["threadID"]; ?>" class="collapsed">
+                    <?php echo $variablesPassedToInclude["threadTitle"]; ?>
                 </a>
             </h4>
         </div>
-        <div id="collapse<?php echo $variables["threadID"]; ?>" class="panel-collapse collapse">
+        <div id="collapse<?php echo $variablesPassedToInclude["threadID"]; ?>" class="panel-collapse collapse">
             <div class="panel-body">
 
                 <style type="text/css">
@@ -49,7 +50,7 @@ function includeFile($file, $variables)
                     <thead>
                     <tr>
                         <th colspan="2" style="text-align: center; font-size: 20px; width: 20%">
-                            <?php include("pageSnippets/forum/createNewPost.php"); ?>
+                            <?php includeFile("pageSnippets/forum/createNewPost.php", $newPostVariables); ?>
                         </th>
                     </tr>
                     </thead>
@@ -60,7 +61,7 @@ function includeFile($file, $variables)
 
 
     // Run query to get all of the posts made in this thread.
-    $getAllPostsInThreadSQL = 'SELECT * FROM forumposts WHERE threadID='.$variables["threadID"]."
+    $getAllPostsInThreadSQL = 'SELECT * FROM forumposts WHERE threadID='.$variablesPassedToInclude["threadID"]."
                                ORDER BY `date` ASC";
 
     $result = $conn -> query($getAllPostsInThreadSQL);

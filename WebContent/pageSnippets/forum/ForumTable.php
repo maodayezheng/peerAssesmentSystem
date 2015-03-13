@@ -51,7 +51,7 @@
  * includeFile allows you to pass the file you would like to include and an array of variables
  * you would like the file included to have access to. This is because includes have function scope.
  */
-function includeFile($file, $variables)
+function includeFile($file, $variablesPassedToInclude)
 {
     include($file);
 }
