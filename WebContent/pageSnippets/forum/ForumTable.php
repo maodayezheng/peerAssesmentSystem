@@ -7,7 +7,6 @@
  * There should also be an option to 'add to thread' where the user can make another post in the thread.
  */
 
-    //require_once ("../../PHP/DBConnection.php");
     $userName       = $_SESSION["userName"];
     $groupNumber    = $_SESSION["peergroup"];
 
@@ -18,17 +17,16 @@
     // Columns in forumthreads table: (threadID, peergroup, threadTitle, threadAuthor, dateTimeCreated)
 
     //In $result === false then no results were found
-    if ($result === FALSE )
+    if ( ($result === FALSE) || ($result->num_rows === 0) )
     {
         echo '<tr>
-                <td colspan="2">
+                <td colspan="2" style="text-align: left; font-size: 20px;">
                      Your group\'s forum is currently empty. <br />
                      Click "Create a thread" to start posting!
                 </td>
               </tr>';
     } else
     {
-
         while ($row = $result->fetch_assoc())
         {
             $threadVariables = array
@@ -47,7 +45,7 @@
 
         }
     }
-//<a href="javascript:window.open('some.html', 'yourWindowName', 'width=200,height=150');">Test</a>
+
 
 /*
  * includeFile allows you to pass the file you would like to include and an array of variables

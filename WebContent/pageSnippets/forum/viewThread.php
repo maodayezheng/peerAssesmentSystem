@@ -42,26 +42,51 @@
                 </style>
                 <table class="tg">
 <?php
+    require ('PHP/DBConnection.php');
+
 
     // Run query to get all of the posts made in this thread.
+    $getAllPostsInThreadSQL = 'SELECT * FROM forumposts WHERE threadID='.$variables["threadID"]."
+                               ORDER BY `date` ASC";
 
+    $result = $conn -> query($getAllPostsInThreadSQL);
 
+    if ($result === FALSE || ($result->num_rows === 0))
+    {
+        echo '<tr>
+                    <td colspan="2">
+                         No Posts In This Thread
+                    </td>
+                  </tr>';
+    } else
+    {
+        while ($row = $result->fetch_assoc())
+        {
+            $threadPost = array
+            (
+                "postAuthor"    => $row["author"],
+                "postDate"      => $row["date"],
+                "postContent"   => $row["content"]
 
-    // Echo out each post to the table
-    echo "<tr>
-              <th><b>Post Author: </b></td>
-              <th><b>Post Date: </b></td>
-         </tr>
-         <tr>
-                <td colspan=\"2\">
-                    Insert the post body here
-                </td>
-         </tr>";
+            );
+
+            // Echo out each post to the table
+            echo "<tr>
+                      <th><b>Post Author:</b> <i>".$threadPost["postAuthor"]."  </i></td>
+                      <th><b>Post Date:</b>   <i>". $threadPost["postDate"]."   </i></td>
+                 </tr>
+                 <tr>
+                        <td colspan=\"2\">"
+                            .$threadPost["postContent"].
+                        "</td>
+                 </tr>";
+        }
+    }
 
 ?>
+
+
                 </table>
-
-
             </div>
         </div>
     </div>

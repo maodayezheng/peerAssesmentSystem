@@ -3,7 +3,7 @@
  * This script's purpose is to create a new thread in the database.
  * For correct execution the forum page must require init.php
  */
-    require_once ("../../PHP/DBConnection.php");
+    require ("../../PHP/DBConnection.php");
     // get the post information
     session_start();
     $userName       = $_SESSION["userName"];
@@ -48,7 +48,7 @@
             }
             else
             {
-                echo "<script> alert('Inserting your thread's content into the database failed'); </script>";
+                echo "<script> alert('Inserting your thread\'s content into the database failed'); </script>";
                 header('location: ../../forumPage.php');
             }
 
