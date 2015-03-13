@@ -1,18 +1,18 @@
 <?php
 /*
  * This file generates the HTML to encapsulate a single thread.
- *      A single thread contains all of the posts in an order ascending to the latest.
+ *      A single thread contains all of the posts in an order from oldest to newest.
  *      It also contains the option to add another post.
  *
  * It is intended to be included in a file using the following function:
  *      function includeFile($file, $variables) { include($file); }
- * By using the includeFile function we can pass an array of variables ($variables)
+ * By using the includeFile defined as above we can pass an array of variables ($variables)
  * which this script has access to (such as the threadTitle, author etc.).
  *
  * This is possible because the built-in include() function has function scope.
  *
  * "threadID", "threadTitle", "threadDate", "threadAuthor" are the keys available in the
- * $variables associative array.
+ * $variables associative array which is passed to this script.
  *
  */
 
@@ -42,20 +42,15 @@
                 </style>
                 <table class="tg">
 <?php
-    /* The following code generates what is displayed as the body for the thread.
-     * The thread is implemented as a table with each row being a post.
-     * Each post is itself a table with two rows and two columns as per the illustration below:
-     *  Table
-     *      row -> Post
-     *                  row -> Post Author: $variable["threadAuthor"] Post Date: $variable["threadDate"]
-     *                  row -> Post Content (Colspan 2)
-     */
 
     // Run query to get all of the posts made in this thread.
 
+
+
+    // Echo out each post to the table
     echo "<tr>
-              <th>Post Author:</td>
-              <th>Post Date:</td>
+              <th><b>Post Author: </b></td>
+              <th><b>Post Date: </b></td>
          </tr>
          <tr>
                 <td colspan=\"2\">

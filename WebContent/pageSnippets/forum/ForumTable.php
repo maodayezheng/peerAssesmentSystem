@@ -21,7 +21,7 @@
     if ($result === FALSE )
     {
         echo '<tr>
-                <td colspan="4">
+                <td colspan="2">
                      Your group\'s forum is currently empty. <br />
                      Click "Create a thread" to start posting!
                 </td>
@@ -40,9 +40,10 @@
             );
 
             echo '<tr>
-                    <td>';
+                    <td colspan="2">';
                     includefile("viewThread.php", $threadVariables);
-            echo    '</tr>';
+            echo   '</td>
+                </tr>';
 
         }
     }
