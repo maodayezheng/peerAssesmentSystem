@@ -2,6 +2,11 @@
 	require_once ("PHP/init.php");
     include ("header.php");
 	include ("navbar.php")
+
+
+
+
+
 ?>
 
 
@@ -9,7 +14,7 @@
     <div class="panel panel-primary">
 		<div class="panel-heading">
             <?php
-                echo "Welcome {$userName} to Group {$groupNumber}'s Discussion Forum";
+                echo "Welcome ". htmlspecialchars($userName)." to Group ".htmlspecialchars($groupNumber)."'s Discussion Forum";
             ?>
         </div>
 
@@ -23,13 +28,17 @@
 						<th style="text-align: center; font-size: 20px; width: 80%" >
                             Forum Threads</th>
                         <th style="text-align: center; font-size: 20px; width: 20%">
+
                             <?php include("pageSnippets/forum/createNewThreadButton.html"); ?>
+
                         </th>
 					</tr>
 				</thead>
 				<tbody>
-				    <?php include ("pageSnippets/forum/ForumTable.php")?>
-				</tbody>
+
+                    <?php include ("pageSnippets/forum/ForumTable.php")?>
+
+                </tbody>
 			</table>
 
 

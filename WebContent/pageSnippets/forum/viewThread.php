@@ -38,7 +38,7 @@
                     <tr>
                         <th colspan="2" style="text-align: center; font-size: 20px; width: 20%">
                             <?php
-                                // The threadID is needed by the createNewPost.php file so it is stored in an array.
+                                // The threadID is needed by the createNewPostButton.php file so it is stored in an array.
                                 $newPostButtonVariables = array( "threadID" => $includeThreadVariables["threadID"] );
                                 includeNewPostButton("pageSnippets/forum/createNewPostButton.php", $newPostButtonVariables);
 
