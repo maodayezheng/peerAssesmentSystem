@@ -12,6 +12,7 @@
 		echo '<div class="col-sm-12">
             <legend> Hello Group: ' . $_SESSION ['peergroup'] . '</legend>
         </div>';
+	//	echo $_SESSION["userName"];
 		?>
         
         <!-- panel preview -->
@@ -31,7 +32,7 @@
 							<label for="concept" class="col-sm-3 control-label">Paste Report</label>
 							<div class="col-sm-9">
 
-								<textarea rows="4" cols="30" type="text" class="form-control"
+								<textarea rows="13" cols="30" type="text" class="form-control"
 									id="pasteReport" name="pasteReport"></textarea>
 							</div>
 						</div>
@@ -91,23 +92,23 @@
 					<div class="table-responsive">
 						<table class="table preview-table">
 						
-						<?php 
-						
+						<?php
 						require_once ('PHP/uploader.php');
 						
+						$peerGroup = $_SESSION ['peergroup'];
+						$sql = "SELECT * FROM reportbody WHERE Report =$peerGroup";
 						
-$sql = "SELECT * FROM reportbody WHERE Report =2";
-
-$result = $conn -> query($sql);
-
-if($result ->num_rows >0){
-	
-	//Goes through each row in table
-		while($row = $result ->fetch_assoc()){
-			$reportContent = $row["ReportContent"];
-			
-
-			echo "<b>Report:</b><br><pre> $reportContent"."</pre><br>";
+						$result = $conn->query ( $sql );
+						
+						if ($result->num_rows > 0) {
+							
+							// Goes through each row in table
+							while ( $row = $result->fetch_assoc () ) {
+								$reportContent = $row ["ReportContent"];
+								
+								echo "<b>Report:</b><br><pre> $reportContent" . "</pre><br>";
+								
+								//if xml echo
  
 		
 	};

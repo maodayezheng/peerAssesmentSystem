@@ -15,7 +15,7 @@ if(isset($_POST['upload']) && $_FILES['userfile']['size'] > 0)
 	"<pre>".$content."</pre>";
 	fclose($fp);
 	
-	$sql = "INSERT INTO reportbody (Report,author,reportContent) VALUES ('2','John','$content');";
+	$sql = "INSERT INTO reportbody (Report,author,reportContent) VALUES ('3','John','$content');";
 	
 	if ($conn->query ( $sql ) === true) {
 		// output data of each row
