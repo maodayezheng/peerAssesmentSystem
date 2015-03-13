@@ -62,10 +62,18 @@
 				<div class="panel-body form-horizontal">
 					<div class="form-group">
 						Select a file to upload: <br />
-						<form action="/php/file_uploader.php" method="post"
-							enctype="multipart/form-data">
-							<input type="file" name="file" size="50" /> <br /> <input
-								type="submit" value="Upload File" />
+						<form method="post" enctype="multipart/form-data"
+							action="PHP/uploader.php">
+							<table width="350" border="0" cellpadding="1" cellspacing="1"
+								class="box">
+								<tr>
+									<td width="246"><input type="hidden" name="MAX_FILE_SIZE"
+										value="2000000"> <input name="userfile" type="file"
+										id="userfile"></td>
+									<td width="80"><input name="upload" type="submit" class="box"
+										id="upload" value=" Upload "></td>
+								</tr>
+							</table>
 						</form>
 					</div>
 
@@ -82,6 +90,32 @@
 				<div class="col-xs-12">
 					<div class="table-responsive">
 						<table class="table preview-table">
+						
+						<?php 
+						
+						require_once ('PHP/uploader.php');
+						
+						
+$sql = "SELECT * FROM reportbody WHERE Report =2";
+
+$result = $conn -> query($sql);
+
+if($result ->num_rows >0){
+	
+	//Goes through each row in table
+		while($row = $result ->fetch_assoc()){
+			$reportContent = $row["ReportContent"];
+			
+
+			echo "<b>Report:</b><br><pre> $reportContent"."</pre><br>";
+ 
+		
+	};
+
+}
+						
+						
+						?>
 
 							<tbody></tbody>
 							<!-- preview content goes here-->
