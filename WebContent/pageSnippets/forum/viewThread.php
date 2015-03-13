@@ -41,6 +41,15 @@
                         color: #333; overflow:hidden; word-break:normal;}
                 </style>
                 <table class="tg">
+                    <thead>
+                    <tr>
+                        <th colspan="2" style="text-align: center; font-size: 20px; width: 20%">
+                            <?php include("pageSnippets/forum/createNewPostButton.html"); ?>
+                        </th>
+                    </tr>
+                    </thead>
+
+
 <?php
     require ('PHP/DBConnection.php');
 
