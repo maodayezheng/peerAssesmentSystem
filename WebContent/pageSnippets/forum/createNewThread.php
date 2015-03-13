@@ -3,14 +3,14 @@
  * This script's purpose is to create a new thread in the database.
  * For correct execution the forum page must require init.php
  */
-    require_once ("../../PHP/DBConnection.php");
+    require ("../../PHP/DBConnection.php");
     // get the post information
     session_start();
     $userName       = $_SESSION["userName"];
     $groupNumber    = $_SESSION["peergroup"];
     $threadTitle    = $_POST ['title'];
     $content        = $_POST ['content'];
-    $date           = date("Y-m-d h:i:s");
+    $date           = date("Y-m-d H:i:s");
 
     // Insert the new thread into the forumThreads table.
     $insertThreadSQL = "INSERT INTO forumthreads (peergroup, threadTitle, threadAuthor, dateTimeCreated)
@@ -48,7 +48,7 @@
             }
             else
             {
-                echo "<script> alert('Inserting your thread's content into the database failed'); </script>";
+                echo "<script> alert('Inserting your thread\'s content into the database failed'); </script>";
                 header('location: ../../forumPage.php');
             }
 
