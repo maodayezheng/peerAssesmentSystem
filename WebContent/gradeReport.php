@@ -24,6 +24,7 @@ include ("navbar.php");
 
 		<?php
 		require_once ('PHP/DBConnection.php');
+		
 $sql = "SELECT Report, title,abstract,introduction,main,discussion,summary
 										FROM peersystem.reportbody
 										WHERE Report=1;
