@@ -2,11 +2,6 @@
 	require_once ("PHP/init.php");
     include ("header.php");
 	include ("navbar.php")
-
-
-
-
-
 ?>
 
 
@@ -14,7 +9,7 @@
     <div class="panel panel-primary">
 		<div class="panel-heading">
             <?php
-                echo "Welcome ". htmlspecialchars($userName)." to Group ".htmlspecialchars($groupNumber)."'s Discussion Forum";
+                echo 'Welcome '. htmlspecialchars($_SESSION["userName"]).' to Group '.htmlspecialchars($_SESSION["peergroup"]).'\'s Discussion Forum';
             ?>
         </div>
 
