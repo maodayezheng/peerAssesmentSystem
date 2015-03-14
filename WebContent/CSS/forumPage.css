@@ -1,0 +1,12 @@
+#searchDiv {
+    margin:  15px;
+    padding: 5px;
+    /* border:  1px solid #337ab7; */
+    min-height: 50px
+}
+
+#searchBox {
+    margin: 5px;
+    max-width:  20%;
+    float: right;
+}
