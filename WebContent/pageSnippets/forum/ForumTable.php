@@ -22,14 +22,14 @@
     $groupNumber    = $_SESSION["peergroup"];
 
     $getGroupThreadsSQL = "SELECT * FROM forumthreads where `peergroup` =?";
-    $preparedStatement = $conn->stmt_init();
-    $preparedStatement = $conn->prepare($getGroupThreadsSQL);
+    $preparedStatement  = $conn->stmt_init();
+    $preparedStatement  = $conn->prepare($getGroupThreadsSQL);
     $preparedStatement->bind_param('i', $groupNumber); // i because $groupNumber should be an integer. 
     $preparedStatement->execute();
 
     $result = $preparedStatement -> get_result();
 
-    //In $result === false then no results were found
+    //In $result === false or num rows = 0 then no results were found
     if ( ($result === FALSE) || ($result->num_rows === 0) )
     {
         echo '<tr>
@@ -43,12 +43,14 @@
         while ($row = $result->fetch_assoc())
         {
             // Columns in forumthreads table: (threadID, peergroup, threadTitle, threadAuthor, dateTimeCreated)
+            // Encoding data received from the database using htmlentities. This will turn any character with a corresponding
+            // html representation e.g. '<' will be changed to '&lt;' to prevent potential inclusion on <script> tags>
             $threadVariables = array
             (
-                "threadID"          => $row["threadID"],
-                "threadTitle"       => $row["threadTitle"],
-                "threadDate"        => $row["dateTimeCreated"],
-                "threadAuthor"      => $row["threadAuthor"]
+                "threadID"          => htmlentities($row["threadID"]),
+                "threadTitle"       => htmlentities($row["threadTitle"]),
+                "threadDate"        => htmlentities($row["dateTimeCreated"]),
+                "threadAuthor"      => htmlentities($row["threadAuthor"])
             );
 
             echo '<tr>

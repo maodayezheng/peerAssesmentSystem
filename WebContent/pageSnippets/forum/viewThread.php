@@ -38,9 +38,15 @@
                     <tr>
                         <th colspan="2" style="text-align: center; font-size: 20px; width: 20%">
                             <?php
+
+
+
                                 // The threadID is needed by the createNewPostButton.php file so it is stored in an array.
                                 $newPostButtonVariables = array( "threadID" => $includeThreadVariables["threadID"] );
                                 includeNewPostButton("pageSnippets/forum/createNewPostButton.php", $newPostButtonVariables);
+
+
+
 
                             ?>
                         </th>
@@ -51,13 +57,14 @@
 <?php
     require ('PHP/DBConnection.php');
 
-
     // Run query to get all of the posts made in this thread.
-    $getAllPostsInThreadSQL = 'SELECT * FROM forumposts WHERE threadID='.$includeThreadVariables["threadID"]."
-                               ORDER BY `date` ASC";
+    $getAllPostsInThreadSQL = "SELECT * FROM forumposts WHERE threadID=? ORDER BY `date` ASC";
+    $preparedStatement      = $conn->stmt_init();
+    $preparedStatement      = $conn->prepare($getAllPostsInThreadSQL);
+    $preparedStatement->bind_param('i', $includeThreadVariables["threadID"]); // i because threadID should be an integer.
+    $preparedStatement->execute();
 
-    $result = $conn -> query($getAllPostsInThreadSQL);
-
+    $result = $preparedStatement -> get_result();
     if ($result === FALSE || ($result->num_rows === 0))
     {
         echo '<tr>
@@ -71,9 +78,9 @@
         {
             $threadPost = array
             (
-                "postAuthor"    => $row["author"],
-                "postDate"      => $row["date"],
-                "postContent"   => $row["content"]
+                "postAuthor"    => htmlentities($row["author"]),
+                "postDate"      => htmlentities($row["date"]),
+                "postContent"   => htmlentities($row["content"])
 
             );
 
