@@ -33,6 +33,7 @@
             break;
         case 'forumPage':
             echo '<script src="JavaScript/forumPage.js"></script>';
+            echo '<link href="CSS/forumPage.css" rel="stylesheet" type="text/css" />';
             break;
         default: //do nothing in default case
             break;

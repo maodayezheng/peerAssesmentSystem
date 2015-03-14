@@ -16,25 +16,6 @@
 		    </div>
 
 		    <!-- Collect the nav links, forms, and other content for toggling -->
-		    <!-- The search option is only needed if you are on the forum page. -->
-        <?php
-            $script_navbar_contained_in = basename($_SERVER["REQUEST_URI"], ".php");
-            if(strcmp($script_navbar_contained_in, 'forumPage') == 0) //returns 0 if the two strings are equal.
-            {
-                echo ' <div class="collapse navbar-collapse" id = "bs-example-navbar-collapse-1" >
-                      <ul class="nav navbar-nav" >
-                        <form style = "padding-left:350px;" class="navbar-form navbar-left" role = "search" >
-                        <div class="form-group" >
-                           <div class="input-group" >
-                      <input type = "text" class="form-control" aria - label = "..." placeholder = "Search Forum" >
-
-
-                        </div >
-                        <button type = "button" class="btn btn-default" > Search <span class="glyphicon glyphicon-search" ></span ></button >
-                      </form >
-                      </ul >';
-            }
-        ?>
 
 
 		      <ul class="nav navbar-nav navbar-right">
