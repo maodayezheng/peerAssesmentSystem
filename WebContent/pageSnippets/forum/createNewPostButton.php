@@ -22,7 +22,7 @@
                             </h4>
 									<textarea name="content" id="content" max="10000" rows="5" cols="50"
                                               placeholder="Write your post here" style="height: 350px; width: 100%;">
-                                        <?php echo "The threadID:". $threadID; ?>
+
                                     </textarea>
                                     <input type="hidden" name="threadID" value="<?php echo $threadID; ?>"
                             <br>

@@ -13,14 +13,15 @@
         $content        = $_POST ['content'];
         $date           = date("Y-m-d H:i:s");
 
+        // Insert the new thread into the forumThreads table.
+        $insertPostSQL = "INSERT INTO forumposts(threadID, author, date, content) VALUES (?, ?, ?, ?)";
+        $preparedStatement  = $conn->stmt_init();
+        $preparedStatement  = $conn->prepare($insertPostSQL);
+        $preparedStatement->bind_param('isss', $threadID, $userName, $date, $content);
 
-        $insertPostSQL = "INSERT INTO forumposts (threadID, author, date, content)
-                               VALUES ('$threadID', '$userName', '$date', '$content')";
-
-
-        echo "<script> alert('The current SQL is $insertPostSQL'); </script>";
-
-        if($conn->query($insertPostSQL) === true)
+        // Given that a post can only exist if a thread does we need to retrieve the auto-incremented
+        // thread ID from the DB before storing the $content in the forumposts table.
+        if ($preparedStatement->execute() === true)
         {
             header('location: ../../forumPage.php');
         }
