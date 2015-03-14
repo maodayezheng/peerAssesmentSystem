@@ -3,7 +3,7 @@
     Create New Thread
 </a>
 
-<form action="pageSnippets/forum/createNewThread.php" method="POST" role="form">
+<form action="pageSnippets/forum/createNewThread.php" method="POST" role="form" id="createNewThreadForm">
 
     <div class="modal fade" id="createNewThread" tabindex="-1" role="dialog" aria-labelledby="createNewThread" aria-hidden="true">
         <div class="modal-dialog">
@@ -18,8 +18,7 @@
                             <h4>
                                 <b>Thread Title:</b>
                             </h4>
-                            <input name="title" id="title" max="50" rows="1"
-                                   cols="50" placeholder="Title:" style="width: 100%;">
+                            <input name="title" id="title" max="50" rows="1" cols="50" placeholder="Title:" style="width: 100%;" required>
                             <br>
                         </div>
 
@@ -28,7 +27,7 @@
                                 <b>Content:</b>
                             </h4>
 									<textarea name="content" id="content" max="10000" rows="5" cols="50"
-                                              placeholder="Write your post here" style="height: 350px; width: 100%;"></textarea>
+                                              placeholder="Write your post here" style="height: 350px; width: 100%;" required></textarea>
                             <br>
                         </div>
                     </div>

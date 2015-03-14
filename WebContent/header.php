@@ -31,25 +31,18 @@
             echo '<script src="JavaScript/resultsAndRanking.js"></script>';
             echo '<link href="CSS/resultsAndRanking.css" rel="stylesheet" type="text/css" />';
             break;
+        case 'forumPage':
+            echo '<script src="JavaScript/forumPage.js"></script>';
+            break;
         default: //do nothing in default case
             break;
     }
 
 ?>
 
-
-
-
-
-
-
 <link href= "libs/jquery/jquery-ui-1.11.2.min.css" rel="stylesheet" type="text/css">
 <link href="libs/bootstrap/bootstrap.min.css" rel="stylesheet" type="text/css">
 <link href="CSS/standard.css" rel="stylesheet" type="text/css" />
-
-
-
-
 
 </head>
 <body>
