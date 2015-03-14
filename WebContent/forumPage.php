@@ -8,13 +8,19 @@
 <div class="container" style="margin-top: 60px">
     <div class="panel panel-primary">
 		<div class="panel-heading">
-            <?php
-                echo 'Welcome '. htmlspecialchars($_SESSION["userName"]).' to Group '.htmlspecialchars($_SESSION["peergroup"]).'\'s Discussion Forum';
-            ?>
+            <table>
+                <tr>
+                    <th style="font-size: 20px;" >
+                        <div style="float:left; width=50%;">
+                        <?php
+                            echo 'Welcome '. htmlspecialchars($_SESSION["userName"]).' to Group '.
+                                htmlspecialchars($_SESSION["peergroup"]).'\'s Discussion Forum';
+                        ?>
+                        </div>
+                    </th>
+                </tr>
+            </table>
         </div>
-
-        <div class="panel-body">
-
 
             <!-- Table containing each thread for the group. -->
             <table class="table table-striped table-hover">
@@ -35,11 +41,6 @@
 
                 </tbody>
 			</table>
-
-
-
-
-
 		</div>
 	</div>
 </div>
