@@ -39,12 +39,8 @@
     $userName       = $_SESSION["userName"];
     $groupNumber    = $_SESSION["peergroup"];
 
-    $getGradesSQL = "select groupAssessed, (Assesment+Assesment1+Assesment2)/3 AS average from assesments group by average DESC;";
-    
-   
-    
-  
-    
+    $getGradesSQL = "select groupAssessed AS Team, (Assesment+Assesment1+Assesment2)/3 AS Grade from assesments group by Grade DESC;";
+
     $preparedStatement = $conn->stmt_init();
     $preparedStatement = $conn->prepare($getGradesSQL);
     //$preparedStatement->bind_param('i', $groupNumber); // i because $groupNumber should be an integer. 
@@ -68,8 +64,12 @@
         while ($row = $result->fetch_assoc())
         {
         	
+        	foreach ($row as $key => $value) {
+        		echo "$key: $value <br>";
+        	}
+        	
         	 
-        	print_r($row);
+        	//print_r($row);
 		// Columns in forumthreads table: (threadID, peergroup, threadTitle, threadAuthor, dateTimeCreated)
 		
 		// $threadVariables = array
