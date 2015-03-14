@@ -12,7 +12,7 @@
 		echo '<div class="col-sm-12">
             <legend> Hello Group: ' . $_SESSION ['peergroup'] . '</legend>
         </div>';
-	//	echo $_SESSION["userName"];
+		echo $_SESSION["userName"];
 		?>
         
         <!-- panel preview -->
@@ -96,7 +96,7 @@
 						require_once ('PHP/uploader.php');
 						
 						$peerGroup = $_SESSION ['peergroup'];
-						$sql = "SELECT * FROM reportbody WHERE Report =$peerGroup";
+						$sql = "SELECT * FROM reportbody WHERE groupReportID =$peerGroup";
 						
 						$result = $conn->query ( $sql );
 						
