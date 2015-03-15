@@ -96,7 +96,7 @@
 						require_once ('PHP/uploader.php');
 						
 						$peerGroup = $_SESSION ['peergroup'];
-						$sql = "SELECT * FROM freetextreprots WHERE groupReportID =$peerGroup";
+						$sql = "SELECT * FROM freetextreprots WHERE id =$peerGroup";
 						
 						$result = $conn->query ( $sql );
 						
@@ -104,7 +104,7 @@
 							
 							// Goes through each row in table
 							while ( $row = $result->fetch_assoc () ) {
-								$reportContent = $row ["ReportContent"];
+								$reportContent = $row ["content"];
 								
 								echo "<b>Report:</b><br><pre> $reportContent" . "</pre><br>";
 								
