@@ -16,8 +16,10 @@ if(isset($_POST['upload']) && $_FILES['userfile']['size'] > 0)
 	$content = addslashes($content);
 	fclose($fp);
 	
-	//$peerGroup = $_SESSION ['peergroup'];
-	$sql = "INSERT INTO freetextreprots (id,content) VALUES ('1','$content')";
+	session_start();
+	
+	$peerGroup = $_SESSION ['peergroup'];
+	$sql = "INSERT INTO freetextreprots (id,content) VALUES ('$peerGroup','$content')";
 	
 	if ($conn->query ( $sql ) === true) {
 		// output data of each row
