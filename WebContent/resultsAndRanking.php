@@ -52,7 +52,7 @@
               </tr>';
     } else
     {
-    	
+    	$count=1;
     	$rankedGrades = array();
         while ($row = $result->fetch_assoc())
         {
@@ -60,14 +60,15 @@
         	foreach ($row as $key => $value) {
         		
         		if ($key == "Team") {      			
-        			$value = "Group: ".$value;
+        			$value = "Ranked: ".$count." is group: ".$value;
+        			$count++;
         			
         		} else if ($key = "Grade") {
         			
         			$value = "<legend>Grade = ".intval($value)."%"."</legend>";
         		}
         		
-        		echo $value."<br>";
+        		echo '<div align="center">'.$value."<br>".'</div>';
         	
         	}
         	
