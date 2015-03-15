@@ -34,16 +34,10 @@
 				<p> 
 <?php
 
-    function includeRanking($file, $includeThreadVariables) { include($file); }
-
-    $userName       = $_SESSION["userName"];
-    $groupNumber    = $_SESSION["peergroup"];
-
     $getGradesSQL = "select groupAssessed AS Team, (Assesment+Assesment1+Assesment2)/3 AS Grade from assesments group by Grade DESC;";
 
     $preparedStatement = $conn->stmt_init();
     $preparedStatement = $conn->prepare($getGradesSQL);
-    //$preparedStatement->bind_param('i', $groupNumber); // i because $groupNumber should be an integer. 
     $preparedStatement->execute();
 
     $result = $preparedStatement -> get_result();
@@ -53,8 +47,7 @@
     {
         echo '<tr>
                 <td colspan="2" style="text-align: left; font-size: 20px;">
-                     Your group\'s forum is currently empty. <br />
-                     Click "Create a thread" to start posting!
+                    There are no rankings available
                 </td>
               </tr>';
     } else
@@ -63,9 +56,19 @@
     	$rankedGrades = array();
         while ($row = $result->fetch_assoc())
         {
-        	
+
         	foreach ($row as $key => $value) {
-        		echo "$key: $value <br>";
+        		
+        		if ($key == "Team") {      			
+        			$value = "Group: ".$value;
+        			
+        		} else if ($key = "Grade") {
+        			
+        			$value = "<legend>Grade = ".intval($value)."%"."</legend>";
+        		}
+        		
+        		echo $value."<br>";
+        	
         	}
         	
         	 
