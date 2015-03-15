@@ -99,9 +99,6 @@
 
 	</div>
 	<!-- /.row -->
-
-
-
     <?php
     include ("footer.php");
     ?>
