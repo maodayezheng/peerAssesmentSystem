@@ -96,7 +96,7 @@
 						require_once ('PHP/uploader.php');
 						
 						$peerGroup = $_SESSION ['peergroup'];
-						$sql = "SELECT * FROM reportbody WHERE groupReportID =$peerGroup";
+						$sql = "SELECT * FROM freetextreprots WHERE groupReportID =$peerGroup";
 						
 						$result = $conn->query ( $sql );
 						

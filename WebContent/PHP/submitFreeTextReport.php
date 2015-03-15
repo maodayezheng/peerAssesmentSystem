@@ -14,7 +14,7 @@ $groupNumber = $_POST ['groupNumber'];
 $pasteReport = $_POST ['pasteReport'];
 
 
-$sql = "INSERT INTO reportbody (report,ReportContent,author) VALUES ('$groupNumber','$pasteReport','ERIC')";
+$sql = "INSERT INTO freetextreports (id,content) VALUES ('$groupNumber','$pasteReport')";
 
 if ($conn->query ( $sql ) === true) {
 	// output data of each row

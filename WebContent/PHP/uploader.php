@@ -1,5 +1,7 @@
 <?php 
 
+
+
 require_once ('DBConnection.php');
 
 if(isset($_POST['upload']) && $_FILES['userfile']['size'] > 0)
@@ -15,8 +17,7 @@ if(isset($_POST['upload']) && $_FILES['userfile']['size'] > 0)
 	fclose($fp);
 	
 	//$peerGroup = $_SESSION ['peergroup'];
-	
-	$sql = "INSERT INTO reportbody (groupReportID,ReportContent,author) VALUES ('6','$content','John');";
+	$sql = "INSERT INTO freetextreprots (id,content) VALUES ('1','$content')";
 	
 	if ($conn->query ( $sql ) === true) {
 		// output data of each row
