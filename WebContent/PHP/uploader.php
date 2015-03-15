@@ -1,7 +1,5 @@
 <?php 
 
-
-
 require_once ('DBConnection.php');
 
 if(isset($_POST['upload']) && $_FILES['userfile']['size'] > 0)
@@ -23,8 +21,8 @@ if(isset($_POST['upload']) && $_FILES['userfile']['size'] > 0)
 	
 	if ($conn->query ( $sql ) === true) {
 		// output data of each row
-		echo "Selection complete";
-		//header ( 'location: ../gradeReport.php' );
+		
+		header ( 'location: ../submitReport.php' );
 	} else {
 		echo "Error:" . $sql . "<br>" . $conn->error;
 	}
