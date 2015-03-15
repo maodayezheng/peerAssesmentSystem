@@ -79,7 +79,7 @@
 					</div>
 					
 					<div class="form-group">
-						Select a XML file to upload: <br />
+						Select an XML file to upload: <br />
 						<form method="post" enctype="multipart/form-data"
 							action="PHP/uploaderXML.php">
 							<table width="350" border="0" cellpadding="1" cellspacing="1"
