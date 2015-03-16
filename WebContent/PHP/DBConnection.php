@@ -7,16 +7,17 @@ $port = "3306";
 
 $conn = new mysqli ( $servername, $username, $password, $dbname, $port );
 
+$GLOBALS["DB"] = $conn;
 
  if ($conn->connect_error) {
 	
  	die ( "Connection failed:" . $conn->connect_error );
  }
 
-// if ($conn) {
-// 	echo "Success connecting to DB";
-// }
+function getDB()
+{
+    return $GLOBALS["DB"];
+}
 
-//$conn->close ();
 
 ?>

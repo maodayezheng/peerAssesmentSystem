@@ -8,11 +8,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <link href="/WebContent/CSS/standard.css" rel="stylesheet">
+<link href="libs/bootstrap/bootstrap.min.css" rel="stylesheet" type="text/css">
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="libs/jquery/jquery-2.1.1.min.js"></script>
 <script src="libs/jquery/jquery-ui-1.11.2.min.js"></script>
-<script src="libs/bootstrap/bootstrap.min.js"></script><script src="JavaScript/Navigator.js"></script>
+<script src="libs/bootstrap/bootstrap.min.js"></script>
+<script src="JavaScript/Navigator.js"></script>
 
     <?php
 
@@ -35,6 +37,10 @@
             echo '<script src="JavaScript/forumPage.js"></script>';
             echo '<link href="CSS/forumPage.css" rel="stylesheet" type="text/css" />';
             break;
+        case 'forum':
+            //echo '<script src="JavaScript/forumPage.js"></script>';
+            echo '<link href="CSS/forum.css" rel="stylesheet" type="text/css" />';
+            break;
         default: //do nothing in default case
             break;
     }
@@ -42,8 +48,7 @@
 ?>
 
 <link href= "libs/jquery/jquery-ui-1.11.2.min.css" rel="stylesheet" type="text/css">
-<link href="libs/bootstrap/bootstrap.min.css" rel="stylesheet" type="text/css">
-<link href="CSS/standard.css" rel="stylesheet" type="text/css" />
+
 
 </head>
 <body>
