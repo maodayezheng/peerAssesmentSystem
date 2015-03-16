@@ -7,7 +7,7 @@
 <!-- makes sure it displays the mobile version on mobile and desktop version on desktop-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link href="/WebContent/CSS/standard.css" rel="stylesheet">
+<link href="CSS/standard.css" rel="stylesheet">
 <link href="libs/bootstrap/bootstrap.min.css" rel="stylesheet" type="text/css">
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
