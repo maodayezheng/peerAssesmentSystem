@@ -1,5 +1,4 @@
 <?php
-
     require_once ("PHP/init.php");
     require_once ('PHP/DBConnection.php');
     include("header.php");
@@ -10,6 +9,18 @@
     {
         require_once 'pageSnippets/forum/forumClasses/'.$class.'.php';
     });
+
+    // The threadID is the only variable which should be passed througha GET request to this script.
+    // This should be an integer, so to check we do replace any non-numeric characters with the empty string.
+    $sanitisedThreadID = preg_replace('#[^0-9]#i', '', $_GET["threadID"]);
+    $rawThreadID = $_GET["threadID"];
+
+    // Kill the script if the data doesn't validate.
+    if(!($sanitisedThreadID === $rawThreadID))
+    {
+        echo new SearchBar();
+        die("Invalid threadID");
+    }
 
     echo new SearchBar();
 
