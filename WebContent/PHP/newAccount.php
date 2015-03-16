@@ -1,117 +1,72 @@
 <?php
-if (isset ( $_POST ['submit'] ))
-{
-    require_once('DBConnection.php');
-
-    $conn = new mysqli ($servername, $username, $password, $dbname, $port);
-
-    // Since we are taking input from the user using $_POST, we need to sanitise it.
-    // The following performs a case insensitive regular expression replace i.e. it replaces any character
-    // that is not a letter or a number with the empty string ''.
-    $userName   = preg_replace('#[^a-z 0-9]#i', '', $_POST ['userName']);
-    $fName      = preg_replace('#[^a-z 0-9]#i', '', $_POST ['fName']);
-    $lName      = preg_replace('#[^a-z 0-9]#i', '', $_POST ['lName']);
-    $sex        = preg_replace('#[^a-z 0-9]#i', '', $_POST ['sex']);
-    $password   = preg_replace('#[^a-z 0-9]#i', '', $_POST ['password']);
-
-    echo "username is $userName, fName is $fName, lName is $lName, sex is $sex, password is $password";
-
-
-    function check($source, $items = array()) //The keys in the $items associative array must match the the keys passed in the $source array.
+    if (isset ( $_POST ['submit'] ))
     {
-        $errors         = array();
-        $checksPassed   = false;
+        require_once('DBConnection.php');
 
-        foreach($items as $item => $rules) //$item will be each of the entries e.g. nhsnumber, password. $rules will be the array that governs each $item. see register.php.
-        {
-            foreach($rules as $rule => $rule_value)
-            {
-                $value = trim($source[$item]); //get rid of whitespaces.
+        $conn = new mysqli ($servername, $username, $password, $dbname, $port);
 
-                // If the rule is that the validation requires an input and the input is empty push an error to the errors array.
-                if($rule === 'required' && empty($value)) { array_push($errors, "{$item} is required"); }
-                // Otherwise if the value is not empty:
-                else if(!empty($value))
-                {
-                    // Switch on what the rule is (could be a min value or a max value etc).
-                    switch($rule)
-                    {
-                        case 'min':
-                            if(strlen($value)<$rule_value)      { array_push($errors, "{$item} must be a minimum of {$rule_value} characters"); }
-                            break;
-                        case 'max':
-                            if(strlen($value)>$rule_value)      { array_push($errors, "{$item} must be a maximum of {$rule_value} characters"); }
-                            break;
-                        case 'matches':
-                            if($value != $source[$rule_value])  { array_push($errors, "{$rule_value} must match {$item}"); }
-                            break;
-                        case 'unique':
-                            
+        // Since we are taking input from the user using $_POST, we need to sanitise it.
+        // The following performs a case insensitive regular expression replace i.e. it replaces any character
+        // that is not a letter or a number with the empty string ''.
+        $userName = preg_replace('#[^a-z 0-9]#i', '', $_POST ['userName']);
+        $fName = preg_replace('#[^a-z 0-9]#i', '', $_POST ['fName']);
+        $lName = preg_replace('#[^a-z 0-9]#i', '', $_POST ['lName']);
+        $sex = preg_replace('#[^a-z 0-9]#i', '', $_POST ['sex']);
+        $password = preg_replace('#[^a-z 0-9]#i', '', $_POST ['password']);
+        $confirmPassword = preg_replace('#[^a-z 0-9]#i', '', $_POST ['confirmPassword']);
 
-                            $check = $this->_db->get($rule_value, array($item,'=',$value));
-                            if($check->count()) { array_push($errors, "{$item} already exists. Please choose another"); }
-                            break;
-                    }
-                }
-            }
-        }
+        $dataToBeValidated = array
+        (
+            "userName" => $userName,
+            "fName" => $fName,
+            "lName" => $lName,
+            "sex" => $sex,
+            "password" => $password,
+            "confirmPassword" => $confirmPassword
+        );
 
-        if(empty($errors)) //if the errors array is empty at this point then all of the checks were passed.
-        {
-            $checksPassed = true;
-        }
+        echo "username is $userName, fName is $fName, lName is $lName, sex is $sex, password is $password";
 
-        return $checksPassed;
+        $validation = validate($conn, $dataToBeValidated, array(
+            'userName' => array(
+                'required' => true,
+                'min' => 5, //min length
+                'max' => 15, //max length
+                'unique' => 'account'
+            ),
+            'fName' => array(
+                'required' => true,
+                'min' => 2,
+            ),
+            'lName' => array(
+                'required' => true,
+                'matches' => 'password'
+            ),
+            'sex' => array(
+                'required' => true
+            ),
+            'password' => array(
+                'required' => true,
+                'min' => 6,
+            ),
+            'confirmPassword' => array(
+                'matches' => 'password'
+            )
+        ));
+
     }
+?>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<?php
     ////////////////// VALIDATION
-
+/*
     $validate 	= new Validate();
     $validation = $validate -> check($dataDecoded, array()); 	//passing an empty array so that there are no conditions which need to be passed. Refer to commented out code
     //below to see what type of array can be passed to enforce validation.
 
     /* Code is commented out as it was decided validation would be done client side.
      * It is included for functionality demonstration purposes. */
-
+/*
          $validation = $validate -> check($dataDecoded, array(  //The array as the second parameter should contain the relevant conditions for each key in $dataDecoded
                'nhsnumber' => array(
                        'required' => true,
@@ -183,7 +138,7 @@ if (isset ( $_POST ['submit'] ))
         return $this;
     }
 
-}
+}*/
 
 
 
@@ -209,6 +164,5 @@ if (isset ( $_POST ['submit'] ))
 	$sql = "INSERT INTO account (userName,fName,lName,password,sex,accountType,id)
             VALUES ('$userName','$fname','$lname','$password','$sex','$accounttype',NULL)";
 	*/
-
-
 ?>
+
