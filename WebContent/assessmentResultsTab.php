@@ -2,8 +2,7 @@
 
 ?>
 
-<div class="panel-group" id="accordion">
-    <!-- Panel 1 -->
+
 
     
             <?php 
@@ -15,7 +14,6 @@
             $result = $conn -> query($sql);
             
             if($result ->num_rows >0){
-            
             	//Goes through each row in table
             	while($row = $result ->fetch_assoc()){
             		$maker = $row["assignedMarker"];
@@ -59,16 +57,9 @@
         			</div>
     				</div>";
             		echo "</div>";// close the panel
-            		
-            		
-            
-            		
-            				      				
-            
+
             	};
             
             	}         
             ?>
 
-
-</div>
