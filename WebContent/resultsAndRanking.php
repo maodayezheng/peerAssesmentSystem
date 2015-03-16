@@ -25,7 +25,7 @@
 			<div role="tabpanel" class="tab-pane active" id="assessment_results">
 
                 <?php
-                    include("pageSnippets/resultsAndRanking/assessmentResultsTab.php");
+                    include("assessmentResultsTab.php");
                 ?>
 
 
