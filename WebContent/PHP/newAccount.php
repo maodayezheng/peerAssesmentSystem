@@ -17,6 +17,93 @@ if (isset ( $_POST ['submit'] ))
     echo "username is $userName, fName is $fName, lName is $lName, sex is $sex, password is $password";
 
 
+    function check($source, $items = array()) //The keys in the $items associative array must match the the keys passed in the $source array.
+    {
+        $errors         = array();
+        $checksPassed   = false;
+
+        foreach($items as $item => $rules) //$item will be each of the entries e.g. nhsnumber, password. $rules will be the array that governs each $item. see register.php.
+        {
+            foreach($rules as $rule => $rule_value)
+            {
+                $value = trim($source[$item]); //get rid of whitespaces.
+
+                // If the rule is that the validation requires an input and the input is empty push an error to the errors array.
+                if($rule === 'required' && empty($value)) { array_push($errors, "{$item} is required"); }
+                // Otherwise if the value is not empty:
+                else if(!empty($value))
+                {
+                    // Switch on what the rule is (could be a min value or a max value etc).
+                    switch($rule)
+                    {
+                        case 'min':
+                            if(strlen($value)<$rule_value)      { array_push($errors, "{$item} must be a minimum of {$rule_value} characters"); }
+                            break;
+                        case 'max':
+                            if(strlen($value)>$rule_value)      { array_push($errors, "{$item} must be a maximum of {$rule_value} characters"); }
+                            break;
+                        case 'matches':
+                            if($value != $source[$rule_value])  { array_push($errors, "{$rule_value} must match {$item}"); }
+                            break;
+                        case 'unique':
+                            
+
+                            $check = $this->_db->get($rule_value, array($item,'=',$value));
+                            if($check->count()) { array_push($errors, "{$item} already exists. Please choose another"); }
+                            break;
+                    }
+                }
+            }
+        }
+
+        if(empty($errors)) //if the errors array is empty at this point then all of the checks were passed.
+        {
+            $checksPassed = true;
+        }
+
+        return $checksPassed;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    ////////////////// VALIDATION
 
     $validate 	= new Validate();
     $validation = $validate -> check($dataDecoded, array()); 	//passing an empty array so that there are no conditions which need to be passed. Refer to commented out code
