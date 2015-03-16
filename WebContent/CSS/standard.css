@@ -28,3 +28,7 @@ background-attachment:fixed;
 li {
   color: black; 
 }
+.row{
+	background-color: white;
+	opacity: 0.98;
+}
