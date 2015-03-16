@@ -1,9 +1,9 @@
 <?php
 
     require_once ("PHP/init.php");
-    require_once("PHP/DBConnection.php");
-    include ("header.php");
-    include ("navbar.php");
+    require_once ('PHP/DBConnection.php');
+    include("header.php");
+    include("navbar.php");
 
     // Class auto-loader
     spl_autoload_register(function($class)
@@ -20,7 +20,7 @@
 
 
     $threadIDs = array(52, 62);
-    echo new ForumTable(getDB(), 'threads', $userInfo, $threadIDs);
+    echo new ForumTable(getDB(), 'posts', $userInfo, $threadIDs);
 
 
 
@@ -35,3 +35,4 @@
 include("footer.php");
 
 ?>
+

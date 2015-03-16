@@ -91,7 +91,7 @@ class ForumTable
                 );
 
                 $tableRows .="<tr>
-                                <td class=\"tg-031e\"> {$threadVariables["threadTitle"]} </td>
+                                <td class=\"tg-031e\"><a href=\"viewSingleThread.php?threadID={$threadVariables["threadID"]}\"> {$threadVariables["threadTitle"]} </a></td>
                                 <td class=\"tg-031e\"><a href=\"profilePage.php?userName={$threadVariables["threadAuthor"]}\"> {$threadVariables["threadAuthor"]} </a></td>
                                 <td class=\"tg-031e\"> {$threadVariables["threadDate"]} </td>
                               </tr>";
@@ -143,8 +143,8 @@ class ForumTable
                 </thead>
                 <tbody>';
 
-        if($this->_tableType === "thread")      { $table .= $this->generateThreadListingTable(); }
-        else if($this->_tableType === "posts")  { $table .= $this->generateSingleThread();       }
+        if($this->_tableType === "threads")      { $table .= $this->generateThreadListingTable(); }
+        else if($this->_tableType === "posts")   { $table .= $this->generateSingleThread();       }
 
         $table .= '</tbody>
             </table>
