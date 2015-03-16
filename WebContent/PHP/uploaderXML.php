@@ -2,18 +2,12 @@
 
 require_once ('DBConnection.php');
 
-$myXMLData = "<?xml version='1.0' encoding='UTF-8'?>
-<note>
-<title>LG Review</title>
-<abstract>New LG is the best</abstract>
-<content>improved camera and model</content>
-</note>";
-//print_r ($content);
-//$xml=simplexml_load_string($myXMLData) or die("Error: Cannot create object");
-//print_r($xml);
+$uploads_dir = '/up';
 
 if(isset($_POST['upload']) && $_FILES['userfile']['size'] > 0)
 {
+	
+	$fileName = $_FILES['userfile']['name'];
 	$tmpName  = $_FILES['userfile']['tmp_name'];
 	$fileSize = $_FILES['userfile']['size'];
 
@@ -22,15 +16,26 @@ if(isset($_POST['upload']) && $_FILES['userfile']['size'] > 0)
 	//$content = addslashes($content);
 	fclose($fp);
 	
-	$myXMLData = strval($content);
+	//set file destination
 	
-	$xml=simplexml_load_string($myXMLData);
-	print_r($xml);
+	$fileD = "up/".$fileName;
 	
+	if(move_uploaded_file($tmpName,$fileD)){
+		
+		echo $fileD;
+		
+	};
 	
+// $myXMLData =
+// "<?xml version='1.0' encoding='UTF-8'?>
+// <report>
+// <title>LG</title>
+// <abstract>new LG</abstract>
+// <body>improved LG</body>
+// </report>";
 
-	//echo $content."<br>";
-
+// $xml=simplexml_load_string($myXMLData) or die("Error: Cannot create object");
+//print_r($xml);
 	
 	session_start();
 
