@@ -7,7 +7,7 @@
 ?>
 
 <!-- Search Box -->
-    <div class="panel panel-default" id="panel2">
+    <div class="panel panel-default" id="advancedSearchBlock">
         <div class="panel-heading">
             <h4 class="panel-title">
                 <form action="forumPage.php" method="post">

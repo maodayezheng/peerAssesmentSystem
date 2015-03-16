@@ -15,7 +15,7 @@
         // or the profile page of another registered user. It is assumed that any logged in user can view
         // the profile of any registered user (student or admin).
 
-        if( (isset($_GET["userName"])) && ($_GET["userName"] != ""))
+        if( (isset($_GET["userName"])) && ($_GET["userName"] != "") && ($_GET["userName"] != $_SESSION["userName"]))
         {
             // In this case a logged in user has requested to see the profile page of another user. They can only see
             // the details, and not edit them.
