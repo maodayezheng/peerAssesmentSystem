@@ -12,17 +12,17 @@
 					<h3 class="dark-grey">Registration</h3>
 
 					<div class="form-group col-lg-12">
-						<label>Username</label> <input type="" name="username"
+						<label>Username</label> <input type="" name="userName"
 							class="form-control" id="" value="">
 					</div>
 
 					<div class="form-group col-lg-12">
-						<label>First Name</label> <input type="" name="fname"
+						<label>First Name</label> <input type="" name="fName"
 							class="form-control" id="" value="">
 					</div>
 
 					<div class="form-group col-lg-12">
-						<label>Last Name</label> <input type="" name="lname"
+						<label>Last Name</label> <input type="" name="lName"
 							class="form-control" id="" value="">
 					</div>
 
