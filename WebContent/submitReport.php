@@ -6,13 +6,13 @@
 	?>
 
 <div class="container">
-	<div class="row">
+	<div class="row row2">
 		<?
 		session_start ();
 		echo '<div class="col-sm-12">
             <legend> Hello Group: ' . $_SESSION ['peergroup'] . '</legend>
         </div>';
-		echo $_SESSION["userName"];
+		//echo $_SESSION["userName"];
 		?>
         
         <!-- panel preview -->
