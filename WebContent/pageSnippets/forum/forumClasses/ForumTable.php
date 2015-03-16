@@ -53,7 +53,10 @@ class ForumTable
         $userName       = $this->_userInfo["userName"];
         $groupNumber    = $this->_userInfo["peergroup"];
 
-        $getGroupThreadsSQL = "SELECT * FROM forumthreads where `peergroup` =?";
+        $getGroupThreadsSQL = "SELECT *
+                               FROM forumthreads
+                               WHERE `peergroup` =?
+                               ORDER BY 'date' ASC";
         $preparedStatement  = $this->_db->stmt_init();
         $preparedStatement  = $this->_db->prepare($getGroupThreadsSQL);
         $preparedStatement->bind_param('i', $groupNumber); // i because $groupNumber should be an integer.
@@ -98,7 +101,7 @@ class ForumTable
     }
 
     // This function generates the rows of the table if the user is requesting to see a single thread.
-    // In this case each row of the table will be a post in the thread. 
+    // In this case each row of the table will be a post in the thread.
     private function generateSingleThread()
     {
 
