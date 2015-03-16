@@ -55,7 +55,7 @@
 						<div class="col-sm-12 controls">
 							<input type="submit" id="btn-login" href="#"
 								class="btn btn-success"> </input> <a id="btn-fblogin"
-								href="newStudent.php" class="btn btn-primary">Register</a>
+								href="register.php" class="btn btn-primary">Register</a>
 
 						</div>
 					</div>

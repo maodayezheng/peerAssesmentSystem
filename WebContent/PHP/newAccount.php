@@ -11,17 +11,28 @@ if (isset ( $_POST ['submit'] )) {
 	$sex            = $_POST ['sex'];
 	$password       = $_POST ['password'];
 
+    $insertPostSQL = "INSERT INTO forumposts (threadID, author, date, content) VALUES (?, ?, ?, ?)";
+    $preparedStatement3  = $conn->stmt_init();
+    $preparedStatement3  = $conn->prepare($insertPostSQL);
+    $preparedStatement3->bind_param('isss', $threadID, $userName, $date, $content);
+
+    if($preparedStatement3->execute() === true)
+    {
+        echo "Registration successful";
+        header ( 'location: ../login.php' );
+    }
+    else
+    {
+        echo "Registration Failed";
+        header('location: ../../register.php');
+
+    }
+
 
 	$sql = "INSERT INTO account (userName,fName,lName,password,sex,accountType,id)
             VALUES ('$userName','$fname','$lname','$password','$sex','$accounttype',NULL)";
 	
-	if ($conn->query ( $sql ) === true) {
-		// output data of each row
-		echo "Registration successful";
-		header ( 'location: ../login.php' );
-	} else {
-		echo "Error:" . $sql . "<br>" . $conn->error;
-	}
+
 }
 ;
 ?>
