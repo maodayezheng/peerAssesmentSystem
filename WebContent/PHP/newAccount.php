@@ -1,7 +1,6 @@
 <?php
 if (isset ( $_POST ['submit'] ))
 {
-
     require_once('DBConnection.php');
 
     $conn = new mysqli ($servername, $username, $password, $dbname, $port);
@@ -9,13 +8,55 @@ if (isset ( $_POST ['submit'] ))
     // Since we are taking input from the user using $_POST, we need to sanitise it.
     // The following performs a case insensitive regular expression replace i.e. it replaces any character
     // that is not a letter or a number with the empty string ''.
-    $userName = preg_replace('#[^a-z 0-9]#i', '', $_POST ['userName']);
-    $fName = preg_replace('#[^a-z 0-9]#i', '', $_POST ['fName']);
-    $lName = preg_replace('#[^a-z 0-9]#i', '', $_POST ['lName']);
-    $sex = preg_replace('#[^a-z 0-9]#i', '', $_POST ['sex']);
-    $password = preg_replace('#[^a-z 0-9]#i', '', $_POST ['password']);
+    $userName   = preg_replace('#[^a-z 0-9]#i', '', $_POST ['userName']);
+    $fName      = preg_replace('#[^a-z 0-9]#i', '', $_POST ['fName']);
+    $lName      = preg_replace('#[^a-z 0-9]#i', '', $_POST ['lName']);
+    $sex        = preg_replace('#[^a-z 0-9]#i', '', $_POST ['sex']);
+    $password   = preg_replace('#[^a-z 0-9]#i', '', $_POST ['password']);
 
     echo "username is $userName, fName is $fName, lName is $lName, sex is $sex, password is $password";
+
+
+
+    $validate 	= new Validate();
+    $validation = $validate -> check($dataDecoded, array()); 	//passing an empty array so that there are no conditions which need to be passed. Refer to commented out code
+    //below to see what type of array can be passed to enforce validation.
+
+    /* Code is commented out as it was decided validation would be done client side.
+     * It is included for functionality demonstration purposes. */
+
+         $validation = $validate -> check($dataDecoded, array(  //The array as the second parameter should contain the relevant conditions for each key in $dataDecoded
+               'nhsnumber' => array(
+                       'required' => true,
+                       'min' => 5, //min length
+                       'max' => 15, //max length
+                       'unique' => 'users'
+               ),
+               'password' => array(
+                       'required' => true,
+                       'min' => 6,
+               ),
+               'confirmpassword' => array(
+                       'required' => true,
+                       'matches' => 'password'
+               ),
+               'weight' => array(
+                       'required' => true
+               ),
+               'dob' => array(),
+               'activitylevel' => array()
+       ));
+
+
+    if($validation->passed()) //An empty array was passed as the conditions for validation so this will always be true (unless code commented above is amended).
+    {
+        switch($dataDecoded['group'])
+        {
+            case 1: registerPatient($dataDecoded); 		break;
+            case 2: registerDietician($dataDecoded); 	break;
+        }
+    }
+
 
     function check($source, $items = array()) //The keys in the $items associative array must match the the keys passed in the $source array.
     {

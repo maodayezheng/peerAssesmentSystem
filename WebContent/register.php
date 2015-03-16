@@ -39,6 +39,10 @@
 							class="form-control" id="" value="">
 					</div>
 
+                    <div class="form-group col-lg-8">
+                        <label>Confirm Password</label> <input type="password" name="confirmPassword"
+                                                       class="form-control" id="" value="">
+                    </div>
 				</div>
 
 				<div class="col-md-6">
