@@ -3,7 +3,7 @@
  * This script's purpose is to create a new thread in the database.
  * For correct execution the forum page must require init.php
  */
-    require ("../../PHP/DBConnection.php");
+    require_once("../../../PHP/DBConnection.php");
     // get the post information
     session_start();
     $userName       = $_SESSION["userName"];
