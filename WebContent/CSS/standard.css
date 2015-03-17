@@ -32,3 +32,6 @@ li {
 	background-color: white;
 	opacity: 0.98;
 }
+pre {
+    max-width: 90%; 
+}

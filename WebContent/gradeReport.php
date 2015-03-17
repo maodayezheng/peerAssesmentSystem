@@ -58,16 +58,14 @@ include ("navbar.php");
  	while($row = $result ->fetch_assoc()){
 
  		$report = $row["content"];
- 		echo "<b>Report: <br><br></b> $report"."<br>";
+ 		echo "<b>Report: <br><br></b> <pre>$report</pre>"."<br>";
 
  	};
 
  	}
- 	
- 	
- 	//form for grading + comments 
- 	
- 	echo '<br><br>
+																											
+																											// form for grading + comments
+																										echo '<br><br>
 									    <div class="row">
   <form class="form-horizontal">
     <div class="span6">
@@ -76,16 +74,16 @@ include ("navbar.php");
       <div class="control-group">
        
         <div class="col-md-4">
-          <input type="number" class="input-xlarge" id="input01">
-          <p class="help-block">Supporting help text</p>
+          <input type="number" class="input-xlarge" id="input01" placeholder= " %">
+          <p class="help-block">Content</p>
         </div>
 									<div class="col-md-4">
-          <input type="number" class="input-xlarge" id="input01">
-          <p class="help-block">Supporting help text</p>
+          <input type="number" class="input-xlarge" id="input01" placeholder= " %">
+          <p class="help-block">Style </p>
         </div>
 									<div class="col-md-4">
-          <input type="number" class="input-xlarge" id="input01">
-          <p class="help-block">Supporting help text</p>
+          <input type="number" class="input-xlarge" id="input01" placeholder= " %">
+          <p class="help-block">Sources</p>
         </div>
 									
       </div>
@@ -98,20 +96,21 @@ include ("navbar.php");
        
         <div class="col-md-4">
           <input type="text" class="input-xlarge" id="input01">
-          <p class="help-block">Supporting help text</p>
+          <p class="help-block">Content</p>
         </div>
 									<div class="col-md-4">
           <input type="text" class="input-xlarge" id="input01">
-          <p class="help-block">Supporting help text</p>
+          <p class="help-block">Style</p>
         </div>
 									<div class="col-md-4">
           <input type="text" class="input-xlarge" id="input01">
-          <p class="help-block">Supporting help text</p>
+          <p class="help-block">Sources</p>
         </div>
 									
       </div>
       </fieldset>
     </div>
+								<br><br><div class="col-md-4"></div>	<div class="col-md-6"><input align="right" type="submit" class="foo col-xs-3 input-xlarge btn-success" id="submitAssessment"></div>
   </form>
 </div>';
  	
