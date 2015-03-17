@@ -16,7 +16,7 @@ include ("navbar.php");
                                                 
                         $sql = "SELECT a.*, ftr.*
 								FROM assesments AS a INNER JOIN freetextreports AS ftr ON a.groupAssessed = ftr.id
-								WHERE a.assignedMarker=1;";
+								WHERE a.assignedMarker=$assignedMarker;";
                         
                        $result = $conn -> query($sql);
                        
@@ -41,7 +41,7 @@ include ("navbar.php");
                             		echo $rowVariables["groupAssessed"]."<br>";
                             		
                             			
-                            		echo $rowVariables["Content"]."<br>";
+                            		echo $rowVariables["reportContent"]."<br>";
                             		
                             		
 
