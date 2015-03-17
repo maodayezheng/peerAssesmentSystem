@@ -12,7 +12,7 @@
 					$_SESSION["Selected_Group"] =0;
 				}
 				 echo "<option value=\"ALL\">ALL</option>";
-                 for($i = 1 ; $i< 20;$i++){
+                 for($i = 1 ; $i< 21;$i++){
 				 	if($i===intval($_SESSION["Selected_Group"])){
 				 		echo "<option value=\"$i\" selected=\"selected\">$i</option>";
 				 	}else{
