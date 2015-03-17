@@ -42,39 +42,33 @@ include ("navbar.php");
 					<div id="detail-2">
 						<hr></hr>
 						<div class="container">
-							<div class="fluid-row">'.
+							<div class="fluid-row">';
 							
 							//anything below THIS POINT is in view report content
-							'lol'
+
 								
-// 								$sql = "SELECT Report, title,abstract,introduction,main,discussion,summary
-// 										FROM peersystem.reportbody
-// 										WHERE Report=1;
-// 		";
+								$sql = "SELECT content
+										FROM freetextreprots
+										WHERE id=1";
+		
 
-// $result = $conn -> query($sql);
+ $result = $conn -> query($sql);
 
-// if($result ->num_rows >0){
+ if($result ->num_rows >0){
+ 	while($row = $result ->fetch_assoc()){
 
-// 	//Goes through each row in table
-// 	while($row = $result ->fetch_assoc()){
-// 		//$reportBody = $row["ReportBody"];
-// 		$title = $row["title"];
-// 		$abstract = $row["abstract"];
-// 		$intro = $row["introduction"];
-// 		$main = $row["main"];
-// 		$discussion = $row["discussion"];
+ 		$report = $row["content"];
 // 		$summary = $row["summary"];
 
-// 		echo "<b>Title:</b> $title"."<br>";
+ 		echo "<b>Title:</b> $report"."<br>";
 // 		echo "<b>Intro:</b> $intro"."<br>";
 // 		echo "<b>Main:</b> $main"."<br>";
 // 		echo "<b>Discussion:</b> $discussion"."<br>";
 // 		echo "<b>Summary:</b> $summary"."<br><br>";
 
-// 	};
+ 	};
 
-// 	}
+ 	}
 // 	echo '<button  href="#gradeReport1" data-toggle="modal" data-target="#gradeReport1"
 // 	class="btn btn-success">Grade</button>
 // 			';
@@ -83,7 +77,7 @@ include ("navbar.php");
 			
                             		
 							//anything above THIS POINT is in view report content
-                            		.'</div>
+                            		echo '</div>
 						</div>
 					</div>
 				</li>';
