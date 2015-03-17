@@ -9,7 +9,9 @@ class ForumTable
     // An array of threadIDs is passed to the constructor which generates a table containing these threads.
             $_threadIDs,
     // A link to the DB.
-            $_db;
+            $_db,
+    // Array containing basic info about the thread being displayed
+            $_threadData;
 
     public function __construct($db, $tableType, $userInfo, $threadIDs)
     {
@@ -17,6 +19,9 @@ class ForumTable
         $this->_userInfo    = $userInfo;
         $this->_threadIDs   = $threadIDs;
         $this->_db          = $db;
+        if($this->_tableType === "posts")      { $this->populateThreadDataInstanceVariable(); }
+
+
     }
 
     public function __toString()
@@ -50,7 +55,6 @@ class ForumTable
     // This generates the rows for the table if the user is requesting to view their entire group's forum.
     private function threadListingTableQuery()
     {
-        $userName       = $this->_userInfo["userName"];
         $groupNumber    = $this->_userInfo["peergroup"];
 
         $getGroupThreadsSQL = "SELECT *
@@ -109,7 +113,27 @@ class ForumTable
 
     private function generateTable()
     {
-       $table =
+        // In this case there is no thread with the threadID passed to the URL.
+        if( ($this->_tableType === "posts") && ($this->_threadData === null) )
+        {
+            return
+                '<!-- The Forum -->
+            <div class="container" style="">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                <table>
+                <tr>
+                    <th style="font-size: 20px;" colspan="2">
+                        <div  style="width=100%;" align="center">
+                        No thread exists for the threadID: '. $this->_threadIDs["sanitisedThreadID"] .
+                    '</div>
+                    </th>
+                </tr>
+                </table>
+                </div>';
+        }
+
+        $table =
             '<!-- The Forum -->
             <div class="container" style="">
             <div class="panel panel-primary">
@@ -130,15 +154,18 @@ class ForumTable
             <table class="table table-striped table-hover">
                 <thead>
                 <tr>
-                    <th style="text-align: center; font-size: 20px; width: 80%" >
-                        Forum Threads</th>
-                    <th style="text-align: center; font-size: 20px; width: 20%">'
+                    <th style="text-align: center; font-size: 20px; width: 80%" >';
 
+                        if($this->_tableType === "threads")      { $table .= "Forum Threads"; }
+                        else if($this->_tableType === "posts")   { $table .= $this->_threadData["threadTitle"];   }
 
-            .$this->createNewThreadButton().'
+        $table .= '</th>
+                    <th style="text-align: center; font-size: 20px; width: 20%">';
 
+                        if($this->_tableType === "threads")      { $table .= $this->createNewThreadButton(); }
+                        else if($this->_tableType === "posts")   { $table .= $this->createNewPostButton();   }
 
-                    </th>
+        $table .= ' </th>
                 </tr>
                 </thead>
                 <tbody>';
@@ -155,7 +182,46 @@ class ForumTable
     }
 
 
+    public function createNewPostButton()
+    {
+        $threadID = $this->_threadIDs["sanitisedThreadID"];
 
+        return
+        ' <!-- Pop up box when creating a new post within a thread -->
+        <a href="#createNewPostInThread" data-toggle="modal" data-target="#createNewPostInThread" class="btn btn-primary btn-bg pull-center">
+                Create A New Post
+            </a>
+
+            <form action="pageSnippets/forum/forumActions/createNewPost.php" method="POST" role="form">
+
+                <div class="modal fade" id="createNewPostInThread" tabindex="-1" role="dialog" aria-labelledby="createNewPostInThread" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title" id="myModalLabel">Create A New Post </h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="panel-body">
+                                    <div>
+                                        <h4>
+                                            <b>Post:</b>
+                                        </h4>
+                                                <textarea name="content" id="content" max="10000" rows="5" cols="50"
+                                                          placeholder="Write your post here" style="height: 350px; width: 100%;"></textarea>
+                                                <input type="hidden" name="threadID" value="'.$threadID.'>"
+                                        <br>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-success">Submit</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>';
+    }
 
 
     private function createNewThreadButton()
@@ -206,7 +272,46 @@ class ForumTable
         </form>';
     }
 
+    private function populateThreadDataInstanceVariable()
+    {
+        $groupNumber    = $this->_userInfo["peergroup"];
+        $threadID       = $this->_threadIDs["sanitisedThreadID"];
 
+        $getSingleThreadData = "SELECT *
+                                FROM forumthreads
+                                WHERE `peergroup` =?
+                                AND `threadID` =?";
+        $preparedStatement  = $this->_db->stmt_init();
+        $preparedStatement  = $this->_db->prepare($getSingleThreadData);
+        $preparedStatement->bind_param('ii', $groupNumber, $threadID); // i because $groupNumber should be an integer.
+        $preparedStatement->execute();
+
+        $result = $preparedStatement -> get_result();
+
+        $tableRows = ""; //Will be building this up.
+
+        //In $result === false or num rows = 0 then no results were found
+        if ( ($result === FALSE) || ($result->num_rows === 0) )
+        {
+            $this->_threadData = null;
+
+        } else
+        {
+            while ($row = $result->fetch_assoc())
+            {
+                // Columns in forumthreads table: (threadID, peergroup, threadTitle, threadAuthor, dateTimeCreated)
+                // Encoding data received from the database using htmlentities. This will turn any character with a corresponding
+                // html representation e.g. '<' will be changed to '&lt;' to prevent potential inclusion on <script> tags>
+                $this->_threadData = array
+                (
+                    "threadID"          => htmlentities($row["threadID"]),
+                    "threadTitle"       => htmlentities($row["threadTitle"]),
+                    "threadDate"        => htmlentities($row["dateTimeCreated"]),
+                    "threadAuthor"      => htmlentities($row["threadAuthor"])
+                );
+            }
+        }
+    }
 
 }
 
