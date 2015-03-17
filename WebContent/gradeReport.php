@@ -15,9 +15,12 @@ include ("navbar.php");
                         
                         <?php 
                         require_once ('PHP/DBConnection.php');
-                        $marked= $_SESSION['peergroup'];
+                        $marker= $_SESSION['peergroup'];
                         
-                        $sql = "SELECT groupAssessed FROM assesments WHERE assignedMarker ='$marked';";
+                        $sql = "SELECT a.*, ftr.*
+								FROM (assesments AS a INNER JOIN freetextreports AS ftr 
+								ON a.groupAssessed = ftr.id)
+								WHERE a.assignedMarker=$marker;";
                         
                        
                             
@@ -29,15 +32,22 @@ include ("navbar.php");
                             	while($row = $result ->fetch_assoc()){
                             		
                             		$tomark = $row['groupAssessed'];
+                            		echo '<li class="list-group-item">'; 
+                            		echo '<div class="row toggle" id="dropdown-detail-2" data-toggle="detail-2">';
+                            		echo '<div class="col-xs-10">'.'Group '.$tomark.'</div>';
+                            		echo '</div>';
                             		
-                            		echo '<li class="list-group-item">
-					<div class="row toggle" id="dropdown-detail-2"
-						data-toggle="detail-2">
-						<div class="col-xs-10">'.'Group '.$tomark.'</div>
-						<div class="col-xs-2">
-							<i class="fa fa-chevron-down pull-right"></i>
-						</div>
-					</div>
+                            		echo '</li>';
+                            		
+                            		
+                            		
+                            		
+                            		
+                            		echo '
+					
+						
+					
+					
 					<div id="detail-2">
 						<hr></hr>
 						<div class="container">
