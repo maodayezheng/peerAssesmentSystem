@@ -109,12 +109,10 @@
                     <p>
                      <script>
 						function jumpToViewRanking(){
-							
 							window.location.href = "viewGroupRanking.php";
-
 							}
                         </script>
-                        <a class="btn btn-primary" onclick="jumpToAssign()">
+                        <a class="btn btn-primary" onclick="jumpToViewRanking()">
                             View the group ranking 
                         </a>
                     </p>
@@ -126,6 +124,5 @@
     <?php
     include ("footer.php");
     ?>
-
 </div>
 </html>

@@ -10,62 +10,48 @@ include ("navbar.php");
 				<h3 class="panel-title">Select a group below to view their report</h3>
 			</div>
 			<ul class="list-group">
-
-				
-                        
+			
+			
+			
+			<div class="col-xs-2">
+			<i class="fa fa-chevron-down pull-right"></i>
+			</div>
+			</div>
+            </li>           
                         <?php 
                         require_once ('PHP/DBConnection.php');
-                        $marked= $_SESSION['peergroup'];
-                        
-                        $sql = "SELECT groupAssessed FROM assesments WHERE assignedMarker ='$marked';";
-                        
-                       
-                            
-                            $result = $conn -> query($sql);
+                        $marker= $_SESSION['peergroup'];
+                        $sql = "SELECT groupAssessed FROM assesments WHERE assignedMarker ='$marker';";
+                        $result = $conn -> query($sql);
                             
                             if($result ->num_rows >0){
                             
                             	//Goes through each row in table
                             	while($row = $result ->fetch_assoc()){
+                            		echo "<li class=\"list-group-item\">";
+                            		echo "<div class=\"row toggle\" id=\"dropdown-detail-2\" data-toggle=\"detail-2\">";
+                            		$report = $row['groupAssessed'];
+									echo "<div class=\"col-xs-10\">'.'Group '.$report.'</div>";
+									echo "</div>";
+                            		$sql = "SELECT content FROM freetextreprots WHERE id=$report";
                             		
-                            		$tomark = $row['groupAssessed'];
+                            		$result = $conn -> query($sql);
                             		
-                            		echo '<li class="list-group-item">
-					<div class="row toggle" id="dropdown-detail-2"
-						data-toggle="detail-2">
-						<div class="col-xs-10">'.'Group '.$tomark.'</div>
-						<div class="col-xs-2">
-							<i class="fa fa-chevron-down pull-right"></i>
-						</div>
-					</div>
-					<div id="detail-2">
-						<hr></hr>
-						<div class="container">
-							<div class="fluid-row">';
-							
-							//anything below THIS POINT is in view report content
-
-								
-								$sql = "SELECT content
-										FROM freetextreprots
-										WHERE id=1";
-		
-
- $result = $conn -> query($sql);
-
- if($result ->num_rows >0){
- 	while($row = $result ->fetch_assoc()){
-
- 		$report = $row["content"];
- 		echo "<b>Report: <br><br></b> <pre>$report</pre>"."<br>";
-
- 	};
-
- 	}
-																											
+                            		if($result ->num_rows >0){
+                            		while($row = $result ->fetch_assoc()){
+                            			$report = $row["content"];
+                            		echo "<b>Report: <br><br></b> <pre>$report</pre>"."<br>";
+                            			}
+                            		}
+                            	
+                            	echo "</li>";
+                            	}
+                            }																	
 																											// form for grading + comments
-	echo '<br><br>
-	 <div class="row">
+	echo '<br><br>';?>
+	
+	<?php 
+	echo ' <div class="row">
   <form class="form-horizontal">
     <div class="span6">
       <fieldset>
@@ -123,9 +109,9 @@ include ("navbar.php");
 				</li>';
                             		
                             
-                            	};
+                            	
                             
-                            	}
+                            	
                             	
 
 			?>
