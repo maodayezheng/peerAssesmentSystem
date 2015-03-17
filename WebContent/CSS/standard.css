@@ -1,6 +1,6 @@
 @CHARSET "UTF-8";
 body {
-  background-image: url("http://desktopbackgrounds1.com/wp-content/uploads/2012/12/hot-air-balloon-Wallpaper-4.jpg");
+  background-image: url("http://www.hdwallpapers.in/walls/snow_white_mountains-wide.jpg");
 
 background-repeat: no-repeat;
 background-attachment:fixed;
@@ -22,8 +22,9 @@ background-attachment:fixed;
 .thumbnail{
 	opacity: 0.90;
 }
-.navbar-default{
-	background-color:transparent;
+.navbar-default {
+    background-color: red;
+    border-color: #E7E7E7;
 }
 li {
   color: black; 
@@ -34,4 +35,11 @@ li {
 }
 pre {
     max-width: 90%; 
+}
+.navbar-default .navbar-nav > li > a {
+    color: black;
+}
+/* link */
+.navbar-custom .navbar-nav > li > a {
+    color: white;
 }
