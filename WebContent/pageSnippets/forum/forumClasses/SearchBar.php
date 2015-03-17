@@ -16,13 +16,13 @@ class SearchBar
         <div class="panel panel-default" id="searchBlock" style="margin-bottom: 0px; padding-bottom: 0px;">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <form action="" method="post">
+                    <form action="forumSearch.php" method="post">
                         <div class="input-group">
                                     <input type="text" class="form-control" placeholder="Search" name="searchQuery">
                                     <div class="input-group-btn">
                                         <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
                                     </div>
-                                    <select name="searchFilter" class="form-control">
+                                    <select name="filter" class="form-control">
                                         <option value="WholeForum">Whole Forum</option>
                                         <option value="ThreadTitlesOnly">Thread Titles Only</option>
                                         <option value="PostsOnly">Posts Only</option>
