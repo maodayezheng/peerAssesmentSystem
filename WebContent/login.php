@@ -21,7 +21,7 @@
 					class="alert alert-danger col-sm-12"></div>
 
 				<form id="loginform" class="form-horizontal" role="form"
-					action='PHP/loginVerify.php' method="POST">
+					action='PHP/verifyLogin.php' method="POST">
 
 					<div style="margin-bottom: 25px" class="input-group">
 						<span class="input-group-addon"><i
