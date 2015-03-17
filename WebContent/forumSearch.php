@@ -6,16 +6,17 @@
     include ("header.php");
     include ("navbar.php");
 
-
-
-if (isset($_POST["searchQuery"]) && (isset($_POST["searchQuery"]) != ""))
+if (isset($_POST["searchQuery"]) && ($_POST["searchQuery"] != ""))
 {
     $userName       = $_SESSION["userName"];
+
+    // The user should only be able to conduct searches in threads which match his/her peergroup, and so
+    // WHERE peergroup = $groupNumber is a condition for all of the queries.
     $groupNumber    = $_SESSION["peergroup"];
 
-    // Perform a regular expression search and replace of the parameter passed in by the user. for any characters in the first argument
-    // This is to allow only certain characters sent to the database. In this case anything which is not a letter, not a number,
-    // not a ' ' space, not a '?', and not a '!' will be replaced with the empty string ''.
+    // Perform a regular expression search and replace of the parameter passed in by the user.
+    // This is to allow only certain characters to be sent to the database. In this case anything which is not a letter, not a number,
+    // not a ' ', not a '?', and not a '!' will be replaced with the empty string ''.
     // e.g. '; INSERT INTO ... (...) VALUES (...)' will not allow the ';', '(', and ')' characters.
     $searchQuery = preg_replace('#[^a-z 0-9?!]#i', '', $_POST["searchQuery"]);
 
@@ -34,11 +35,10 @@ if (isset($_POST["searchQuery"]) && (isset($_POST["searchQuery"]) != ""))
     } else if($_POST['filter'] === "PostsOnly")
     {
         // If multiple posts in the same thread match the search string, there should still only be one entry in the query result.
-        // To do this we do an INNER JOIN (intersection) on the threadID field and GROUP BY the threadID also.
+        // To do this we do an INNER JOIN on the threadID field and GROUP BY the threadID also.
         // And since the user is only allowed to view content made by his/her group, filter the peer group also.
         $sqlCommand = "SELECT ft.threadID, fp.content
-                       FROM forumthreads AS ft INNER JOIN forumposts AS fp
-                       ON ft.threadID = fp.threadID
+                       FROM forumthreads AS ft INNER JOIN forumposts AS fp ON ft.threadID = fp.threadID
                        WHERE fp.content LIKE CONCAT('%', ?, '%')
                        AND ft.peergroup = ?
                        GROUP BY fp.threadID";
@@ -48,8 +48,8 @@ if (isset($_POST["searchQuery"]) && (isset($_POST["searchQuery"]) != ""))
 
     } else if($_POST['filter'] === "GroupMembersOnly")
     {
-        // If the user checks the 'Threads including group member' option, then the DBMS should search the
-        // first name, last name and username of user being searched for. The search should only display users
+        // If the user checks the 'Threads including group member' option, then the DBMS should search the all of the relevant
+        // posts for an author with a matching first name, last name or username. The search should only display users
         // if they are in the same group and given that a user can have multiple posts in a thread and we only require
         // a single threadID - GROUP BY the threadID.
         $sqlCommand = "SELECT fp.*, a.userName, a.fName, a.lName, a.peergroup
@@ -123,6 +123,6 @@ if (isset($_POST["searchQuery"]) && (isset($_POST["searchQuery"]) != ""))
 
 } else
 {
-    echo "search term is not set";
+    echo "You did not set a search term.";
 }
 ?>
