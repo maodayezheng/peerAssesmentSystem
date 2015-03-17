@@ -108,8 +108,78 @@ class ForumTable
     // In this case each row of the table will be a post in the thread.
     private function generateSingleThread()
     {
+        $table =
+            '
+        <style type="text/css">
+        .tg  {border-collapse:collapse;border-spacing:0;border-color:#999;}
+        .tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#999;color:#444;background-color:#F7FDFA;}
+        .tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#999;color:#333;background-color:#26ADE4;}
+        .tg .tg-shvy{font-weight:bold;background-color: #f5f5f5; font-size: 16px; text-align: center; }
+        </style>
+        <table class="tg" style="width: 100%;">
+          ';
 
+        $table .= $this->singleThreadQuery();
+        $table .= '</table>';
+
+        return $table;
     }
+
+    private function singleThreadQuery()
+    {
+        $getAllPostsInThreadSQL = "SELECT *
+                                   FROM forumposts
+                                   WHERE threadID=?
+                                   ORDER BY `date` ASC";
+        $preparedStatement  = $this->_db->stmt_init();
+        $preparedStatement  = $this->_db->prepare($getAllPostsInThreadSQL);
+        $preparedStatement->bind_param('i', $this->_threadIDs["sanitisedThreadID"]); // i because threadID should be an integer.
+        $preparedStatement->execute();
+
+        $result = $preparedStatement -> get_result();
+
+        $tableRows = ""; //Will be building this up.
+
+        //In $result === false or num rows = 0 then no results were found
+        if ( ($result === FALSE) || ($result->num_rows === 0) )
+        {
+            $tableRows .= '<tr>
+                        <td colspan="3" style="text-align: left; font-size: 20px;">
+                             There are currently no posts in this thread.  <br />
+                             Click "Create a new post" to start posting!
+                        </td>
+                      </tr>';
+        } else
+        {
+            while ($row = $result->fetch_assoc())
+            {
+                // Columns in forumposts table: (postID, threadID, author, date, content)
+                // Encoding data received from the database using htmlentities. This will turn any character with a corresponding
+                // html representation e.g. '<' will be changed to '&lt;' to prevent potential inclusion of <script> tags>
+                $threadPost = array
+                (
+                    "postAuthor"    => htmlentities($row["author"]),
+                    "postDate"      => htmlentities($row["date"]),
+                    "postContent"   => htmlentities($row["content"])
+
+                );
+
+                $tableRows .="<tr>
+                                <th class=\"tg-shvy\">Post Author:</th>
+                                <th class=\"tg-shvy\">Post Date:</th>
+                                <th class=\"tg-shvy\">Post Content:</th>
+                              </tr>
+                             <tr>
+                                <td class=\"tg-031e\" style=\"text-align: center;\"> <a href=\"profilePage.php?userName={$threadPost["postAuthor"]}\"> {$threadPost["postAuthor"]} </a>  </td>
+                                <td class=\"tg-031e\" style=\"text-align: center;\"> {$threadPost["postDate"]} </td>
+                                <td class=\"tg-031e\"> {$threadPost["postContent"]} </td>
+                              </tr>";
+            }
+        }
+        return $tableRows;
+    }
+
+
 
     private function generateTable()
     {
@@ -138,16 +208,16 @@ class ForumTable
             <div class="container" style="">
             <div class="panel panel-primary">
                 <div class="panel-heading">
-                <table>
-                <tr>
-                    <th style="font-size: 20px;" colspan="2">
-                        <div  style="width=100%;" align="center"">' .
-                        'Welcome ' . htmlspecialchars($this->_userInfo["userName"]) . ' to Group ' .
-                        htmlspecialchars($this->_userInfo["peergroup"]) . '\'s Discussion Forum' .
-                        '</div>
-                    </th>
-                </tr>
-                </table>
+                    <table>
+                    <tr>
+                        <th style="font-size: 20px;" colspan="2">
+                            <div  style="width=100%;" align="center"">' .
+                            'Welcome ' . htmlspecialchars($this->_userInfo["userName"]) . ' to Group ' .
+                            htmlspecialchars($this->_userInfo["peergroup"]) . '\'s Discussion Forum' .
+                            '</div>
+                        </th>
+                    </tr>
+                    </table>
                 </div>
 
             <!-- Table containing each thread visible to the user. -->
@@ -157,7 +227,7 @@ class ForumTable
                     <th style="text-align: center; font-size: 20px; width: 80%" >';
 
                         if($this->_tableType === "threads")      { $table .= "Forum Threads"; }
-                        else if($this->_tableType === "posts")   { $table .= $this->_threadData["threadTitle"];   }
+                        else if($this->_tableType === "posts")   { $table .= "Thread Title: ".$this->_threadData["threadTitle"];   }
 
         $table .= '</th>
                     <th style="text-align: center; font-size: 20px; width: 20%">';
