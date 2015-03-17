@@ -1,6 +1,6 @@
 	<?php
 	/*session_start ();
-	if (! $_SESSION ['auth']) {
+	if (! $_SESSION ['']) {
 		header ( 'location:login.php' );
 	}*/
 	?>
@@ -94,7 +94,7 @@
 
 							}
                         </script>
-                        <a class="btn btn-primary" onclick="jumpToSeacrh()">
+                        <a class="btn btn-primary" onclick="jumpToSearch()">
                             search for a student
                         </a>
                     </p>
