@@ -5,6 +5,7 @@
     require_once("PHP/DBConnection.php");
     include ("header.php");
     include ("navbar.php");
+    spl_autoload_register(function($class) { require_once 'pageSnippets/forum/forumClasses/'.$class.'.php'; });     // Class auto-loader
 
 if (isset($_POST["searchQuery"]) && ($_POST["searchQuery"] != ""))
 {
@@ -37,7 +38,7 @@ if (isset($_POST["searchQuery"]) && ($_POST["searchQuery"] != ""))
         // If multiple posts in the same thread match the search string, there should still only be one entry in the query result.
         // To do this we do an INNER JOIN on the threadID field and GROUP BY the threadID also.
         // And since the user is only allowed to view content made by his/her group, filter the peer group also.
-        $sqlCommand = "SELECT ft.threadID, fp.content
+        $sqlCommand = "SELECT ft.threadID
                        FROM forumthreads AS ft INNER JOIN forumposts AS fp ON ft.threadID = fp.threadID
                        WHERE fp.content LIKE CONCAT('%', ?, '%')
                        AND ft.peergroup = ?
@@ -52,7 +53,7 @@ if (isset($_POST["searchQuery"]) && ($_POST["searchQuery"] != ""))
         // posts for an author with a matching first name, last name or username. The search should only display users
         // if they are in the same group and given that a user can have multiple posts in a thread and we only require
         // a single threadID - GROUP BY the threadID.
-        $sqlCommand = "SELECT fp.*, a.userName, a.fName, a.lName, a.peergroup
+        $sqlCommand = "SELECT fp.threadID
                            FROM forumposts AS fp INNER JOIN account AS a ON fp.author=a.userName
                            WHERE a.peergroup = ?
                            AND
@@ -68,32 +69,43 @@ if (isset($_POST["searchQuery"]) && ($_POST["searchQuery"] != ""))
     }
     else if($_POST['filter'] === "WholeForum")
     {
-        // In this case the person may be searching for a match in the thread Title, the thread posts, or for the post's author.
-        // To facilitate this search we combine the three queries above using a UNION.
-        "SELECT threadID
-                        FROM forumthreads
-                        WHERE threadTitle LIKE CONCAT('%', ?, '%')
-                        AND peergroup = ?";
+        // In this case the person may be searching for a match in the thread Title, the thread posts, or for the threads including a
+        // specific group member. To facilitate this search we combine the three queries above defined using a UNION. Since we only need
+        // a single reference to the threadIDs return by each sub query we group by the threadID in the derivedTable.
 
+        $sqlCommand = "SELECT derivedTable.threadID
+                       FROM
+                        (	(SELECT threadID
+                            FROM forumthreads
+                            WHERE threadTitle LIKE CONCAT('%', ?, '%')
+                            AND peergroup = ?)
 
-        "SELECT ft.threadID, fp.content
-                       FROM forumthreads AS ft INNER JOIN forumposts AS fp
-                       ON ft.threadID = fp.threadID
-                       WHERE fp.content LIKE CONCAT('%', ?, '%')
-                       AND ft.peergroup = ?
-                       GROUP BY fp.threadID";
+                            UNION
 
-        "SELECT fp.*, a.userName, a.fName, a.lName, a.peergroup
-                           FROM forumposts AS fp INNER JOIN account AS a ON fp.author=a.userName
-                           WHERE a.peergroup = ?
-                           AND
-                           (
-                               fp.author LIKE CONCAT('%', ?, '%')
-                              OR a.fName LIKE CONCAT('%', ?, '%')
-                              OR a.lName LIKE CONCAT('%', ?, '%')
-                           )
-                           GROUP BY fp.threadID;";
+                            (SELECT ft.threadID AS threadID
+                            FROM forumthreads AS ft INNER JOIN forumposts AS fp
+                            ON ft.threadID = fp.threadID
+                            WHERE fp.content LIKE CONCAT('%', ?, '%')
+                            AND ft.peergroup = ?)
 
+                            UNION
+
+                            (SELECT fp.threadID as threadID
+                            FROM forumposts AS fp INNER JOIN account AS a ON fp.author=a.userName
+                            WHERE a.peergroup = ?
+                            AND
+                            (
+                                fp.author LIKE CONCAT('%',  ?, '%')
+                            OR a.fName LIKE CONCAT('%', ?, '%')
+                            OR a.lName LIKE CONCAT('%', ?, '%')
+                                )
+                            )
+                        ) derivedTable
+                       GROUP BY derivedTable.threadID;";
+
+        $preparedStatement      = $conn->prepare($sqlCommand);
+        $preparedStatement->bind_param('sisiisss', $searchQuery, $groupNumber, $searchQuery, $groupNumber,
+                                                   $groupNumber, $searchQuery, $searchQuery, $searchQuery);
     }
 
 
@@ -103,26 +115,60 @@ if (isset($_POST["searchQuery"]) && ($_POST["searchQuery"] != ""))
     $preparedStatement->execute();
 
     $result = $preparedStatement -> get_result();
+
+    $threadIDs = array();
     if ($result === FALSE || ($result->num_rows === 0))
     {
         // Logic to generate the forum containing a message saying no search results.
         echo ' No Search Results';
+        echo "You searched for: $searchQuery with filter: {$_POST['filter']} <br />";
+        echo "The number of rows is: ".var_dump($result->num_rows)."<br />";
     } else
     {
+        echo "You searched for: $searchQuery with filter: {$_POST['filter']} <br />";
+        echo "The number of rows is: ".var_dump($result->num_rows)."<br />";
         // Logic to generate the forum containing the search results.
         while ($row = $result->fetch_assoc())
         {
-            if(isset($row['threadID'])) // In this case the user searched for 'Threads including a group member only'.
-            {
-                var_dump($row);
-            }
-
+            // Push all of the threadIDs which were returned as a search result to the array.
+            if(isset($row['threadID'])) { array_push($threadIDs, $row['threadID']); }
         }
     }
 
+    // Start building the rest of the page.
+
+    echo new SearchBar();
+
+    $filterAsString = "";
+    switch($_POST["filter"])
+    {
+        case "WholeForum":          $filterAsString = "Whole Forum";                    break;
+        case "ThreadTitlesOnly":    $filterAsString = "Thread Titles Only";             break;
+        case "PostsOnly":           $filterAsString = "Posts Only";                     break;
+        case "GroupMembersOnly":    $filterAsString = "Threads Including Group Member"; break;
+        default: $filterAsString = $_POST["filter"];                                    break;
+    }
+    $userInfo = array(
+        "userName"      => $_SESSION["userName"],
+        "peergroup"     => $_SESSION["peergroup"],
+        "searchQuery"   => $searchQuery,
+        "filter"        => $filterAsString
+    );
+
+    echo new ForumTable(getDB(), 'searchResults', $userInfo, $threadIDs);
 
 } else
 {
     echo "You did not set a search term.";
 }
 ?>
+
+
+
+
+<?php
+
+include("footer.php");
+
+?>
+

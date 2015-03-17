@@ -57,12 +57,12 @@
 
             if($preparedStatement3->execute() === true)
             {
-                header('location: ../../forumPage.php');
+                header('location: ../../../forum.php');
             }
             else
             {
                 echo "<script> alert('Inserting your thread\'s content into the database failed'); </script>";
-                header('location: ../../forumPage.php');
+                header('location: ../../../forum.php');
             }
 
         }

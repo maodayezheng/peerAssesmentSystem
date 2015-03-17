@@ -211,9 +211,21 @@ class ForumTable
                     <table>
                     <tr>
                         <th style="font-size: 20px;" colspan="2">
-                            <div  style="width=100%;" align="center"">' .
-                            'Welcome ' . htmlspecialchars($this->_userInfo["userName"]) . ' to Group ' .
-                            htmlspecialchars($this->_userInfo["peergroup"]) . '\'s Discussion Forum' .
+                            <div  style="width=100%;" >';
+
+                if($this->_tableType === "searchResults")
+                {
+                    $table .= "Showing search results for query <span style=\"font-style: italic;\">
+                                '".$this->_userInfo["searchQuery"]."'</span>
+                                with filter: <span style=\"font-style: italic;\">".$this->_userInfo["filter"].'</span>';
+                }
+                else
+                {
+                    $table .= 'Welcome ' . htmlspecialchars($this->_userInfo["userName"]) . ' to Group ' .
+                        htmlspecialchars($this->_userInfo["peergroup"]) . '\'s Discussion Forum';
+                }
+
+        $table .=
                             '</div>
                         </th>
                     </tr>
