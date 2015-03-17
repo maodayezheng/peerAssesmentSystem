@@ -77,7 +77,52 @@
             </div>
         </div>
 	</div>
+	
 	<!-- /.row -->
+	
+	<div class="row text-center">
+
+		<div class="col-md-6 col-sm-6 hero-feature">
+			<div class="thumbnail">
+
+				<div class="caption">
+                    <p>
+                       <script>
+						function jumpToSearch(){
+
+							window.location.href = "searchForStudent.php";
+
+							}
+                        </script>
+                        <a class="btn btn-primary" onclick="jumpToSeacrh()">
+                            search for a student
+                        </a>
+                    </p>
+					<p>Allocate students to different groups</p>
+				</div>
+			</div>
+		</div>
+
+        <div class="col-md-6 col-sm-6 hero-feature">
+            <div class="thumbnail">
+                <div class="caption">
+                    <p>
+                     <script>
+						function jumpToViewRanking(){
+							
+							window.location.href = "viewGroupRanking.php";
+
+							}
+                        </script>
+                        <a class="btn btn-primary" onclick="jumpToAssign()">
+                            View the group ranking 
+                        </a>
+                    </p>
+                    <p> Assign group to mark each anothers work </p>
+                </div>
+            </div>
+        </div>
+	</div>
     <?php
     include ("footer.php");
     ?>

@@ -13,6 +13,7 @@ if (mysqli_num_rows ( $result ) == 1){
 	$data = $result -> fetch_assoc();
 	session_start();
 	
+	$_SESSION = array();
 	if(!isset($_SESSION["userName"])){
 		$_SESSION ["userName"] = $data["userName"];
 		setcookie("userName",$data["userName"],time()+(60*60*24));
@@ -20,15 +21,12 @@ if (mysqli_num_rows ( $result ) == 1){
 	if($data["accountType"] ==="student"){
 	$_SESSION ["peergroup"] = $data["peergroup"];
 	setcookie("peergroup",$data["peergroup"],time()+(60*60*24));
-	}
+	header ( 'location: ../index.php' );
 	
 	}else{
 		
-		if($data["accountType"]==="student"){
-	 header ( 'location: ../index.php' );
-		}else{
-			header ('location:../adminHome.php');
-		}
+		header ('location:../adminHome.php');
+	}
 	}
 } else {
 	echo "incorrect username / password";

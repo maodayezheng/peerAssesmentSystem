@@ -30,7 +30,6 @@ include ("navbar.php");
                             		
                             		$tomark = $row['groupAssessed'];
                             		
-                            
                             		echo '<li class="list-group-item">
 					<div class="row toggle" id="dropdown-detail-2"
 						data-toggle="detail-2">
@@ -65,8 +64,8 @@ include ("navbar.php");
  	}
 																											
 																											// form for grading + comments
-																										echo '<br><br>
-									    <div class="row">
+	echo '<br><br>
+	 <div class="row">
   <form class="form-horizontal">
     <div class="span6">
       <fieldset>
@@ -110,7 +109,7 @@ include ("navbar.php");
       </div>
       </fieldset>
     </div>
-								<br><br><div class="col-md-4"></div>	<div class="col-md-6"><input align="right" type="submit" class="foo col-xs-3 input-xlarge btn-success" id="submitAssessment"></div>
+ <br><br><div class="col-md-4"></div>	<div class="col-md-6"><input align="right" type="submit" class="foo col-xs-3 input-xlarge btn-success" id="submitAssessment"></div>
   </form>
 </div>';
  	
