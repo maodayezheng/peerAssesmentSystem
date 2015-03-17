@@ -58,23 +58,65 @@ include ("navbar.php");
  	while($row = $result ->fetch_assoc()){
 
  		$report = $row["content"];
-// 		$summary = $row["summary"];
-
- 		echo "<b>Title:</b> $report"."<br>";
-// 		echo "<b>Intro:</b> $intro"."<br>";
-// 		echo "<b>Main:</b> $main"."<br>";
-// 		echo "<b>Discussion:</b> $discussion"."<br>";
-// 		echo "<b>Summary:</b> $summary"."<br><br>";
+ 		echo "<b>Report: <br><br></b> $report"."<br>";
 
  	};
 
  	}
-// 	echo '<button  href="#gradeReport1" data-toggle="modal" data-target="#gradeReport1"
-// 	class="btn btn-success">Grade</button>
-// 			';
-// 	require_once ('PHP/gradeReportPopup.php');
+ 	
+ 	
+ 	//form for grading + comments 
+ 	
+ 	echo '<br><br>
+									    <div class="row">
+  <form class="form-horizontal">
+    <div class="span6">
+      <fieldset>
+      <legend> Grade the report below</legend>
+      <div class="control-group">
+       
+        <div class="col-md-4">
+          <input type="number" class="input-xlarge" id="input01">
+          <p class="help-block">Supporting help text</p>
+        </div>
+									<div class="col-md-4">
+          <input type="number" class="input-xlarge" id="input01">
+          <p class="help-block">Supporting help text</p>
+        </div>
+									<div class="col-md-4">
+          <input type="number" class="input-xlarge" id="input01">
+          <p class="help-block">Supporting help text</p>
+        </div>
+									
+      </div>
+      </fieldset>
+    </div>
+    <div class="span6">
+        <fieldset>
+      <legend> Comment on the report below</legend>
+      <div class="control-group">
+       
+        <div class="col-md-4">
+          <input type="text" class="input-xlarge" id="input01">
+          <p class="help-block">Supporting help text</p>
+        </div>
+									<div class="col-md-4">
+          <input type="text" class="input-xlarge" id="input01">
+          <p class="help-block">Supporting help text</p>
+        </div>
+									<div class="col-md-4">
+          <input type="text" class="input-xlarge" id="input01">
+          <p class="help-block">Supporting help text</p>
+        </div>
+									
+      </div>
+      </fieldset>
+    </div>
+  </form>
+</div>';
+ 	
+ 	
 
-			
                             		
 							//anything above THIS POINT is in view report content
                             		echo '</div>
