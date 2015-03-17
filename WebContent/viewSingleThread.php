@@ -14,11 +14,11 @@
     // Kill the script if the data doesn't validate.
     if(!($sanitisedThreadID === $rawThreadID))
     {
-        echo new SearchBar();
+        echo new SearchBar("forum");
         die("Invalid threadID");
     }
 
-    echo new SearchBar();
+    echo new SearchBar("forum");
 
     $userInfo = array(
         "userName"  => $_SESSION["userName"],
