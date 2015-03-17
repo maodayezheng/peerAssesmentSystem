@@ -227,7 +227,10 @@ class ForumTable
                     <th style="text-align: center; font-size: 20px; width: 80%" >';
 
                         if($this->_tableType === "threads")      { $table .= "Forum Threads"; }
-                        else if($this->_tableType === "posts")   { $table .= "Thread Title: ".$this->_threadData["threadTitle"];   }
+                        else if($this->_tableType === "posts")
+                        {
+                            $table .= 'Thread Title: <span style="font-style: italic;">'.$this->_threadData["threadTitle"].'</span>';
+                        }
 
         $table .= '</th>
                     <th style="text-align: center; font-size: 20px; width: 20%">';
