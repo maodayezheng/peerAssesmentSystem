@@ -3,12 +3,8 @@
     require_once ('PHP/DBConnection.php');
     include("header.php");
     include("navbar.php");
-
-    // Class auto-loader
-    spl_autoload_register(function($class)
-    {
-        require_once 'pageSnippets/forum/forumClasses/'.$class.'.php';
-    });
+    spl_autoload_register(function($class) { require_once 'pageSnippets/forum/forumClasses/'.$class.'.php'; });     // Class auto-loader
+ 
 
     // The threadID is the only variable which should be passed througha GET request to this script.
     // This should be an integer, so to check we replace any non-numeric characters with the empty string.

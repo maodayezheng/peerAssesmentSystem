@@ -4,12 +4,7 @@
     require_once("PHP/DBConnection.php");
     include ("header.php");
     include ("navbar.php");
-
-    // Class auto-loader
-    spl_autoload_register(function($class)
-    {
-        require_once 'pageSnippets/forum/forumClasses/'.$class.'.php';
-    });
+    spl_autoload_register(function($class) { require_once 'pageSnippets/forum/forumClasses/'.$class.'.php'; });     // Class auto-loader
 
     echo new SearchBar();
 

@@ -22,7 +22,7 @@ class SearchBar
                                     <div class="input-group-btn">
                                         <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
                                     </div>
-                                    <select name="searchFilter" class="form-control">
+                                    <select name="filter" class="form-control">
                                         <option value="WholeForum">Whole Forum</option>
                                         <option value="ThreadTitlesOnly">Thread Titles Only</option>
                                         <option value="PostsOnly">Posts Only</option>
