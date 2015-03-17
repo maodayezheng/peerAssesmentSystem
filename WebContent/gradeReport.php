@@ -20,9 +20,9 @@ include ("navbar.php");
                         $sql = "SELECT a.*, ftr.*
 								FROM (assesments AS a INNER JOIN freetextreports AS ftr 
 								ON a.groupAssessed = ftr.id)
-								WHERE a.assignedMarker=$marker;";
+								WHERE a.assignedMarker=4;";
                         
-                       
+       
                             
                             $result = $conn -> query($sql);
                             
@@ -32,105 +32,73 @@ include ("navbar.php");
                             	while($row = $result ->fetch_assoc()){
                             		
                             		$tomark = $row['groupAssessed'];
-                            		echo '<li class="list-group-item">'; 
-                            		echo '<div class="row toggle" id="dropdown-detail-2" data-toggle="detail-2">';
+                            		$reportContent = $row['reportcontent'];
+                            		echo '<li class="list-group-item">';  // title
+                            		echo "<div class=\"row toggle\" id=\"dropdown-detail-$tomark\" data-toggle=\"detail-$tomark\">";
                             		echo '<div class="col-xs-10">'.'Group '.$tomark.'</div>';
+                            		echo '</div>'; // close title
+                            		
+                            		echo "<div id=\"detail-$tomark\">";
+                            		echo '<hr></hr>';
+                            		echo '<div class="container">';
+                            		echo '<div class="fluid-row">';
+                            		echo "<b>Report: <br><br></b><pre>$reportContent</pre>"."<br>";
+                            		echo '</div>';// close report content 
+                            		
+                            		echo "<br><br>";
+                            		
+                            		echo "<div class=\"row\">"; // assesment fields
+                            		echo '<form class="form-horizontal" method="POST" action="PHP/submitAssesment.php">';
+                            		
+                            		echo '<div class="span6">'; // grade field
+                            		echo '<fieldset>';
+                            		echo '<legend> Grade the report below</legend>';
+                            		echo '<div class="control-group">';
+                            		echo '<div class="col-md-4">'; // content 
+                            		echo '<input type="number" class="input-xlarge" name="content-grade" placeholder= " %">';
+                            		echo '<p class="help-block">Content</p>';
                             		echo '</div>';
+                            		echo '<div class="col-md-4">'; // style
+                            		echo '<input type="number" class="input-xlarge" name="style-grade" placeholder= " %">';
+                            		echo '<p class="help-block">Style </p>';
+                            		echo '</div>';
+                            		echo '<div class="col-md-4">'; // source
+                            		echo '<input type="number" class="input-xlarge" name="source-grade" placeholder= " %">';
+                            		echo '<p class="help-block">Sources</p>';
+                            		echo '</div>';
+                            		echo '</div>';	
+                            		echo '</fieldset>';
+                            		echo '</div>';  // close grade field
                             		
+                            		echo  '<div class="span6">';
+        							echo  '<fieldset>';
+      								echo  '<legend> Comment on the report below</legend>';
+      								echo  '<div class="control-group">';
+       
+        							echo  '<div class="col-md-4">';
+          							echo  '<input type="text" class="input-xlarge" name="content-comment">';
+          							echo  '<p class="help-block">Content</p>';
+            						echo  '</div>';
+									echo  '<div class="col-md-4">';
+          							echo  '<input type="text" class="input-xlarge" name="style-comment">';
+            						echo  '<p class="help-block">Style</p>';
+        							echo  '</div>';
+									echo  '<div class="col-md-4">';
+               						echo  '<input type="text" class="input-xlarge" name="sources-comment">';
+          							echo  '<p class="help-block">Sources</p>';
+        							echo  '</div>';
+									
+      								echo  '</div>';
+      								echo  '</fieldset>';
+    								echo  '</div>';
+    								echo '<div class="col-md-offset-4 col-md-6">
+        								  <input align="right" type="submit" class="foo col-xs-3 input-xlarge btn-success" id="submitAssessment">
+        									</div>';
+                            		echo '</form>';
+                            		
+                            		echo '</div>';// close container 
+                            		echo '</div>';// close collapse
                             		echo '</li>';
-                            		
-                            		
-                            		
-                            		
-                            		
-                            		echo '
-					
-						
-					
-					
-					<div id="detail-2">
-						<hr></hr>
-						<div class="container">
-							<div class="fluid-row">';
-							
-							//anything below THIS POINT is in view report content
-
-								
-								$sql = "SELECT content
-										FROM freetextreprots
-										WHERE id=1";
-		
-
- $result = $conn -> query($sql);
-
- if($result ->num_rows >0){
- 	while($row = $result ->fetch_assoc()){
-
- 		$report = $row["content"];
- 		echo "<b>Report: <br><br></b> <pre>$report</pre>"."<br>";
-
- 	};
-
- 	}
-																											
-																											// form for grading + comments
-	echo '<br><br>
-	 <div class="row">
-  <form class="form-horizontal">
-    <div class="span6">
-      <fieldset>
-      <legend> Grade the report below</legend>
-      <div class="control-group">
-       
-        <div class="col-md-4">
-          <input type="number" class="input-xlarge" id="input01" placeholder= " %">
-          <p class="help-block">Content</p>
-        </div>
-									<div class="col-md-4">
-          <input type="number" class="input-xlarge" id="input01" placeholder= " %">
-          <p class="help-block">Style </p>
-        </div>
-									<div class="col-md-4">
-          <input type="number" class="input-xlarge" id="input01" placeholder= " %">
-          <p class="help-block">Sources</p>
-        </div>
-									
-      </div>
-      </fieldset>
-    </div>
-    <div class="span6">
-        <fieldset>
-      <legend> Comment on the report below</legend>
-      <div class="control-group">
-       
-        <div class="col-md-4">
-          <input type="text" class="input-xlarge" id="input01">
-          <p class="help-block">Content</p>
-        </div>
-									<div class="col-md-4">
-          <input type="text" class="input-xlarge" id="input01">
-          <p class="help-block">Style</p>
-        </div>
-									<div class="col-md-4">
-          <input type="text" class="input-xlarge" id="input01">
-          <p class="help-block">Sources</p>
-        </div>
-									
-      </div>
-      </fieldset>
-    </div>
- <br><br><div class="col-md-4"></div>	<div class="col-md-6"><input align="right" type="submit" class="foo col-xs-3 input-xlarge btn-success" id="submitAssessment"></div>
-  </form>
-</div>';
- 	
- 	
-
-                            		
-							//anything above THIS POINT is in view report content
-                            		echo '</div>
-						</div>
-					</div>
-				</li>';
                             		
                             
                             	};
