@@ -6,7 +6,7 @@
     include ("navbar.php");
     spl_autoload_register(function($class) { require_once 'pageSnippets/forum/forumClasses/'.$class.'.php'; });     // Class auto-loader
 
-    echo new SearchBar();
+    echo new SearchBar("forum");
 
     $userInfo = array(
         "userName"  => $_SESSION["userName"],

@@ -134,7 +134,7 @@ if (isset($_POST["searchQuery"]) && ($_POST["searchQuery"] != ""))
 
     // Start building the rest of the page.
 
-    echo new SearchBar();
+    echo new SearchBar("forum");
 
     $filterAsString = "";
     switch($_POST["filter"])
@@ -159,7 +159,7 @@ if (isset($_POST["searchQuery"]) && ($_POST["searchQuery"] != ""))
 
 } else
 {
-    echo new SearchBar();
+    echo new SearchBar("forum");
     echo new ForumTable(getDB(), 'noSearchResults', null, null);
     echo "<br /><p> You did not enter a valid search term. Please try again. </p>";
 }
