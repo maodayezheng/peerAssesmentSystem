@@ -10,15 +10,7 @@ include ("navbar.php");
 				<h3 class="panel-title">Select a group below to view their report</h3>
 			</div>
 			<ul class="list-group">
-			
-			
-			
-			<div class="col-xs-2">
-			<i class="fa fa-chevron-down pull-right"></i>
-			</div>
-			</div>
-            </li>           
-                        <?php 
+			 <?php 
                         require_once ('PHP/DBConnection.php');
                         $marker= $_SESSION['peergroup'];
                         $sql = "SELECT groupAssessed FROM assesments WHERE assignedMarker ='$marker';";
@@ -31,8 +23,9 @@ include ("navbar.php");
                             		echo "<li class=\"list-group-item\">";
                             		echo "<div class=\"row toggle\" id=\"dropdown-detail-2\" data-toggle=\"detail-2\">";
                             		$report = $row['groupAssessed'];
-									echo "<div class=\"col-xs-10\">'.'Group '.$report.'</div>";
+									echo "<div class=\"col-xs-10\">Group $report</div>";
 									echo "</div>";
+									echo "";
                             		$sql = "SELECT content FROM freetextreprots WHERE id=$report";
                             		
                             		$result = $conn -> query($sql);
@@ -49,6 +42,14 @@ include ("navbar.php");
                             }																	
 																											// form for grading + comments
 	echo '<br><br>';?>
+			
+			
+			<div class="col-xs-2">
+			<i class="fa fa-chevron-down pull-right"></i>
+			</div>
+			</div>
+            </li>           
+                       
 	
 	<?php 
 	echo ' <div class="row">
