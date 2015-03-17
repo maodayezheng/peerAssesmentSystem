@@ -116,17 +116,14 @@ if (isset($_POST["searchQuery"]) && ($_POST["searchQuery"] != ""))
 
     $result = $preparedStatement -> get_result();
 
-    $threadIDs = array();
+    $threadIDs          = array();
+    $noSearchResults    = true;
     if ($result === FALSE || ($result->num_rows === 0))
     {
-        // Logic to generate the forum containing a message saying no search results.
-        echo ' No Search Results';
-        echo "You searched for: $searchQuery with filter: {$_POST['filter']} <br />";
-        echo "The number of rows is: ".var_dump($result->num_rows)."<br />";
+        // Nothing to do, add in future if there is.
     } else
     {
-        echo "You searched for: $searchQuery with filter: {$_POST['filter']} <br />";
-        echo "The number of rows is: ".var_dump($result->num_rows)."<br />";
+        $noSearchResults = false;
         // Logic to generate the forum containing the search results.
         while ($row = $result->fetch_assoc())
         {
@@ -155,11 +152,16 @@ if (isset($_POST["searchQuery"]) && ($_POST["searchQuery"] != ""))
         "filter"        => $filterAsString
     );
 
-    echo new ForumTable(getDB(), 'searchResults', $userInfo, $threadIDs);
+
+    if($noSearchResults)    { echo new ForumTable(getDB(), 'noSearchResults', null, null); }
+    else                    { echo new ForumTable(getDB(), 'searchResults', $userInfo, $threadIDs); }
+
 
 } else
 {
-    echo "You did not set a search term.";
+    echo new SearchBar();
+    echo new ForumTable(getDB(), 'noSearchResults', null, null);
+    echo "<br /><p> You did not enter a valid search term. Please try again. </p>";
 }
 ?>
 

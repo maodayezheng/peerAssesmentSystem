@@ -57,10 +57,36 @@ class ForumTable
     {
         $groupNumber    = $this->_userInfo["peergroup"];
 
+           /*  Suppose the sizeof the $threadIDs array was 3. The following SQL query would be built
+               and is shown as an example:
+               SELECT *
+               FROM forumthreads
+               WHERE `peergroup` = ?
+               AND                     // And block would not be included if sizeof($threadIDs) was === 0
+               (     threadID = 15
+                  OR threadID = 16
+                  OR threadID = 17
+               )
+               ORDER BY 'date' ASC */
+
         $getGroupThreadsSQL = "SELECT *
                                FROM forumthreads
-                               WHERE `peergroup` =?
-                               ORDER BY 'date' ASC";
+                               WHERE `peergroup` =? ";
+
+        if(sizeof($threadIDs) != 0)
+        {
+            foreach ($threadIDs as $key => $value)
+            {
+                if($key === 0) { $getGroupThreadsSQL .= "AND ("; }                      // Open an AND clause
+                $getGroupThreadsSQL .= "`threadID` = $value";
+                if( ($key+1) <   sizeof($threadIDs)) { $getGroupThreadsSQL .= " OR "; }  // Add an OR if need be.
+                if( ($key+1) === sizeof($threadIDs)) { $getGroupThreadsSQL .= ") "; }    // Close the AND clause
+            }
+        }
+
+        $getGroupThreadsSQL .= "ORDER BY 'date' ASC";
+
+
         $preparedStatement  = $this->_db->stmt_init();
         $preparedStatement  = $this->_db->prepare($getGroupThreadsSQL);
         $preparedStatement->bind_param('i', $groupNumber); // i because $groupNumber should be an integer.
@@ -202,6 +228,24 @@ class ForumTable
                 </table>
                 </div>';
         }
+        if( ($this->_tableType === "noSearchResults") )
+        {
+            return
+                '<!-- The Forum -->
+            <div class="container" style="">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                <table>
+                <tr>
+                    <th style="font-size: 20px;" colspan="2">
+                        <div  style="width=100%;" align="center">
+                        We found no matches for your search
+                </div>
+                    </th>
+                </tr>
+                </table>
+                </div>';
+        }
 
         $table =
             '<!-- The Forum -->
@@ -243,7 +287,7 @@ class ForumTable
                         {
                             $table .= 'Thread Title: <span style="font-style: italic;">'.$this->_threadData["threadTitle"].'</span>';
                         }
-                        else if($this->_tableType === "searchResults") { $table .= "Threads matching your search:"; }
+                        //else if($this->_tableType === "searchResults") { $table .= "Threads matching your search:"; }
 
         $table .= '</th>
                     <th style="text-align: center; font-size: 20px; width: 20%">';
