@@ -29,7 +29,7 @@ class ForumTable
        return $this->generateTable();
     }
 
-    private function generateThreadListingTable()
+    private function generateThreadListingTable($threadIDs)
     {
         $table =
         '
@@ -46,14 +46,14 @@ class ForumTable
             <th class="tg-shvy">Date Created</th>
           </tr>';
 
-        $table .= $this->threadListingTableQuery();
+        $table .= $this->threadListingTableQuery($threadIDs);
         $table .= '</table>';
 
         return $table;
     }
 
     // This generates the rows for the table if the user is requesting to view their entire group's forum.
-    private function threadListingTableQuery()
+    private function threadListingTableQuery($threadIDs)
     {
         $groupNumber    = $this->_userInfo["peergroup"];
 
@@ -215,9 +215,9 @@ class ForumTable
 
                 if($this->_tableType === "searchResults")
                 {
-                    $table .= "Showing search results for query <span style=\"font-style: italic;\">
+                    $table .= "Search Results for Query: <span style=\"font-style: italic;\">
                                 '".$this->_userInfo["searchQuery"]."'</span>
-                                with filter: <span style=\"font-style: italic;\">".$this->_userInfo["filter"].'</span>';
+                                with Filter: <span style=\"font-style: italic;\">".$this->_userInfo["filter"].'</span>';
                 }
                 else
                 {
@@ -243,6 +243,7 @@ class ForumTable
                         {
                             $table .= 'Thread Title: <span style="font-style: italic;">'.$this->_threadData["threadTitle"].'</span>';
                         }
+                        else if($this->_tableType === "searchResults") { $table .= "Threads matching your search:"; }
 
         $table .= '</th>
                     <th style="text-align: center; font-size: 20px; width: 20%">';
@@ -255,8 +256,9 @@ class ForumTable
                 </thead>
                 <tbody>';
 
-        if($this->_tableType === "threads")      { $table .= $this->generateThreadListingTable(); }
-        else if($this->_tableType === "posts")   { $table .= $this->generateSingleThread();       }
+        if($this->_tableType === "threads")             { $table .= $this->generateThreadListingTable(null);                }
+        else if($this->_tableType === "posts")          { $table .= $this->generateSingleThread();                          }
+        else if($this->_tableType === "searchResults")  { $table .= $this->generateThreadListingTable($this->_threadIDs);   }
 
         $table .= '</tbody>
             </table>
