@@ -24,10 +24,11 @@
 		<div class="tab-content">
             <?php 
             
+            $peergroup = $_SESSION["peergroup"];
             require_once("PHP/DBConnection.php");
             echo "<div role=\"tabpanel\" class=\"tab-pane active\" id=\"ranking\">
 				<p> ";
-            $getGradesSQL = "select groupAssessed AS Team, (Content+Style+Sources)/3 AS Grade from assesments group by Grade DESC;";
+            $getGradesSQL = "select groupAssessed AS Team, (Content+Style+Sources)/3 AS Grade from assesments WHERE assignedMarker = $peergroup group by Grade DESC;";
             
             $preparedStatement = $conn->stmt_init();
             $preparedStatement = $conn->prepare($getGradesSQL);
@@ -64,32 +65,15 @@
             			echo '<div align="center">'.$value."<br>".'</div>';
             			 
             		}
-            		 
-            
-            		//print_r($row);
-            		// Columns in forumthreads table: (threadID, peergroup, threadTitle, threadAuthor, dateTimeCreated)
-            
-            		// $threadVariables = array
-            		// (
-            		// "Assesment" => $row["Assesment"],
-            		// "Assesment1" => $row["Assesment1"],
-            		// "Assesment2" => $row["Assesment2"],
-            		// "groupAssessed" => $row["groupAssessed"]
-            
-            		// );
-            		// array_push($rankedGrades, ($row["Assesment2"]+$row["Assesment1"]+$row["Assesment"])/3);
-            
-            		// includeRanking("ranking.php", $threadVariables);
-            	}
-            	// 	sort ( $rankedGrades );
-            	// 	print_r ( array_values ( $rankedGrades ) );
+              }
+            	
             }
             echo "</p>";
             echo "</div>";
             //---------------------------------
             
             echo "<div role=\"tabpanel\" class=\"tab-pane\" id=\"assessment_results\">";
-            $sql = "SELECT * FROM assesments WHERE groupAssessed = 6";
+            $sql = "SELECT * FROM assesments WHERE groupAssessed = $peergroup";
             $result = $conn -> query($sql);
             
             if($result ->num_rows >0){
@@ -119,36 +103,29 @@
             		<b>Delivery Grade:</b> $Assesment1<br>
             		<b>Style Grade:</b> $Assesment2<br><br>";
             		$totalGrade = ($Assesment+$Assesment1+$Assesment2)/3;
-            		
-            		function displayGrade($totalGrade){
-            			if ($totalGrade > 69){
-            				echo "<legend>Well done you got a distinction: ".$totalGrade."%</legend>";
-            			} else if ($totalGrade > 59 && $totalGrade < 70){
-            				echo "You got a Merit: ".$totalGrade;
-            			} else if ($totalGrade > 49 && $totalGrade < 60){
-            				echo "You got a Pass: ".$totalGrade;
-            			} else{
-            				echo "Fail: ".$totalGrade;
-            			}
-            		}
             		echo displayGrade($totalGrade);
             		echo "</div>
         			</div>
     				</div>";
-            		echo "</div>";// close the panel
-
             	};
             
             	}
+            	
+            	function displayGrade($totalGrade){
+            		if ($totalGrade > 69){
+            			echo "<legend>Well done you got a distinction: ".$totalGrade."%</legend>";
+            		} else if ($totalGrade > 59 && $totalGrade < 70){
+            			echo "You got a Merit: ".$totalGrade;
+            		} else if ($totalGrade > 49 && $totalGrade < 60){
+            			echo "You got a Pass: ".$totalGrade;
+            		} else{
+            			echo "Fail: ".$totalGrade;
+            		}
+            	}
+            	
             	echo "</div>";         
             ?>
-			
-<?php
-	
-
-?>
 		</div>
-
 	</div>
 
     <?php
