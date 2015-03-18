@@ -4,9 +4,9 @@
  * each page such as checking if the user is logged in or whether they have the right permissions.
  */
 
-    function isLoggedIn()   { return isset($_SESSION["username"]);            }
-    function userIsAdmin()  { return $_SESSION["accountType"] === "admin";    }
-    function hasPeerGroup() { return isset($_SESSION["peergroup"]);           }
+    function userIsLoggedIn()   { return isset($_SESSION["username"]);            }
+    function userIsAdmin()      { return $_SESSION["accountType"] === "admin";    }
+    function hasPeerGroup()     { return isset($_SESSION["peergroup"]);           }
 
 
     function endScript($message)
