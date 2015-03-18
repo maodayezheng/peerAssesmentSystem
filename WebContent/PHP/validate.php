@@ -3,7 +3,6 @@
 function validate($conn, $source, $items = array()) //The keys in the $items associative array must match the the keys passed in the $source array.
 {
     $errors         = array();
-    $checksPassed   = false;
 
     foreach($items as $item => $rules) //$item will be each of the entries e.g. nhsnumber, password. $rules will be the array that governs each $item. see register.php.
     {
@@ -37,13 +36,7 @@ function validate($conn, $source, $items = array()) //The keys in the $items ass
                         $preparedStatement  = $conn->prepare($checkUnique);
                         $preparedStatement->bind_param('s', $value);
                         $result              = $preparedStatement->execute(); // Will be a boolean
-
                         $numRows = $preparedStatement->num_rows;
-                        echo "<br />";
-                        var_dump($result);
-                        echo "<br /> Above is result and below is numRows <br />";
-                        var_dump($numRows);
-                        var_dump($checkUnique);
                         if($numRows != 0) { array_push($errors, "{$item} already exists. Please choose another"); }
                         break;
                 }
@@ -56,7 +49,7 @@ function validate($conn, $source, $items = array()) //The keys in the $items ass
         $checksPassed = true;
     }
 
-    return $checksPassed;
+    return $errors;
 }
 
 ?>
