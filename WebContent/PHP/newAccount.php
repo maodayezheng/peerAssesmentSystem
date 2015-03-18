@@ -1,4 +1,6 @@
 <?php
+    require_once("validate.php");
+
     if (isset ( $_POST ['submit'] ))
     {
         require_once('DBConnection.php');
@@ -8,11 +10,11 @@
         // Since we are taking input from the user using $_POST, we need to sanitise it.
         // The following performs a case insensitive regular expression replace i.e. it replaces any character
         // that is not a letter or a number with the empty string ''.
-        $userName = preg_replace('#[^a-z 0-9]#i', '', $_POST ['userName']);
-        $fName = preg_replace('#[^a-z 0-9]#i', '', $_POST ['fName']);
-        $lName = preg_replace('#[^a-z 0-9]#i', '', $_POST ['lName']);
-        $sex = preg_replace('#[^a-z 0-9]#i', '', $_POST ['sex']);
-        $password = preg_replace('#[^a-z 0-9]#i', '', $_POST ['password']);
+        $userName       = preg_replace('#[^a-z 0-9]#i', '', $_POST ['userName']);
+        $fName          = preg_replace('#[^a-z 0-9]#i', '', $_POST ['fName']);
+        $lName          = preg_replace('#[^a-z 0-9]#i', '', $_POST ['lName']);
+        $sex            = preg_replace('#[^a-z 0-9]#i', '', $_POST ['sex']);
+        $password       = preg_replace('#[^a-z 0-9]#i', '', $_POST ['password']);
         $confirmPassword = preg_replace('#[^a-z 0-9]#i', '', $_POST ['confirmPassword']);
 
         $dataToBeValidated = array
@@ -25,14 +27,14 @@
             "confirmPassword" => $confirmPassword
         );
 
-        echo "username is $userName, fName is $fName, lName is $lName, sex is $sex, password is $password";
+        echo "username is $userName, fName is $fName, lName is $lName, sex is $sex, password is $password <br />";
 
         $validation = validate($conn, $dataToBeValidated, array(
             'userName' => array(
                 'required' => true,
                 'min' => 5, //min length
                 'max' => 15, //max length
-                'unique' => 'account'
+                'unique' => 'account' //userName must be unique in table 'account'
             ),
             'fName' => array(
                 'required' => true,
@@ -40,7 +42,6 @@
             ),
             'lName' => array(
                 'required' => true,
-                'matches' => 'password'
             ),
             'sex' => array(
                 'required' => true
@@ -54,115 +55,42 @@
             )
         ));
 
-    }
-?>
-
-<?php
-    ////////////////// VALIDATION
-/*
-    $validate 	= new Validate();
-    $validation = $validate -> check($dataDecoded, array()); 	//passing an empty array so that there are no conditions which need to be passed. Refer to commented out code
-    //below to see what type of array can be passed to enforce validation.
-
-    /* Code is commented out as it was decided validation would be done client side.
-     * It is included for functionality demonstration purposes. */
-/*
-         $validation = $validate -> check($dataDecoded, array(  //The array as the second parameter should contain the relevant conditions for each key in $dataDecoded
-               'nhsnumber' => array(
-                       'required' => true,
-                       'min' => 5, //min length
-                       'max' => 15, //max length
-                       'unique' => 'users'
-               ),
-               'password' => array(
-                       'required' => true,
-                       'min' => 6,
-               ),
-               'confirmpassword' => array(
-                       'required' => true,
-                       'matches' => 'password'
-               ),
-               'weight' => array(
-                       'required' => true
-               ),
-               'dob' => array(),
-               'activitylevel' => array()
-       ));
-
-
-    if($validation->passed()) //An empty array was passed as the conditions for validation so this will always be true (unless code commented above is amended).
-    {
-        switch($dataDecoded['group'])
-        {
-            case 1: registerPatient($dataDecoded); 		break;
-            case 2: registerDietician($dataDecoded); 	break;
+        // For generating the salt.
+        function generateRandomString($length = 10) {
+            return substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, $length);
         }
-    }
 
-
-    function check($source, $items = array()) //The keys in the $items associative array must match the the keys passed in the $source array.
-    {
-        foreach($items as $item => $rules) //$item will be each of the entries e.g. nhsnumber, password. $rules will be the array that governs each $item. see register.php.
+        if(empty($validation)) //if the errors array is empty at this point then all of the checks were passed, so register the user.
         {
-            foreach($rules as $rule => $rule_value)
+            echo "all checks passed";
+
+            // Create a SALT for the user account.
+            $salt           = generateRandomString(32);
+
+            // Hash the string created by concatenating the user's password and the salt.
+            $hashedPassword = hash('sha256', $password . $salt);
+
+            // This form only registers students so accountType is fixed.
+            $accountType = 'student';
+
+            $createUserSQL = "INSERT INTO account (`userName`, `fName`, `lName`, `password`, `sex`, `accountType`, `salt`)
+                              VALUES (?, ?, ?, ?, ?, ?, ?);";
+            $preparedStatement  = $conn->stmt_init();
+            $preparedStatement  = $conn->prepare($createUserSQL);
+            $preparedStatement->bind_param('sssssss', $userName, $fName, $lName, $hashedPassword, $sex, $accountType, $salt);
+
+            if($preparedStatement->execute() === true)
             {
-                $item = escape($item); //for sanitisation. imported from init.php and functionality is in functions.php.
-                $value = trim($source[$item]); //get rid of whitespaces.
-
-                if($rule === 'required' && empty($value))
-                {
-                    $this->addError("{$item} is required");
-                } else if(!empty($value))
-                {
-                    switch($rule)
-                    {
-                        case 'min': if(strlen($value)<$rule_value) { $this-> addError("{$item} must be a minimum of {$rule_value} characters"); }
-                            break;
-                        case 'max': if(strlen($value)>$rule_value) { $this-> addError("{$item} must be a maximum of {$rule_value} characters"); }
-                            break;
-                        case 'matches': if($value != $source[$rule_value]) { $this-> addError("{$rule_value} must match {$item}"); }
-                            break;
-                        case 'unique':
-                            $check = $this->_db->get($rule_value, array($item,'=',$value));
-                            if($check->count()) { $this -> addError("{$item} already exists"); }
-                            break;
-                    }
-                }
+                header ( 'location: ../login.php' );
             }
+            else
+            {
+                echo "Registration Failed";
+                var_dump($conn->error);
+                //header('location: ../../register.php');
+
+            }
+
         }
-        if(empty($this->_errors)) //if the errors array is empty at this point then all of the checks were passed.
-        {
-            $this->_passed = true;
-        }
-
-        return $this;
     }
-
-}*/
-
-
-
-
-  /*  $insertPostSQL = "INSERT INTO forumposts (threadID, author, date, content) VALUES (?, ?, ?, ?)";
-    $preparedStatement3  = $conn->stmt_init();
-    $preparedStatement3  = $conn->prepare($insertPostSQL);
-    $preparedStatement3->bind_param('isss', $threadID, $userName, $date, $content);
-
-    if($preparedStatement3->execute() === true)
-    {
-        echo "Registration successful";
-        header ( 'location: ../login.php' );
-    }
-    else
-    {
-        echo "Registration Failed";
-        header('location: ../../register.php');
-
-    }
-
-
-	$sql = "INSERT INTO account (userName,fName,lName,password,sex,accountType,id)
-            VALUES ('$userName','$fname','$lname','$password','$sex','$accounttype',NULL)";
-	*/
 ?>
-
