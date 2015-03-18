@@ -47,31 +47,10 @@
 
     $result     = $preparedStatement->execute(); // Will be a boolean
     $resultSet  = $preparedStatement->get_result();
+    $preparedStatement->store_result();
 
-    if ($result)
-    {
-        $preparedStatement->store_result();
-        $row = $resultSet->fetch_array(MYSQLI_ASSOC); //Fetch the resultSet as an associativeArray.
-
-        $userName    = $row["userName"];
-        $fName       = $row["fName"];
-        $lName       = $row["lName"];
-        $sex         = $row["sex"];
-        $accountType = $row["accountType"];
-        $peerGroup   = $row["peergroup"];
-    }
 
     echo new SearchBar("admin");
-
-    if(isset($_POST["searchQuery"]))
-    {
-        echo "Search for {$_POST["searchQuery"]} returned {$resultSet->num_rows} rows";
-    } else
-    {
-        echo "Studetnt Directory query returned {$resultSet->num_rows} rows";
-    }
-
-
 
 ?>
 
@@ -100,21 +79,59 @@
             </div>
 
             <!-- Table containing an entry for each student which matches the query. -->
-            <table class="table table-striped table-hover">
-                <thead>
-                <tr>
-                    <th style="text-align: center; font-size: 20px; width: 80%" >';
-                        STUDENTS MATCHING YOUR SEARCH
-                    </th>
-                    <th style="text-align: center; font-size: 20px; width: 20%">';
+            <style type="text/css">
+                .tg  {border-collapse:collapse;border-spacing:0;border-color:#999;}
+                .tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#999;color:#444;background-color:#F7FDFA;}
+                .tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#999;color:#333;background-color:#26ADE4;}
+                .tg .tg-shvy{font-weight:bold;background-color: #f5f5f5; font-size: 16px; text-align: center; }
+            </style>
+            <table class="tg" style="width: 100%;">
 
-                    </th>
+
+<?php
+        if ( ($resultSet === FALSE) || ($resultSet->num_rows === 0) )
+        {
+        echo '<tr>
+                <td colspan="3" style="text-align: left; font-size: 20px;">
+                    There are currently no student profiles to display.  <br />
+                </td>
+            </tr>';
+
+        } else
+        {
+            while ($row = $resultSet->fetch_array(MYSQLI_ASSOC))
+            {
+                $userName       = htmlentities($row["userName"]);
+                $fName          = htmlentities($row["fName"]);
+                $lName          = htmlentities($row["lName"]);
+                $sex            = htmlentities($row["sex"]);
+                $accountType    = htmlentities($row["accountType"]);
+                $peerGroup      = htmlentities($row["peergroup"]);
+
+                echo
+                "<tr>
+                    <th class=\"tg-shvy\">Username:</th>
+                    <th class=\"tg-shvy\">First Name:</th>
+                    <th class=\"tg-shvy\">Last Name:</th>
+                    <th class=\"tg-shvy\">Gender:</th>
+                    <th class=\"tg-shvy\">Account Type:</th>
+                    <th class=\"tg-shvy\">Peer Group:</th>
                 </tr>
-                </thead>
-                <tbody>
-                    Row for each result.
+                <tr>
+                    <td class=\"tg-031e\" style=\"text-align: center;\"> <a href=\"profilePage.php?userName=$userName\"> $userName </a>  </td>
+                    <td class=\"tg-031e\" style=\"text-align: center;\"> $fName </td>
+                    <td class=\"tg-031e\" style=\"text-align: center;\"> $lName </td>
+                    <td class=\"tg-031e\" style=\"text-align: center;\"> $sex </td>
+                    <td class=\"tg-031e\" style=\"text-align: center;\"> $accountType </td>
+                    <td class=\"tg-031e\" style=\"text-align: center;\"> $peerGroup </td>
 
-                </tbody>
+                </tr>";
+            }
+        }
+
+
+?>
+
             </table>
         </div>
     </div>
