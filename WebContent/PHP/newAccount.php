@@ -61,8 +61,6 @@
 
         if(empty($validation)) //if the errors array is empty at this point then all of the checks were passed, so register the user.
         {
-            echo "all checks passed";
-
             // Create a SALT for the user account.
             $salt           = generateRandomString(32);
 
@@ -82,7 +80,16 @@
             {
                 login($conn, $userName, $password, 'index');
             }
-            else { array_push($validation, $conn->error); }
+            else {
+                $error = $conn->error;
+                var_dump($error);
+                if( substr($error, 0, 15) === "Duplicate entry")
+                {
+                    array_push($validation, 'Username already exists, please choose another.');
+                }
+
+
+            }
 
         }
     }
