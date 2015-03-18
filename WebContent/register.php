@@ -1,22 +1,43 @@
 
 	<?php
 			include("header.php"); 
-			include("navbar.php")
-			?>
+			include("navbar.php");
+            require("PHP/newAccount.php");
+
+	?>
 
 
 
     <div class="container" style="background-color: white; ">
 
-        <div class="page-header">
+        <div class="page-header col-lg-offset-3">
             <h1>Registration form for students</h1>
         </div>
 
         <!-- Registration form - START -->
-        <div class="container">
+        <div class="container col-lg-offset-3">
             <div class="row">
-                <form role="form" action='PHP/newAccount.php' method="POST">
+                <form role="form" action='register.php' method="POST">
                     <div class="col-lg-6">
+
+
+                    <?php
+                        if(isset($_POST['submit']))
+                        {
+                            if(!empty($validation)) //if the errors array is non-empty display the errors to the user.
+                            {
+                                $errors  = '<div class="well well-sm"> <span style="color: red;"><strong>Error: </strong></span>';
+                                $errors .= '<ul>';
+                                foreach($validation as $rule => $value) { $errors .= "<li> $value </li>"; }
+                                $errors .= '</ul></div>';
+                                echo $errors;
+                            }
+                        }
+                    ?>
+
+
+
+
                         <div class="well well-sm"><strong><span class="glyphicon glyphicon-asterisk"></span>Required Field</strong></div>
                         <div class="form-group">
                             <label for="userName">Enter Desired User Name</label>
@@ -60,23 +81,16 @@
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
                             </div>
                         </div>
+                        <div class="form-group">
+                            <input type="submit" name="submit" id="submit" value="Submit" class="btn btn-info pull-center">
 
-
-                        <input type="submit" name="submit" id="submit" value="Submit" class="btn btn-info pull-right">
+                        </div>
                     </div>
+
                 </form>
 
 
-                <div class="col-lg-5 col-md-push-1">
-                    <div class="col-md-12">
-                        <div class="alert alert-success">
-                            <strong><span class="glyphicon glyphicon-ok"></span> Success! Message sent.</strong>
-                        </div>
-                        <div class="alert alert-danger">
-                            <span class="glyphicon glyphicon-remove"></span><strong> Error! Please check all page inputs.</strong>
-                        </div>
-                    </div>
-                </div>
+
             </div>
         </div>
         <!-- Registration form - END -->

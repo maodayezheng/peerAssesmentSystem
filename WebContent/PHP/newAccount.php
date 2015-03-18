@@ -27,13 +27,11 @@
             "confirmPassword" => $confirmPassword
         );
 
-        echo "username is $userName, fName is $fName, lName is $lName, sex is $sex, password is $password <br />";
-
         $validation = validate($conn, $dataToBeValidated, array(
             'userName' => array(
                 'required' => true,
-                'min' => 5, //min length
-                'max' => 15, //max length
+                'min' => 3, //min length
+                'max' => 10, //max length
                 'unique' => 'account' //userName must be unique in table 'account'
             ),
             'fName' => array(
