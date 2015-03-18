@@ -13,9 +13,11 @@
 					<tr>
 						<th colspan="2">Assigned Marker</th>
 						<th>Group Assessed</th>
+						<th></th>
 					</tr>
 				</thead>
 				<tbody>
+				<form action="PHP/deleteAssignment.php" method="POST" role="form">
 				<?php 
 				require_once ('PHP/DBConnection.php');
 				$sql = "SELECT * FROM assesments";
@@ -24,10 +26,15 @@
 					while ($row = $results->fetch_assoc()){
 						$marker = $row["assignedMarker"];
 						$group = $row["groupAssessed"];
-						echo  "<tr><td colspan =\"2\">$marker</td><td>$group</td></tr>";
+						$id = $row["id"];
+						echo  "<tr><td colspan =\"2\">$marker</td>
+								<td>$group</td>
+								<td><button type=\"submit\" class=\"btn btn-danger btn-xs\" name=\"id\" value=\"$id\">DELETE</button></td>
+							</tr>";
 					}
 				}
 				?>
+				</form>
 				</tbody>
 			</table>
 		</div>
@@ -114,3 +121,9 @@
 			</div>
 		
 </div>
+ <?php
+    include ("footer.php");
+    ?>
+
+</div>
+</html>
