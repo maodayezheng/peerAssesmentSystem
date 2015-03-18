@@ -9,69 +9,29 @@
 	<div class="row row2">
 		<?
 		session_start ();
-		echo '<div class="col-sm-12">
-            <legend> Hello Group: ' . $_SESSION ['peergroup'] . '</legend>
+		echo '<br><div class="col-sm-12" >
+           <b> <legend> Hello Group: ' . $_SESSION ['peergroup'] . '</legend>
         </div>';
 		//echo $_SESSION["userName"];
 		?>
         
-        <!-- panel preview -->
-		<div class="col-sm-5">
-			<h4>Submit report:</h4>
-			<form action="PHP/submitFreeTextReport.php" method="POST" role="form">
-				<div class="panel panel-default">
-					<div class="panel-body form-horizontal">
-						<div class="form-group">
-							<label for="concept" class="col-sm-3 control-label">Group Number</label>
-							<div class="col-sm-9">
-								<input type="text" class="form-control" id="groupNumber"
-									name="groupNumber" maxlength="2" size="4">
-							</div>
-						</div>
-						<div class="form-group">
-							<label for="concept" class="col-sm-3 control-label">Paste Report</label>
-							<div class="col-sm-9">
-
-								<textarea rows="13" cols="30" type="text" class="form-control"
-									id="pasteReport" name="pasteReport"></textarea>
-							</div>
-						</div>
-
-
-
-
-						<div class="form-group">
-							<div class="col-sm-12 text-right">
-								<button type="submit" class="btn btn-success preview-add-button">
-									<span class="glyphicon glyphicon-plus"></span> Submit
-								</button>
-
-							</div>
-						</div>
-
-					</div>
-				</div>
-			</form>
-
-
-		</div>
 
 		<div class="col-sm-5">
 			<h4>Submit report:</h4>
 
-			<div class="panel panel-default">
+			<div class="panel panel-default" align="center">
 				<div class="panel-body form-horizontal">
-					<div class="form-group">
+					<div class="form-group" >
 						Select a file to upload: <br />
 						<form method="post" enctype="multipart/form-data"
 							action="PHP/uploader.php">
 							<table width="350" border="0" cellpadding="1" cellspacing="1"
-								class="box">
+								class="box" >
 								<tr>
 									<td width="246"><input type="hidden" name="MAX_FILE_SIZE"
 										value="2000000"> <input name="userfile" type="file"
 										id="userfile"></td>
-									<td width="80"><input name="upload" type="submit" class="box"
+									<td width="80"><input name="upload" type="submit" class="box btn-primary"
 										id="upload" value=" Upload "></td>
 								</tr>
 							</table>
@@ -88,7 +48,7 @@
 									<td width="246"><input type="hidden" name="MAX_FILE_SIZE"
 										value="2000000"> <input name="userfile" type="file"
 										id="userfile"></td>
-									<td width="80"><input name="upload" type="submit" class="box"
+									<td width="80"><input name="upload" type="submit" class="box btn-primary"
 										id="upload" value=" Upload "></td>
 								</tr>
 							</table>
@@ -111,7 +71,7 @@
 						require_once ('PHP/uploader.php');
 						
 						$peerGroup = $_SESSION ['peergroup'];
-						$sql = "SELECT * FROM freetextreprots WHERE id =$peerGroup";
+						$sql = "SELECT * FROM freetextreports WHERE id =$peerGroup";
 						
 						$result = $conn->query ( $sql );
 						
@@ -119,7 +79,7 @@
 							
 							// Goes through each row in table
 							while ( $row = $result->fetch_assoc () ) {
-								$reportContent = $row ["content"];
+								$reportContent = $row ["reportcontent"];
 								
 								echo "<b>Report:</b><br><pre> $reportContent" . "</pre><br>";
 								

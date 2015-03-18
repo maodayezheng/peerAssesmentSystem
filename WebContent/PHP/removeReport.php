@@ -6,7 +6,7 @@ if (isset ( $_SESSION ["peergroup"] )) {
 	$group = $_SESSION ["peergroup"];
 }
 
-    $sql ="DELETE FROM freetextreprots WHERE id='$group';";
+    $sql ="DELETE FROM freetextreports WHERE id='$group';";
     
     if ($conn->query ( $sql ) === true) {
     	// output data of each row

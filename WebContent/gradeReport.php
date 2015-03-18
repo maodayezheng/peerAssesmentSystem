@@ -5,9 +5,12 @@ include ("navbar.php");
 ?>
 <div class="container">
 	<div class="row">
+	<div class="row3" align="center">
+	<h4>In this section you can browse reports you have been assigned to review. Submit your groups comments and grading on these reports below...</h4>
+	</div><br>
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<h3 class="panel-title">Select a group below to view their report</h3>
+				<h3 class="panel-title">Select a group below to view their report and make an assessment</h3>
 			</div>
 			<ul class="list-group">
 
@@ -20,7 +23,7 @@ include ("navbar.php");
                         $sql = "SELECT a.*, ftr.*
 								FROM (assesments AS a INNER JOIN freetextreports AS ftr 
 								ON a.groupAssessed = ftr.id)
-								WHERE a.assignedMarker=4;";
+								WHERE a.assignedMarker=$marker;";
                         
        
                             

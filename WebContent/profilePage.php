@@ -56,8 +56,8 @@
 
 
             $dynamicPage =
-                            '<div style="padding-top:20px;" class="col-md-9">
-                                <div class="container-fluid well span6">
+                            '<div style="padding-top:20px;" class="col-md-8 col-md-offset-2" align="center">
+                                <div class="container-fluid well" align="center">
                                     <div class="row-fluid">';
 
             if($showEditButton)
