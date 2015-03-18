@@ -20,7 +20,7 @@ include ("navbar.php");
                         $sql = "SELECT a.*, ftr.*
 								FROM (assesments AS a INNER JOIN freetextreports AS ftr 
 								ON a.groupAssessed = ftr.id)
-								WHERE a.assignedMarker=4;";
+								WHERE a.assignedMarker=$marker;";
                         
        
                             
