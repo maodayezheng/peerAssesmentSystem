@@ -1,5 +1,5 @@
 <?php 
-
+session_start();
 require_once ('DBConnection.php');
 
 $uploads_dir = '/up';
@@ -18,43 +18,23 @@ if(isset($_POST['upload']) && $_FILES['userfile']['size'] > 0)
 	
 	//set file destination
 	
-	$fileD = "up/".$fileName;
+	$peerGroup = $_SESSION ['peergroup'];
+	$sql = "INSERT INTO freetextreports (id,reportcontent) VALUES ('$peerGroup','$content')";
 	
-	if(move_uploaded_file($tmpName,$fileD)){
+	if ($conn->query ( $sql ) === true) {
 		
-		echo $fileD;
-		
-		$fileContents = file_get_contents('up/xmlLG.xml');
-		
-		//echo $fileContents;
-		
-		$xml = simplexml_load_string($fileContents); # creates a Simple XML object from a string
-		
-		print_r(strval($xml));
-// 		 function xml2array ( $xml, $out = array () )
-// {
-// 	echo "hi";
-//     foreach ( (array) $xml as $index => $node )
-//         $out[$index] = ( is_object ( $node ) ) ? xml2array ( $node ) : $node;
-// print_r($out);
-//     return $out;
-}
+	echo "Selection complete";
+ 		header ( 'location: ../submitReport.php' );
+  	} else { 		echo "Error:" . $sql . "<br>" . $conn->error;
+	}
 
 		
 	};
 	
 
 	
- 	session_start(); 
 
-  	$peerGroup = $_SESSION ['peergroup']; 	
-  	$sql = "INSERT INTO freetextreports (id,content) VALUES ('$peerGroup','$content')"; 
-	
-  	if ($conn->query ( $sql ) === true) { 
-		 
-  		echo "Selection complete"; 
- 		header ( 'location: ../gradeReport.php' ); 
-  	} else { 		echo "Error:" . $sql . "<br>" . $conn->error; 
-	}
+
+
 	
 ?>
