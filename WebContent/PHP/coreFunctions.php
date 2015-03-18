@@ -6,7 +6,7 @@
 
     function userIsLoggedIn()   { return isset($_SESSION["userName"]);            }
     function userIsAdmin()      { return $_SESSION["accountType"] === "admin";    }
-    function hasPeerGroup()     { return isset($_SESSION["peergroup"]);           }
+    function userHasPeerGroup() { return isset($_SESSION["peergroup"]);           }
 
 
     function endScript($message)
@@ -24,6 +24,27 @@
                         </table>
                     </div>');
     }
+
+    function userPeerGroupNotSet($message)
+    {
+        exit('<div class="container" >
+
+                <!--Jumbotron Header-->
+                <header class="jumbotron hero-spacer" >
+                    <h1 > Welcome to Peer System!</h1 >
+                    <h4 > "Collaborate for better results"</h4 >
+                </header >
+
+            <hr >
+                <!--Title -->
+                <div class="jumbotron hero-spacer" style="margin: 5%; padding: 5%;">
+                        <h3 style = "color:black" ><em >'.$message.'</em >
+                            <br />
+                        </h3 >
+                </div >
+            </div>');
+    }
+
 
     function login($db, $username, $password, $success)
     {
