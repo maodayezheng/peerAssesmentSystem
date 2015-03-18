@@ -32,6 +32,8 @@
 
 		<div class="col-md-6 col-sm-6 hero-feature">
 			<div class="thumbnail">
+			
+			<!--  -->
 
 				<div class="caption">
                     <p>
