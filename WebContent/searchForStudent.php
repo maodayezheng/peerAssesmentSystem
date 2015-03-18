@@ -63,7 +63,15 @@
 
     echo new SearchBar("admin");
 
-    echo "Search for {$_POST["searchQuery"]} returned {$resultSet->num_rows} rows";
+    if(isset($_POST["searchQuery"]))
+    {
+        echo "Search for {$_POST["searchQuery"]} returned {$resultSet->num_rows} rows";
+    } else
+    {
+        echo "Studetnt Directory query returned {$resultSet->num_rows} rows";
+    }
+
+
 
 ?>
 
