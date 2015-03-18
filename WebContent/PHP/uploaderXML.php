@@ -48,7 +48,7 @@ if(isset($_POST['upload']) && $_FILES['userfile']['size'] > 0)
  	session_start(); 
 
   	$peerGroup = $_SESSION ['peergroup']; 	
-  	$sql = "INSERT INTO freetextreprots (id,content) VALUES ('$peerGroup','$content')"; 
+  	$sql = "INSERT INTO freetextreports (id,content) VALUES ('$peerGroup','$content')"; 
 	
   	if ($conn->query ( $sql ) === true) { 
 		 
