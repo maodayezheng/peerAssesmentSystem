@@ -1,5 +1,6 @@
 <?php
     require_once("validate.php");
+    require_once ('coreFunctions.php');
 
     if (isset ( $_POST ['submit'] ))
     {
@@ -79,15 +80,9 @@
 
             if($preparedStatement->execute() === true)
             {
-                header ( 'location: ../login.php' );
+                login($conn, $userName, $password, 'index');
             }
-            else
-            {
-                echo "Registration Failed";
-                var_dump($conn->error);
-                //header('location: ../../register.php');
-
-            }
+            else { array_push($validation, $conn->error); }
 
         }
     }

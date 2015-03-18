@@ -25,5 +25,36 @@
                     </div>');
     }
 
+    function login($db, $username, $password, $success)
+    {
+        // Retrieve the SALT.
+        $query = "SELECT salt, password, userName, peergroup, accountType from account where userName = '$username'";
+        $result = mysqli_query ( $db, $query );
+        if (mysqli_num_rows($result) != 1)
+        {
+            die("Incorrect Username or password");
+        } else
+        {
+            $data = $result -> fetch_assoc();
+            $salt           = $data["salt"];
+            $hashedPassword = hash('sha256', $password . $salt);
 
+            if($hashedPassword === $data["password"])
+            {
+                // In this case, the correct password was provided for the user so set the session variables.
+                session_start();
+                $_SESSION["userName"]    = $data["userName"];
+                $_SESSION["peergroup"]   = $data["peergroup"];
+                $_SESSION["accountType"] = $data["accountType"];
+
+                if($data["accountType"]==="student")    { header ("location: $success.php");    }
+                else if($data["accountType"]==="admin") { header ('location:.adminHome.php'); }
+
+
+            } else
+            {
+                die("Incorrect Username or password");
+            }
+        }
+    }
 ?>
