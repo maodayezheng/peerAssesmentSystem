@@ -7,8 +7,8 @@
     spl_autoload_register(function($class) { require_once 'pageSnippets/forum/forumClasses/'.$class.'.php'; });     // Class auto-loader
     require_once("PHP/coreFunctions.php");
 
-    if(!userIsLoggedIn()) { endScript('You are not currently logged in. Please click <a href="login.php"> here </a> to be redirected.');  }
-    if(!userIsAdmin()) { endScript("You Do Not Have Permission To View This Page."); }
+    if(!userIsLoggedIn())   { endScript('You are not currently logged in. Please click <a href="login.php"> here </a> to be redirected.');  }
+    if(!userIsAdmin())      { endScript("You Do Not Have Permission To View This Page."); }
 
 
 

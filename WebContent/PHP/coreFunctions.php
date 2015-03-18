@@ -3,8 +3,8 @@
  * This script is intended to be required at the top of a page. It contains core functionality for use within
  * each page such as checking if the user is logged in or whether they have the right permissions.
  */
-
-    function userIsLoggedIn()   { return isset($_SESSION["username"]);            }
+    
+    function userIsLoggedIn()   { return isset($_SESSION["userName"]);            }
     function userIsAdmin()      { return $_SESSION["accountType"] === "admin";    }
     function hasPeerGroup()     { return isset($_SESSION["peergroup"]);           }
 
