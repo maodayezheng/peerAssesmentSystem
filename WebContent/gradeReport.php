@@ -34,6 +34,13 @@ include ("navbar.php");
                             		$tomark = $row['groupAssessed'];
                             		$reportContent = $row['reportcontent'];
                             		$id = $row['id'];
+                            		$content = $row['Content'];
+                            		$style = $row['Style'];
+                            		$sources = $row['Sources'];
+                            		$comment = $row['comment'];
+                            		$comment1 = $row['comment1'];
+                            		$comment2 = $row['comment2'];
+                            		
                             		echo '<li class="list-group-item">';  // title
                             		echo "<div class=\"row toggle\" id=\"dropdown-detail-$tomark\" data-toggle=\"detail-$tomark\">";
                             		echo '<div class="col-xs-10">'.'Group '.$tomark.'</div>';
@@ -56,15 +63,15 @@ include ("navbar.php");
                             		echo '<legend> Grade the report below</legend>';
                             		echo '<div class="control-group">';
                             		echo '<div class="col-md-4">'; // content 
-                            		echo '<input type="number" class="input-xlarge" name="content-grade" placeholder= " %">';
+                            		echo '<input type="number" class="input-xlarge" name="content-grade" placeholder= " %" value='.$content.'>';
                             		echo '<p class="help-block">Content</p>';
                             		echo '</div>';
                             		echo '<div class="col-md-4">'; // style
-                            		echo '<input type="number" class="input-xlarge" name="style-grade" placeholder= " %">';
+                            		echo '<input type="number" class="input-xlarge" name="style-grade" placeholder= " %" value='.$style.'>';
                             		echo '<p class="help-block">Style </p>';
                             		echo '</div>';
                             		echo '<div class="col-md-4">'; // source
-                            		echo '<input type="number" class="input-xlarge" name="source-grade" placeholder= " %">';
+                            		echo '<input type="number" class="input-xlarge" name="source-grade" placeholder= " %" value='.$sources.'>';
                             		echo '<p class="help-block">Sources</p>';
                             		echo '</div>';
                             		echo '</div>';	
@@ -77,15 +84,15 @@ include ("navbar.php");
       								echo  '<div class="control-group">';
        
         							echo  '<div class="col-md-4">';
-          							echo  '<input type="text" class="input-xlarge" name="content-comment">';
+          							echo  '<input type="text" class="input-xlarge" name="content-comment" value='.$comment.'>';
           							echo  '<p class="help-block">Content</p>';
             						echo  '</div>';
 									echo  '<div class="col-md-4">';
-          							echo  '<input type="text" class="input-xlarge" name="style-comment">';
+          							echo  '<input type="text" class="input-xlarge" name="style-comment" value='.$comment1.'>';
             						echo  '<p class="help-block">Style</p>';
         							echo  '</div>';
 									echo  '<div class="col-md-4">';
-               						echo  '<input type="text" class="input-xlarge" name="source-comment">';
+               						echo  '<input type="text" class="input-xlarge" name="source-comment" value='.$comment2.'>';
           							echo  '<p class="help-block">Sources</p>';
         							echo  '</div>';
 									
