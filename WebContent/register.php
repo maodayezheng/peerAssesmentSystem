@@ -9,7 +9,7 @@
     <div class="container" style="background-color: white; ">
 
         <div class="page-header">
-            <h1>Registration form <small>A Bootstrap template showing a registration form with standard fields</small></h1>
+            <h1>Registration form <small> for students</small></h1>
         </div>
 
         <!-- Registration form - START -->
