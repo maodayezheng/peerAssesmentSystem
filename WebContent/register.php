@@ -9,7 +9,7 @@
     <div class="container" style="background-color: white; ">
 
         <div class="page-header">
-            <h1>Registration form <small> for students</small></h1>
+            <h1>Registration form for students</h1>
         </div>
 
         <!-- Registration form - START -->
