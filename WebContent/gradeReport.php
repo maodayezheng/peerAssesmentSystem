@@ -33,6 +33,7 @@ include ("navbar.php");
                             		
                             		$tomark = $row['groupAssessed'];
                             		$reportContent = $row['reportcontent'];
+                            		$id = $row['id'];
                             		echo '<li class="list-group-item">';  // title
                             		echo "<div class=\"row toggle\" id=\"dropdown-detail-$tomark\" data-toggle=\"detail-$tomark\">";
                             		echo '<div class="col-xs-10">'.'Group '.$tomark.'</div>';
@@ -84,16 +85,18 @@ include ("navbar.php");
             						echo  '<p class="help-block">Style</p>';
         							echo  '</div>';
 									echo  '<div class="col-md-4">';
-               						echo  '<input type="text" class="input-xlarge" name="sources-comment">';
+               						echo  '<input type="text" class="input-xlarge" name="source-comment">';
           							echo  '<p class="help-block">Sources</p>';
         							echo  '</div>';
 									
       								echo  '</div>';
       								echo  '</fieldset>';
     								echo  '</div>';
-    								echo '<div class="col-md-offset-4 col-md-6">
-        								  <input align="right" type="submit" class="foo col-xs-3 input-xlarge btn-success" id="submitAssessment">
-        									</div>';
+    								echo "<div class=\"col-md-offset-4 col-md-6\">
+        								  <button align=\"right\" type=\"submit\" class=\"foo col-xs-3 input-xlarge btn-success\" value=$id name=\"id\">
+        								submit
+        								</button>		
+    								</div>";
                             		echo '</form>';
                             		
                             		echo '</div>';// close container 

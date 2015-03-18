@@ -114,7 +114,7 @@
 
 							}
                         </script>
-                        <a class="btn btn-primary" onclick="jumpToAssign()">
+                        <a class="btn btn-primary" onclick="jumpToViewRanking()">
                             View the group ranking 
                         </a>
                     </p>

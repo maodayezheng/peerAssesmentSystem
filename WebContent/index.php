@@ -7,7 +7,7 @@
 	<!-- Jumbotron Header -->
 	<header class="jumbotron hero-spacer">
 		<h1>Welcome to Peer System!</h1>
-		<h4> "Collaberate for better results"</h4>
+		<h4> "Collaborate for better results"</h4>
 		<!--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa,
 			ipsam, eligendi, in quo sunt possimus non incidunt odit vero aliquid
 			similique quaerat nam nobis illo aspernatur vitae fugiat numquam
@@ -35,7 +35,7 @@
 
 				<div class="caption">
                     <p>
-                        <a id="submit_group_report" class="btn btn-success" onclick="Navigator.prototype.navigate(this.id)">
+                        <a id="submit_group_report" class="btn btn-primary" onclick="Navigator.prototype.navigate(this.id)">
                             Submit / View Group Report
                         </a>
                     </p>
@@ -48,7 +48,7 @@
             <div class="thumbnail">
                 <div class="caption">
                     <p>
-                        <a id="visit_the_forum" class="btn btn-success" onclick="Navigator.prototype.navigate(this.id)">
+                        <a id="visit_the_forum" class="btn btn-primary" onclick="Navigator.prototype.navigate(this.id)">
                             Visit the Forum
                         </a>
                     </p>
@@ -62,7 +62,7 @@
             <div class="thumbnail">
                 <div class="caption">
                     <p>
-                        <a id="view_results_and_ranking" class="btn btn-success" onclick="Navigator.prototype.navigate(this.id)">
+                        <a id="view_results_and_ranking" class="btn btn-primary" onclick="Navigator.prototype.navigate(this.id)">
                             View Results and Ranking
                         </a>
                     </p>
@@ -80,7 +80,7 @@
 			<div class="thumbnail">
 				<div class="caption">
                     <p>
-                        <a id="conduct_a_peerwise_assessment" class="btn btn-success" onclick="Navigator.prototype.navigate(this.id)">
+                        <a id="conduct_a_peerwise_assessment" class="btn btn-primary" onclick="Navigator.prototype.navigate(this.id)">
                             Conduct a Peerwise Assessment
                         </a>
                     </p>
