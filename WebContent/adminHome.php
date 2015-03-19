@@ -32,13 +32,6 @@
 
 	<hr>
 
-	<!-- Title -->
-	<div class="row">
-		<div class="col-lg-12">
-			<h3><em>You can...</em></h3>
-		</div>
-	</div>
-	<!-- /.row -->
 
 	<!-- Page Features -->
 	<div class="row text-center">
@@ -79,7 +72,7 @@
                             Manage Group 
                         </a>
                     </p>
-                    <p> Assign group to mark each anothers work </p>
+                    <p> Assign a group to mark another group's report.  </p>
                 </div>
             </div>
         </div>
@@ -102,10 +95,10 @@
 							}
                         </script>
                         <a class="btn btn-primary" onclick="jumpToSearch()">
-                            search for a student
+                            Search for a student
                         </a>
                     </p>
-					<p>Allocate students to different groups</p>
+					<p>Search for a student and view their details. </p>
 				</div>
 			</div>
 		</div>
@@ -122,10 +115,10 @@
 							}
                         </script>
                         <a class="btn btn-primary" onclick="jumpToViewRanking()">
-                            View the group ranking 
+                            View Group Rankings
                         </a>
                     </p>
-                    <p> Assign group to mark each anothers work </p>
+                    <p> View a ranking of groups according to their grade aggregation. </p>
                 </div>
             </div>
         </div>
