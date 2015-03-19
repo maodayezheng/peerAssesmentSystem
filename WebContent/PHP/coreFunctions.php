@@ -74,7 +74,7 @@
                 $_SESSION["accountType"] = $data["accountType"];
 
                 if($data["accountType"]==="student")    { header ("location: $success.php");    }
-                else if($data["accountType"]==="admin") { header ('location: adminHome.php'); }
+                else if($data["accountType"]==="admin") { header ("location: ../adminHome.php"); }
 
 
             } else
