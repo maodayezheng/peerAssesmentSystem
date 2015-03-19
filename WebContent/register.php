@@ -75,7 +75,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="confirmPassword">Enter Password</label>
+                            <label for="confirmPassword">Confirm Password</label>
                             <div class="input-group">
                                 <input type="password" class="form-control" name="confirmPassword" id="confirmPassword" placeholder="Confirm Your Password" required>
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
