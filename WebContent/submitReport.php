@@ -81,7 +81,7 @@
 							while ( $row = $result->fetch_assoc () ) {
 								$reportContent = $row ["reportcontent"];
 								
-								echo "<b>Report:</b><br><pre> $reportContent" . "</pre><br>";
+								echo "<b>Report:</b><br><pre> $reportContent</pre><br>";
 								
 								// if xml echo
 							}

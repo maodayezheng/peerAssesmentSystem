@@ -48,13 +48,14 @@
             {
             	$count=1;
             	$rankedGrades = array();
+            	echo '<h4 class="row4" text-align="centre">This page shows the ranking of your group and the groups that assessed your group</h4>';
             	while ($row = $result->fetch_assoc())
             	{
             
             		foreach ($row as $key => $value) {
             
             			if ($key == "Team") {
-            				$value = "Ranked: ".$count." is group: ".$value;
+            				$value = "<h3><b>Rank ".$count.": group: ".$value."</b></h3>";
             				$count++;
             				 
             			} else if ($key = "Grade") {

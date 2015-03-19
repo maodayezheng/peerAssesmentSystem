@@ -116,6 +116,8 @@ include ("navbar.php");
                             
                             	};
                             
+                            	} else {
+                            		echo "empty";
                             	}
                             	
 
