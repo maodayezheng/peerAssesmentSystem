@@ -4,6 +4,9 @@
 
 
 <div class="container">
+    <div class="panel panel-primary">
+
+
                 <form id="selection" action='PHP/viewMembers.php' method = "POST">
 				<div class="col-md-offset-4"><p>Choose The Group: <select name="group">
 				<?php 
@@ -57,5 +60,6 @@
 			</table>
                 <div class="col-md-offset-11"><input class="btn btn-success" type="submit" value="Submit"></div>
 				</form>
+    </div>
 
 </div>
