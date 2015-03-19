@@ -6,9 +6,15 @@
 	?>
 	<?php
 	include ("header.php");
-	include ("navbar.php")?>
+	include ("navbar.php");
+    require ("PHP/coreFunctions.php");
 
+    if(!userIsAdmin())
+    {
+        endScript('You do not have permission to view this page. ');
+    }
 
+?>
 <div class="container">
 
 	<!-- Jumbotron Header -->
