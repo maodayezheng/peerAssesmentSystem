@@ -5,7 +5,8 @@
 	}*/
 	?>
 	<?php
-	include ("header.php");
+	session_start();
+    include ("header.php");
 	include ("navbar.php");
     require ("PHP/coreFunctions.php");
 
