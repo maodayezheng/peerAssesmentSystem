@@ -28,7 +28,92 @@
             require_once("PHP/DBConnection.php");
             echo "<div role=\"tabpanel\" class=\"tab-pane active\" id=\"ranking\">
 				<p> ";
-            $getGradesSQL = "select groupAssessed AS Team, (Content+Style+Sources)/3 AS Grade from assesments WHERE assignedMarker = $peergroup group by Grade DESC;";
+            echo '<h4 class="row4" text-align="centre">This page shows the ranking of your group and the groups that assessed your group</h4>';
+            // Requirement: Group should be able to know the ranking of their own aggregated mark within the
+            // aggregated mark for all groups.
+            $getGroupGradeSQL = "SELECT groupAssessed, assignedMarker, AVG(grade) as aggregatedResult
+                            FROM
+                                ( SELECT groupAssessed, assignedMarker, (Content+Style+Sources)/3 AS grade
+                                FROM assesments
+                                ORDER BY Grade DESC ) AS singleAssessment
+                            GROUP BY groupAssessed
+                            ORDER BY aggregatedResult DESC";
+
+            $preparedStatement = $conn->stmt_init();
+            $preparedStatement = $conn->prepare($getGroupGradeSQL);
+            $preparedStatement->execute();
+
+            $result = $preparedStatement -> get_result();
+
+            $numOfAggregatedAssessments = 0;
+            $foundGroup                 = false;
+            $groupRank                  = 0;
+            $groupAggregatedGrade       = null;
+            $otherGroupResults          = array();
+
+            if ( ($result === FALSE) || ($result->num_rows === 0) )
+            {
+                echo '<tr>
+                <td colspan="2" style="text-align: left; font-size: 20px;">
+                    There are no rankings available
+                </td>
+              </tr>';
+            } else
+            {
+                $peerGroup = (int) $peergroup;
+                while ($row = $result->fetch_assoc())
+                {
+                    // Columns returned will be groupAssessed, assignedMarker, aggregatedResult
+                    $groupAssessed = $row["groupAssessed"];
+                    $assignedMarker = $row["assignedMarker"];
+                    $aggregatedResult = round($row["aggregatedResult"],2);
+
+                    if ($groupAssessed === $peerGroup)
+                    {
+                        $foundGroup = true;
+                        $groupRank++;
+                        $groupAggregatedGrade = $aggregatedResult;
+                    } else
+                    {
+                        if($assignedMarker === $peerGroup)
+                        {
+                            $otherGroupResults["$groupAssessed"] = $aggregatedResult;
+                        }
+                    }
+                    if (($groupAssessed != $peerGroup) && (!$foundGroup))
+                    {
+                        $groupRank++;
+                    }
+                    $numOfAggregatedAssessments++;
+                }
+
+            }
+
+            if($groupAggregatedGrade)
+            {
+                echo '<div class="panel panel-primary">
+                    <div class="panel-heading">
+                        Your Group\'s Aggregate Result: '.$groupAggregatedGrade.'<br />
+                        Your Group\'s Rank: '.$groupRank.' out of '.$numOfAggregatedAssessments.
+                    '</div>
+                    </div>';
+            } else
+            {
+                echo '<div class="panel panel-primary">
+                    <div class="panel-heading">
+                        Your Group Has Not Currently Been Graded.
+                    </div>
+                    </div>';
+            }
+
+            foreach ($otherGroupResults as $group => $mark)
+            {
+                echo '<div align="center"><h4> Group '. $group."'s Aggregate Grade: ".round($mark,2).'%</h4></div>';
+            }
+
+
+
+           /* $getGradesSQL = "select groupAssessed AS Team, (Content+Style+Sources)/3 AS Grade from assesments WHERE assignedMarker = $peergroup group by Grade DESC;";
             
             $preparedStatement = $conn->stmt_init();
             $preparedStatement = $conn->prepare($getGradesSQL);
@@ -48,7 +133,7 @@
             {
             	$count=1;
             	$rankedGrades = array();
-            	echo '<h4 class="row4" text-align="centre">This page shows the ranking of your group and the groups that assessed your group</h4>';
+
             	while ($row = $result->fetch_assoc())
             	{
             
@@ -68,7 +153,7 @@
             		}
               }
             	
-            }
+            }*/
             echo "</p>";
             echo "</div>";
             //---------------------------------
