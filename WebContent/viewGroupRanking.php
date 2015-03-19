@@ -6,27 +6,56 @@
 <div class="container">
 
 <div class="panel panel-primary">
-		<div class="panel-heading">Current Assignment</div>
+		<div class="panel-heading">Aggregate Ranking of All Groups</div>
 		<div class="panel-body">
 		<table class="table table-striped table-hover">
 				<thead>
 					<tr>
-						<th colspan="2">Ranking</th>
+						<th>Ranking</th>
 						<th>Group</th>
+                        <th>Aggregated Result (%)</th></tg>
 					</tr>
 				</thead>
 				<tbody>
 				<?php 
 				require_once ('PHP/DBConnection.php');
-				$sql = "SELECT * FROM Ranking";
-				$results = $conn ->query($sql);
-				if($results->num_rows>0){
-					while ($row = $results->fetch_assoc()){
-						$group = $row["peergroup"];
-						$ranking = $row["rank"];
-						echo  "<tr><td colspan =\"2\">$ranking</td><td>$group</td></tr>";
-					}
-				}
+                $getGradesSQL = "SELECT groupAssessed, assignedMarker, AVG(grade) as aggregatedResult
+                            FROM
+                                ( SELECT groupAssessed, assignedMarker, (Content+Style+Sources)/3 AS grade
+                                FROM assesments
+                                ORDER BY Grade DESC ) AS singleAssessment
+                            GROUP BY groupAssessed
+                            ORDER BY aggregatedResult DESC";
+
+                $preparedStatement = $conn->stmt_init();
+                $preparedStatement = $conn->prepare($getGradesSQL);
+                $preparedStatement->execute();
+                $result = $preparedStatement -> get_result();
+
+                if ( ($result === FALSE) || ($result->num_rows === 0) )
+                {
+                    echo '<tr>
+                        <td colspan="3" style="text-align: left; font-size: 20px;">
+                            There are no rankings available
+                        </td>
+                      </tr>';
+                } else
+                {
+                    $rank = 1;
+                    while ($row = $result->fetch_assoc())
+                    {
+                        // Columns returned will be groupAssessed, assignedMarker, aggregatedResult
+                        $groupAssessed      = $row["groupAssessed"];
+                        $aggregatedResult   = round($row["aggregatedResult"], 2);
+
+                        echo "<tr>
+                                  <td>$rank</td>
+                                  <td>$groupAssessed</td>
+                                  <td>$aggregatedResult</td>
+                                  </tr>";
+                        $rank++;
+                    }
+                }
 				?>
 				</tbody>
 			</table>
