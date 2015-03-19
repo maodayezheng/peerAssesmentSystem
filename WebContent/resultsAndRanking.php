@@ -55,7 +55,7 @@
             		foreach ($row as $key => $value) {
             
             			if ($key == "Team") {
-            				$value = "<h3><b>Rank ".$count.": group: ".$value."</b></h3>";
+            				$value = "<h3><b>Rank ".$count.": group ".$value."</b></h3>";
             				$count++;
             				 
             			} else if ($key = "Grade") {
