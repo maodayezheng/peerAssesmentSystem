@@ -5,9 +5,14 @@
  */
 
     function userIsLoggedIn()   { return isset($_SESSION["userName"]);            }
-    function userIsAdmin()      { return $_SESSION["accountType"] === "admin";    }
     function userHasPeerGroup() { return isset($_SESSION["peergroup"]);           }
-
+    function userIsAdmin()
+    {
+        if( isset($_SESSION["accountType"]) )
+        {
+            return $_SESSION["accountType"] === "admin";
+        }
+    }
 
     function endScript($message)
     {
